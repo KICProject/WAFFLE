@@ -22,13 +22,9 @@
 }
 
 body{
-	/* 	width: 100%;
-  		height: 100%;
-   */
-		background-image:url("/img/background_copy.jpg");
+		background-image:url("/img/join_background_copy.jpg");		
 		font-family: S-CoreDream-3;
-  		color: #fff;
-
+		color:#fff;	
 	}
 	
 .container{
@@ -36,25 +32,24 @@ body{
 		margin-bottom:100px;
 }
 
-/*---------------- login_container ----------------*/
-.container>.login_frame {
+/*---------------- signup_container ----------------*/
+.container>.frame {
 	margin: 0 auto;
 	margin-top: 150px;
 	width: 800px;
-	height: 740px;
+	height: 1000px;
 	/* opacity: 0.5; */
 	border-radius: 50px;
 	box-shadow: 0px 30px 21px 0 rgba(64, 64, 64, 0.67);
 	background-image: linear-gradient(to bottom, #051c29 14%, #051c29 14%, #405590 42%,
 		#7283b3 63%, #576d95 68%, #425b7c 72%, #113245 86%);
-	background-color: rgba(255, 255, 255, 0.5);
 	overflow: hidden;
 }
 
-.container>.login_frame > h2 {
+.container>.frame>h2 {
 	padding-top: 65px;
 	padding-left: 92px;
-	width: 201px;
+	width: 345px;
 	height: 94px;
 	font-family: "s-core-dream-extrabold";
 	font-size: 67.5px;
@@ -66,7 +61,7 @@ body{
 	float: left;
 }
 
-.container>.login_frame .logo {
+.container>.frame .logo {
 	padding-top: 50px;
 	margin-right: 96px;
 	width: 165px;
@@ -81,7 +76,7 @@ body{
 	float: right;
 }
 
-.container>.login_frame .intro {
+.container>.frame .intro {
 	margin-right: 96px;
 	clear: right;
 	float: right;
@@ -98,133 +93,97 @@ body{
 	color: #ffffff;
 }
 
-.container>.login_frame .box1 {
+.container>.frame .box1 {
 	clear: both;
 	display: block;
-	width: 232px;
+	width: 280px;
 	height: 6px;
 	background-color: #fff;
 	margin-left: 66px;
 	float: left;
 }
 
-.container>.login_frame .box2 {
+.container>.frame .box2 {
 	display: block;
-	width: 436px;
+	width: 388px;
 	height: 3px;
 	margin-top: 3px;
 	background-color: #fff;
 	float: left;
 }
-
-.container>.login_frame>.login_input {
+/* inner things */
+.container>.frame>.input {
 	overflow: hidden;
 	clear: both;
 	padding-top: 20px;
-	margin-left: 40px;
-	width: 359px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 600px;
+	height: 1000px;
 	float: left;
 }
 
-#memId {
-	width: 232px;
-	height: 36px;
-	margin: 94px auto 0 66px;
-	opacity: 0.52;
-	border: solid 1px #ffffff;
+.input form {
+	width: 600px;
+	height: 1000px;
 }
 
-#memPass {
-	width: 232px;
-	height: 36px;
-	opacity: 0.52;
-	border: solid 1px #ffffff;
-	margin: 15px auto 0 66px;
-}
-
-#con_login_btn {
-	width: 232px;
-	height: 39px;
-	opacity: 0.73;
-	border-radius: 24.5px;
-	background-color: #c3fe5d;
-	margin: 30px auto 0 66px;
-}
-
-.container>.login_frame>.login_input ul {
-	display: block;
-	margin: 20px auto;
-	float: left;
-	margin-left: 66px;
-}
-
-.container>.login_frame>.login_input ul li {
-	float: left;
-	margin-right: 20px;
-}
-
-.container>.login_frame>.login_input ul li a {
-	float: left;
-	margin-rigt: 10px;
+.input .form-group {
+	width: 600px;
+	height: 40px;
 	color: #fff;
-}
-
-.middle_line {
-	display: block;
-	background-color: #fff;
-	height: 387px;
-	width: 1px;
-	float: left;
-	margin-top: 40px;
-}
-
-.container>.login_frame>.singin_box {
-	overflow: hidden;
-	padding-top: 94px;
-	margin-left: 40px;
-	width: 358px;
-	float: right;
-}
-
-.signin_box>p {
-	width: 164px;
-	height: 20px;
-	font-family: "SpoqaHanSans";
 	font-size: 14px;
-	font-weight: bold;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 0.49;
-	letter-spacing: 1.4px;
+	margin: 20px 0;
 }
 
-.singin_box>span {
+.input .form-group label {
 	display: block;
-	width: 250px;
-	height: 15px;
-	font-family: "SpoqaHanSans";
-	font-size: 10px;
-	font-weight: normal;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 1.8;
-	letter-spacing: 1px;
-	margin: 10px 0px;
+	width: 200px;
+	height: 35px;
+	float: left;
+	line-height: 35px;
 }
 
-#signin_btn {
-	width: 236px;
-	height: 49px;
-	opacity: 0.73;
-	border-radius: 24.5px;
-	background-color: #aaa8d8;
+.input .form-group input {
+	width: 290px;
+	height: 33px;
+	float: left;
+	line-height: 35px;
+	margin-left: 30px;
 }
 
-.SNS {
-	margin-left: 126px;
-	margin-top: 30px;
+.input .memPhone, .input .memPhone2 {
+	height: 40px;
 }
 
+.input .memPhone label, .input .memPhone2 label {
+	height: 40px;
+	line-height: 20px;
+}
+
+	.reg_btn{
+		width: 240px;
+		height: 50px;
+		opacity: 0.73;
+		border-radius: 24.5px;
+		background-color: #afde77;
+		clear:both;
+		margin:30px 176px;
+	}
+	.idChk{
+		width: 70px;
+		height: 30px;
+		opacity: 0.73;
+		border-radius: 24.5px;
+		background-color: #f38;
+		float:left;
+		margin-left:5px;
+	}
+	.show{
+		display:block;
+	}
+	
 /* -----------------------------반응형 width 1450px------------------------------------- */
 @media screen and (max-width: 1450px) {
   main .main1 .main1_left .left_text1 {

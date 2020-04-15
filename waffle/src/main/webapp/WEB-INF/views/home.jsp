@@ -9,8 +9,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="/css/header.css" />
-<link rel="stylesheet" type="text/css" href="/css/footer.css" />
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
