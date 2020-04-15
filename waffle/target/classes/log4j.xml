@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="kr.co.controller">
+	<logger name="com.waffle.controller">
 		<level value="info" />
 	</logger>
 	
