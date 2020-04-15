@@ -3,12 +3,14 @@ header {
   position: relative;
 }
 header .logo {
+  display:block;
   position: absolute;
   top: 50px;
   left: 50%;
   margin-left: -45px;
   font-family: S-CoreDream-1;
   font-size: 67.5px;
+  color:#fff;
 }
 header .logo::before {
   content: "";
@@ -21,7 +23,8 @@ header .logo::before {
   background: no-repeat url("../img/logo.png") center center;
   background-size: cover;
 }
-/* --------로그인 & 검색 & 마이페이지 ----------- */
+
+/* --------濡쒓렇�씤 & 寃��깋 & 留덉씠�럹�씠吏� ----------- */
 header .gnp {
   display: flex;
   align-items: center;
@@ -62,7 +65,7 @@ nav {
   position: relative;
   z-index: 1;
 }
-/* 왼쪽상단 햄버거태그 */
+/* �쇊履쎌긽�떒 �뻹踰꾧굅�깭洹� */
 nav .hamburg_box {
   position: fixed;
   top: 60px;
@@ -93,7 +96,7 @@ nav .hamburg:after {
   width: 30px;
   border-top: 2px solid #fff;
 }
-/* 햄버거태그 ainmation */
+/* �뻹踰꾧굅�깭洹� ainmation */
 nav .hamburg_box:hover .hamburg {
   animation: bar 1.5s;
 }
@@ -125,7 +128,7 @@ nav .hamburg_box:hover .hamburg::after {
     width: 25px;
   }
 }
-/* 햄버거태크 클릭했을때 나오는 menu */
+/* �뻹踰꾧굅�깭�겕 �겢由��뻽�쓣�븣 �굹�삤�뒗 menu */
 nav .menu_box .dimmed {
   display: none;
   position: fixed;
@@ -200,7 +203,7 @@ nav .menu_box.active .menu {
 }
 
 
-/* ------------------------------반응형 width 1450px------------------------------------- */
+/* ------------------------------諛섏쓳�삎 width 1450px------------------------------------- */
 @media screen and (max-width: 1450px) {
     nav .menu_box .menu {
       width: 25vw;

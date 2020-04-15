@@ -13,39 +13,7 @@
 <link rel="stylesheet" type="text/css" href="/css/footer.css" />
 </head>
 <body>
-	
-	<!-- header -->
-	<header>
-		<p class="logo">AFFLE</p>
-		<ul class="gnp">
-			<c:if test="${member == null}">
-				<li class="login"><a href="member/loginControl" id="login_btn"></a></li>
-			</c:if>
-			<c:if test="${member != null}">
-				<li class="logout"><a href="member/logout" id="logoutBtn"></a></li>
-			</c:if>			
-			<li class="search"><a href="#"></a></li>
-			<li class="my_page"><a href="#"></a></li>
-		</ul>
-	</header>
-	<!-- nav -->
-	<nav>
-		<div class="hamburg_box">
-			<div class="hamburg"></div>
-		</div>
-		<div class="menu_box">
-			<div class="dimmed"></div>
-			<div class="menu">
-				<div class="btn_x"></div>
-				<ul>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Service</a></li>
-					<li><a href="#">Product</a></li>
-					<li><a href="#">Customer</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
 	<c:if test="${member == null}">
 		<main>
 			<!-- main1 -->
@@ -159,29 +127,7 @@
 	})
 	</script>
 	</c:if>
-	<!-- footer -->
-		<footer>
-			<div class="footer_top">
-				<ul class="cs_info">
-					<li>와플 고객만족센터</li>
-					<li>1544-XXXX</li>
-					<li>월요일~금요일 09:00~18:00 / 토요일,일요일,공휴일 휴무</li>
-				</ul>
-				<ul class="project_info">
-					<li>(주)와플 만든이들 : 김민수, 박종혁, 박재은, 신민주, 이정연, 홍대기</li>
-					<li>주소 ; 서울 강남구 테헤란로1길 10 세경빌딩 3층</li>
-					<li>COPYRIGHT ⓒ WAFFLE ALL RIGHTS RESERVED.</li>
-				</ul>
-			</div>
-			<div class="footer_bottom">
-				<ul>
-					<li><a href="#">와플 이용약관</a></li>
-					<li><a href="#">개인정보처리방침</a></li>
-					<li><a href="#">이메일무단수집거부</a></li>
-					<li><a href="#">사이트맵</a></li>
-				</ul>
-			</div>
-		</footer>
-		<script src="/js/app.js"></script>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<script src="/js/app.js"></script>
 </body>
 </html>
