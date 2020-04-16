@@ -62,6 +62,7 @@
 	</c:if>
 	<c:if test="${member != null}">
 	<div class="container">
+		<a href="/board/list">게시판</a><br />
 		<div class="main_frame">
 			<div class="state">
 				<div class="temp statebox">
