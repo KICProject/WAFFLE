@@ -181,7 +181,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>5.0.8.RELEASE</version>
+			<version>5.0.13.RELEASE</version>
 		</dependency>
 	
 	
@@ -199,6 +199,11 @@
 			<version>5.0.8.RELEASE</version>
 		</dependency>
 	          
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
