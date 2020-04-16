@@ -60,6 +60,7 @@ body {
 	height:784px;
 	margin: 92px 74px 0px 0px;
     float: right;
+    font-size:20px;
 	
 }
 
@@ -78,13 +79,13 @@ body {
 }
 .statebox p{
 	color:#fff;
-	font-size:48px;
+	font-size:30px;
 	text-align:center;
 }
 .statebox span {
 	display:block;
 	color:#fff;
-	font-size:56px;
+	font-size:42px;
 	text-align:center;
 }
 

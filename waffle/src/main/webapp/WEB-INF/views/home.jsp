@@ -93,24 +93,31 @@
 			</div>
 			<div class="controll">
 				<div class="room">
-				
+					<p>room1</p>
+					<img src="" alt="">
 				</div>
 				<div class="user ctrlbox">
-				
+					<img src="" alt="">
+					<p>user님의 집</p>
+					<p>${service.name} 이용중</p>
+					<select id="room_sel">
+						<option value="1">room1</option>
+						<option value="2">room2</option>
+						<option value="3">room3</option>
+					</select>
 				</div>
 				<div class="aircon ctrlbox">
-				
+					<p>에어컨, 온도조절</p>
 				</div>
 				<div class="tv">
-				
+					<p> tv 조절</p>
 				</div>
 				<div class="window ctrlbox">
-				
+					<p> 창문 open/close</p>
 				</div>
 				<div class="light ctrlbox">
-				
-				</div>
-				
+					<p> 조명 on/off</p>
+				</div>				
 			</div> 
 		</div>
 	</div>

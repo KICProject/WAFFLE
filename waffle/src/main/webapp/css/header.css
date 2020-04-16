@@ -34,20 +34,22 @@ header .gnp {
 }
 header .gnp li a {
   display: block;
-  width: 33px;
-  height: 33px;
+  width: 40px;
+  height: 40px;
   margin-right: 60px;
 }
 header .gnp li.login #login_btn {
-  width:18px; height:18px;
-  border-radius: 18px;
-  background: no-repeat url("../img/power_off.png") center center #c3fe5d; 
-  box-shadow: 0 0 13px 5px #c3fe5d;
+  width:40px; height:40px;
+  display:block;
+  border-radius: 20px;
+  background: no-repeat url("../img/power_white.png") center center; 
+  /* box-shadow: 0 0 13px 5px #c3fe5d; */
 }
 header .gnp li.logout #logoutBtn {
-  border-radius: 18px;
-  background: no-repeat url("../img/power_white.png") center center; /* #c3fe5d; */ 
-  /* box-shadow: 0 0 13px 5px #c3fe5d; */
+  width:40px; height:40px;
+  border-radius: 20px;
+  background: no-repeat url("../img/power_white.png") center center #c3fe5d; 
+  box-shadow: 0 0 13px 5px #c3fe5d;
 }
 
 
