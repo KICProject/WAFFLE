@@ -1,6 +1,6 @@
-@import "reset.css";
-@import "header.css";
-@import "footer.css";
+@import "/css/reset.css";
+@import "/css/header.css";
+@import "/css/footer.css";
 
 @font-face {
   font-family: S-CoreDream-1;
@@ -37,10 +37,11 @@ body {
 	background:no-repeat url("/img/background_copy.jpg") 100% 100%;		
 }
 .container .main_frame {
-	position:absolute;
+	/* position:absolute;
 	top:50%;
 	left:50%;
-	transform:translate(-50%,-35%);
+	transform:translate(-50%,-35%); */
+	margin: 150px auto;
 	width: 1583px;
 	height: 909px;
 	opacity: 0.5;
@@ -51,12 +52,14 @@ body {
 .container .main_frame .state {
 	width:548px;
 	height:784px;
-	margin:92px 0px 0px 74px;
+	margin: 92px auto auto 74px;
+    float: left;
 }
 .container .main_frame .controll{	
-	width:500px;
+	width:796px;
 	height:784px;
-	/* margin:92px 74px 0px 0px; */		
+	margin: 92px 74px 0px 0px;
+    float: right;
 	
 }
 
@@ -88,14 +91,27 @@ body {
 
 
 .controll .room{
-	width:400px;
-	height:400px;
+	width:510px;
+	height:512px;
 	background-color:#000;	
+	float:left;
 }
 .controll .ctrlbox{
-	width:200px;
-	height:200px;
+	width:232px;
+	height:240px;
 	background-color:#000;
+	margin-left:48px;
+	margin-bottom:31px;
+	float:left;
+}
+
+.controll .tv {
+	width:232px;
+	height:240px;
+	background-color:#000;
+	margin-left:0px;
+	margin-bottom:31px;
+	float:left;
 }
 
 /* --------------------main 1----------------------------- */
@@ -143,7 +159,7 @@ main .main1 .main1_right .right_text {
   font-weight: bold;
   font-size: 620px;
 }
-/* ---------------------main 2----------------------------- */
+/* ---------------------main 1----------------------------- */
 main .main1 .scroll_down_box {
   position: absolute;
   left: 0;
@@ -185,7 +201,7 @@ main .main1 .scroll_down_box .scroll::before {
     opacity: 0.3;
   }
 }
-/* --------------------main 3 ----------------------------- */
+/* --------------------main 2 ----------------------------- */
 main .main2 {
   display: flex;
   width: 100%;
@@ -229,7 +245,7 @@ main .main2_right button {
   font-size: 28px;
   color: #fff;
 }
-/* --------------------main �꽭踰덉㎏ ----------------------------- */
+/* --------------------main 3 ----------------------------- */
 main .main3 {
   width: 100%;
   height: 70vh;

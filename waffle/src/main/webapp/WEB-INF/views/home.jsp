@@ -101,7 +101,7 @@
 				<div class="aircon ctrlbox">
 				
 				</div>
-				<div class="tv ctrlbox">
+				<div class="tv">
 				
 				</div>
 				<div class="window ctrlbox">
