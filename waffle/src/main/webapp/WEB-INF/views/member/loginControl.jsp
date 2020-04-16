@@ -47,9 +47,9 @@
 					<li><a href="#">비밀번호 찾기</a></li>
 				</ul><br>
 				<span class="SNS"> SNS 로그인</span><br>
-				<ul>
-					<li><a href="#"><img src="" alt="">네이버로고</a></li>
-					<li><a href="#"><img src="" alt="">카카오로고</a></li>
+				<ul class="api_login">
+					<li><a href="#" id="nvr_btn"><img src="/img/naver_btn.png"></a></li>
+					<li><a href="#" id="kko_btn"><img src="/img/kakao_btn.png"></a></li>
 				</ul> 	
 							
 			</div>
