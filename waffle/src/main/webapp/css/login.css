@@ -53,7 +53,7 @@ body{
 	padding-left: 92px;
 	width: 201px;
 	height: 94px;
-	font-family: "s-core-dream-extrabold";
+	font-family: "S-CoreDream-6";
 	font-size: 67.5px;
 	font-weight: 800;
 	font-stretch: normal;
@@ -68,7 +68,7 @@ body{
 	margin-right: 96px;
 	width: 165px;
 	height: 61px;
-	font-family: "s-core-dream-thin";
+	font-family: "S-CoreDream-1";
 	font-size: 43.9px;
 	font-weight: 100;
 	font-stretch: normal;
@@ -84,7 +84,7 @@ body{
 	float: right;
 	width: 100px;
 	height: 25px;
-	font-family: "s-core-dream-thin";
+	font-family: "S-CoreDream-1";
 	font-size: 18px;
 	font-weight: 100;
 	font-stretch: normal;
@@ -222,17 +222,32 @@ body{
 	margin-top: 30px;
 	text-align:center;
 }
+
+.api_login {
+	margin:!important 0 auto;
+	text-align:center;
+}
+.api_login li{
+	width:50px;	
+	height:50px;
+}
 .api_login li a {
-	width:101px;
-	height:101px;
+	width:50px;
+	height:50px;
+	margin:0 auto;
 	display:block;
-	text-indent:-9999px;
+/* 	text-indent:-9999px; */
+}
+
+.api_login li a img {
+		width:50px;
+		height:50px;
 }
 .api_login nvr_btn {
-	/* background-image:url("/img/naver_btn") 100% 100%; */
+	/* background-image:url("/img/naver_btn.png") 100% 100%;  */
 }
 .api_login kko_btn{
-	/* background-image:url("/img/kakao_btn") 100% 100%; */
+/* 	background-image:url("/img/kakao_btn.png") 100% 100%; */
 }
 
 /* -----------------------------반응형 width 1450px------------------------------------- */
