@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -5,11 +7,19 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/update.css" />
 </head>
 <script type="text/javascript">
 		$(document).ready(function(){
+			//로그인이 안되어 있을 때
+			$('#tomain_btn').on('click',function(){
+			location.href="/";
+			})
+			$('#signin_btn').on('click',function(){
+				location.href="/member/loginControl";
+			})
+			
+			
 			// 취소
 			$(".cancle").on("click", function(){
 				
@@ -49,12 +59,12 @@
 					return false;
 				}
 				if($("#memPhone2").val()==""){
-					alert("후대전화를 입력해주세요.");
+					alert("휴대전화를 입력해주세요.");
 					$("#memPhone2").focus();
 					return false;
 				}
 				if($("#memEmail").val()==""){
-					alert("후대전화를 입력해주세요.");
+					alert("휴대전화를 입력해주세요.");
 					$("#memEmail").focus();
 					return false;
 				}
@@ -87,7 +97,22 @@
 			}
 	</script>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<c:if test="${member == null}">
+		<div class="container">		
+			<div class="login_first">
+				<p>
+					로그인을<br>
+					먼저 해주시기 바랍니다. 
+				</p>
+				<div class="btn_group">
+					<button type="button" id="tomain_btn">메인으로</button>
+					<button type="button" id="signin_btn">로그인</button>
+				</div>
+			</div>			
+		</div>
+	</c:if>
+	<c:if test="${member != null}">
 	<div class="container">
 		<div class="frame">
 			<h2>SIGN IN</h2>
@@ -150,6 +175,7 @@
 			</div>				
 		</div>	
 	</div>
+	</c:if>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<script src="/js/app.js"></script>
 </body>

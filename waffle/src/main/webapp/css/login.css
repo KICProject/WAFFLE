@@ -152,17 +152,16 @@ body{
 	display: block;
 	margin: 20px auto;
 	float: left;
-	margin-left: 66px;
 }
 
 .container>.login_frame>.login_input ul li {
 	float: left;
-	margin-right: 20px;
+	/* margin-right: 20px; */
 }
 
 .container>.login_frame>.login_input ul li a {
 	float: left;
-	margin-rigt: 10px;
+	/* margin-rigt: 10px; */
 	color: #fff;
 }
 

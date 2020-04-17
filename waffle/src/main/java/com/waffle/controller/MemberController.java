@@ -46,11 +46,13 @@ public class MemberController {
 		
 		if(login != null && pwdMatch==true) {
 			session.setAttribute("member",login);
+			return "redirect:/";
 		}else {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/loginControl";
 		}		
-		return "redirect:/";
+		
 	}
 	
 	//약관 동의 페이지로 이동

@@ -10,21 +10,20 @@
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/css/header.css" />
 </head>
-<body>
-	
+<body>	
 	<!-- header -->
 	<header>
 		<a href="/"><span class="logo">AFFLE</span></a>
 		<ul class="gnp">
 			<c:if test="${member == null}">
-				<li class="login"><a href="member/loginControl" id="login_btn"></a></li>
+				<li class="login"><a href="#" id="login_btn"></a></li>
 			</c:if>
 			<c:if test="${member != null}">
-				<li class="logout"><a href="member/logout" id="logoutBtn"></a></li>
+				<li class="logout"><a href="#" id="logoutBtn"></a></li>
 			</c:if>			
 			<li class="search"><a href="#"></a></li>
 			<li class="my_page"><a href="#"></a></li>
-		</ul>
+		</ul>		
 	</header>
 	<!-- nav -->
 	<nav>
@@ -44,4 +43,20 @@
 			</div>
 		</div>
 	</nav>
+	<script type="text/javascript">
+			$(document).ready(function() {
+				$("#login_btn").on("click", function() {
+					location.href = "/member/loginControl";
+				})
+				$("#logoutBtn").on("click", function() {
+					location.href = "/member/logout";
+				})
+				$(".search").on("click", function() {
+					location.href = "redirect:/";
+				})
+				$(".my_page").on("click", function() {
+					location.href = "/member/memberUpdateView";
+				})
+			})
+		</script>
 </body>

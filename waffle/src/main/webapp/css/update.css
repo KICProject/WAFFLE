@@ -23,16 +23,52 @@
 
 body{
 		background-image:url("/img/join_background_copy.jpg");
-		width:1920px;
-		height:1080px;
-		overflow:scroll;
 		font-family: S-CoreDream-3;
 		color:#fff;	
 	}
 	
 .container{
 		overflow:hidden;
+		margin-bottom:100px;
 }
+
+/*----------------login_first----------------------*/
+.container > .login_first{
+		width:800px;
+		height:440px;
+		margin: 0 auto;
+		margin-top: 250px;
+		/* position:absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%,-50%); */
+		text-align:center;
+	}	
+	.login_first p{
+		margin:20px auto;
+		line-height:20px;
+		font-size:18px;
+	}
+	
+	.login_first .btn_group {
+		width:510px;
+		height:50px;
+		margin:30px auto;
+	}
+	#tomain_btn, #signin_btn{
+		width: 240px;
+		height: 50px;
+		border-radius: 24.5px;
+		border:2px solid #fff;
+		background:rgba(255,255,255,0);
+		float:left;	
+		color:#fff;
+		font-size:18px;
+	}
+	#tomain_btn{
+		margin-right:20px;
+	}
+
 
 /*---------------- signup_container ----------------*/
 .container>.frame {
@@ -130,7 +166,15 @@ body{
 	width: 600px;
 	height: 1000px;
 }
-
+.input .passchkgrp{
+	height:80px;
+}
+.input .passchkgrp #compare_pass{
+	clear:both;
+	display:block;	
+	width:200px;
+	height:20px;
+	
 .input .form-group {
 	width: 600px;
 	height: 40px;
@@ -173,6 +217,8 @@ body{
 	clear: both;
 	margin: 30px 176px;
 }
+
+
 
 /* -----------------------------반응형 width 1450px------------------------------------- */
 @media screen and (max-width: 1450px) {
