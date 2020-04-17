@@ -41,7 +41,7 @@ body {
 	top:50%;
 	left:50%;
 	transform:translate(-50%,-35%); */
-	margin: 150px auto;
+	margin: 150px auto 0 auto;
 	width: 1583px;
 	height: 909px;
 	opacity: 0.5;

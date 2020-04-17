@@ -9,6 +9,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
@@ -123,14 +124,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	$(document).ready(function(){
-		$("#logoutBtn").on("click", function(){
-			location.href="member/logout";
-		})
-		$("#memberUpdateBtn").on("click",function(){
-			location.href="member/memberUpdateView";
-		})		
-	})
+
 	</script>
 	</c:if>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

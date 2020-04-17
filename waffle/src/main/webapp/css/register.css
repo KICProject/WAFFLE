@@ -128,10 +128,19 @@ body{
 	width: 600px;
 	height: 1000px;
 }
+.input .passchkgrp{
+	height:80px;
+}
+.input .passchkgrp #compare_pass{
+	clear:both;
+	display:block;	
+	width:200px;
+	height:20px;
+}
 
 .input .form-group {
 	width: 600px;
-	height: 40px;
+	height: 60px;
 	color: #fff;
 	font-size: 14px;
 	margin: 20px 0;

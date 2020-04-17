@@ -11,15 +11,11 @@
 </head>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#logoutBtn").on("click", function(){
-			location.href="./logout";
-		})
+		
 		$("#signin_btn").on("click",function(){
 			location.href="./agree";
 		})
-		$("#memberUpdateBtn").on("click",function(){
-			location.href="./memberUpdateView";
-		})		
+			
 	})
 </script>
 <body>
