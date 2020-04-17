@@ -15,7 +15,7 @@ public class AduDAOImpl implements AduDAO {
 	@Override
 	public void updateAdu(AduVO aduVO) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("ÀúÀåÇÒ °ª"+aduVO.getTemp());
+		System.out.println("ì €ìž¥í•  ê°’"+aduVO.getTemp());
 		sqlSession.update("updateadu",aduVO);
 	}
 

@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>kr.co</groupId>
+	<groupId>com.waffle</groupId>
 	<artifactId>controller</artifactId>
 	<name>study</name>
 	<packaging>war</packaging>
@@ -183,8 +183,7 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>5.0.13.RELEASE</version>
 		</dependency>
-	
-	
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -203,8 +202,7 @@
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
-		</dependency>
-		
+		</dependency>		
 		<!-- 첨부파일 START-->
 		<!-- MultipartHttpServletRequset -->
 		 <dependency>
@@ -228,14 +226,13 @@
 		    <version>3.1.1.RELEASE</version>
 		</dependency>
 		<!-- 트랜젝션 END -->  
-		
 		<!-- 아두이노 디펜던시 -->
 		<dependency>
     		<groupId>org.bidib.jbidib.org.qbang.rxtx</groupId>
     		<artifactId>rxtxcomm</artifactId>
-    	<version>2.2</version>
-	</dependency>
-	<!-- 아두이노 디펜던시 end -->   
+    		<version>2.2</version>
+		</dependency>
+		<!-- 아두이노 디펜던시 end -->   
 	</dependencies>
     <build>
         <plugins>
