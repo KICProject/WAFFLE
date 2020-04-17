@@ -13,7 +13,7 @@
 			location.href="/";
 		})
 		$('#signin_btn').on('click',function(){
-			location.href="/";
+			location.href="/member/loginControl";
 		})
 		
 	});
