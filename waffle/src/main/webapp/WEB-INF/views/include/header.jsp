@@ -35,8 +35,8 @@
 			<div class="menu">
 				<div class="btn_x"></div>
 				<ul>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Service</a></li>
+					<li><a href="#" id="about">About</a></li>
+					<li><a href="/sub/waffleService">Service</a></li>
 					<li><a href="#">Product</a></li>
 					<li><a href="#">Customer</a></li>
 				</ul>
@@ -57,6 +57,9 @@
 				$(".my_page").on("click", function() {
 					location.href = "/member/memberUpdateView";
 				})
+				$("#about").on("click", function(){
+					location.href ="/sub/about"
+				})	
 			})
 		</script>
 </body>

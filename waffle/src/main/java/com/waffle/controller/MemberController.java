@@ -38,10 +38,10 @@ public class MemberController {
 	BCryptPasswordEncoder pwdEncoder;
 	
 	//로그인 페이지로 이동
-		@RequestMapping(value="/loginControl", method=RequestMethod.GET)
-		public String loginMove() throws Exception{					
-			return "member/loginControl";
-		}
+	@RequestMapping(value="/loginControl", method=RequestMethod.GET)
+	public String loginMove() throws Exception{					
+		return "member/loginControl";
+	}
 	
 	/*
 	 * //로그인 페이지로 이동

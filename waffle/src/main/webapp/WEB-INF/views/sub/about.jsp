@@ -1,39 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WAFFLF</title>
-    <link rel="stylesheet" type="text/css" href="./css/about.css" />
-  </head>
-  <body>
-    <!-- header -->
-    <header>
-      <p class="logo">AFFLE</p>
-      <ul class="gnp">
-        <li class="login"><a href="#"></a></li>
-        <li class="search"><a href="#"></a></li>
-        <li class="my_page"><a href="#"></a></li>
-      </ul>
-    </header>
-    <!-- nav -->
-    <nav>
-      <div class="hamburg_box">
-        <div class="hamburg"></div>
-      </div>
-      <div class="menu_box">
-        <div class="dimmed"></div>
-        <div class="menu">
-          <div class="btn_x"></div>
-          <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Service</a></li>
-            <li><a href="#">Product</a></li>
-            <li><a href="#">Customer</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <section class="about_main">
+<head>
+<meta charset="UTF-8">
+<title>About</title>
+<link rel="stylesheet" type="text/css" href="/css/about.css" />
+</head>
+<body>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<section class="about_main">
       <!-- about WAFFLE -->
       <div class="about_head">
         <p class="title_big">About WAFFLE</p>
@@ -92,7 +67,7 @@
         </ul>
       </div>
     </section>
-    <!-- script -->
-    <script src="./js/app.js"></script>
-  </body>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<script src="/js/app.js"></script>
+</body>
 </html>
