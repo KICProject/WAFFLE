@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/css/about.css" />
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
 	<section class="about_main">
       <!-- about WAFFLE -->
       <div class="about_head">
