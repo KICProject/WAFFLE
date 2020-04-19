@@ -49,7 +49,7 @@
 					location.href = "/member/loginControl";
 				})
 				$("#logoutBtn").on("click", function() {
-					location.href = "/member/logout";
+					location.href = "/member/kakaologout";
 				})
 				$(".search").on("click", function() {
 					location.href = "redirect:/";
