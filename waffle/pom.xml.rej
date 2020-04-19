@@ -5,5 +5,3 @@ diff a/waffle/pom.xml b/waffle/pom.xml	(rejected hunks)
  			<artifactId>spring-security-core</artifactId>
 +			<version>5.0.13.RELEASE</version>
  		</dependency>
- 	
- 	
