@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +39,9 @@ public class noticeController {
 	
 	@Inject
 	NoticeReService replyService;
+	//추가 
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	
 	// 게시판 글 작성 화면
 	@RequestMapping(value = "/notice/writeView", method = RequestMethod.GET)
@@ -230,6 +234,9 @@ public class noticeController {
 			response.getOutputStream().close();
 			
 		}
+		
+
+		
 
 		
 }

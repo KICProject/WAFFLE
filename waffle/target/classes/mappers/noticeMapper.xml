@@ -130,4 +130,6 @@
     	NHIT = NHIT+1
     	WHERE NNO = #{nno}
     </update>
+    
+    
 </mapper>

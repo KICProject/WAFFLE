@@ -44,6 +44,16 @@
 				$(this).parent().remove();
 				
 			});
+			
+			 $("#gdsImg").change(function(){
+				   if(this.files && this.files[0]) {
+				    var reader = new FileReader;
+				    reader.onload = function(data) {
+				     $(".select_img img").attr("src", data.target.result).width(500);        
+				    }
+				    reader.readAsDataURL(this.files[0]);
+				   }
+				  });	
 		}
 	</script>
 	<body>
@@ -59,11 +69,19 @@
 			</div>
 			<hr />
 			
+			<!-- 추가 -->
+			<div class="inputArea">
+			 <label for="gdsImg">이미지</label>
+			 <input type="file" id="gdsImg" name="file" />
+			<div class="select_img"><img src="" /></div>
+			</div>
+			<%-- <%=request.getRealPath("/") %> --%>
+			
 			<section id="container">
 				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">
 					<table>
 						<tbody>
-							<c:if test="${wf_member.memId != null}">
+							<c:if test="${member.memId != null}">
 								<tr>
 									<td>
 										<label for="ntitle">제목</label><input type="text" id="ntitle" name="ntitle" class="chk" title="제목을 입력하세요."/>
@@ -76,7 +94,7 @@
 								</tr>
 								<tr>
 									<td>
-										<label for="nwriter">작성자</label><input type="text" id="nwriter" name="nwriter" class="chk" title="작성자를 입력하세요." value="${wf_member.memId}" />
+										<label for="nwriter">작성자</label><input type="text" id="nwriter" name="nwriter" class="chk" title="작성자를 입력하세요." value="${member.memId}" />
 									</td>
 								</tr>
 								<tr>
@@ -91,7 +109,7 @@
 									</td>
 								</tr>	
 							</c:if>
-							<c:if test="${wf_member.memId == null}">
+							<c:if test="${member.memId == null}">
 								<p>로그인 후에 작성하실 수 있습니다.</p>
 							</c:if>
 							

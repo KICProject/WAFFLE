@@ -10,6 +10,15 @@ public class NoticeVO { //DTO
 		private String nwriter;
 		private Date regdate;
 		private int nhit;
+		//추가
+		private String gdsThumbImg;
+		
+		public String getGdsThumbImg() {
+			return gdsThumbImg;
+		}
+		public void setGdsThumbImg(String gdsThumbImg) {
+			this.gdsThumbImg = gdsThumbImg;
+		}
 		public int getNno() {
 			return nno;
 		}
