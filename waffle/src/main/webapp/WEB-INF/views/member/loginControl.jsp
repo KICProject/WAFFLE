@@ -36,7 +36,7 @@
 					<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
 				</c:if>
 				</form>				
-				<ul>
+				<ul class="find_account">
 					<li><a href="#">아이디 찾기</a><span>&nbsp;&nbsp;&nbsp;|</span></li>					
 					<li><a href="#">비밀번호 찾기</a></li>
 				</ul><br>

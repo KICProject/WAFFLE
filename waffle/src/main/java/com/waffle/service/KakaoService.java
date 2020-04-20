@@ -17,9 +17,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
-@Controller
+@Service
 public class KakaoService {
 	private final static String K_CLIENT_ID = "e1d6e555ab653c2367b93a83450e0e0e"; //"자기꺼 REST API키";
 	private final static String K_REDIRECT_URI = "http://localhost:8090/member/kakaologin";

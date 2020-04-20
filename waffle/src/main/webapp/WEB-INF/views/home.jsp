@@ -13,10 +13,9 @@
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<c:if test="${member == null}">
-		<%-- ${sessionScope.token } --%>
-		<!-- 카카오톡 로그인 테스트용 
+		 ${sessionScope.token }
 			<a href="/member/kakaologout">카카오로그아웃</a> 
-		--> 
+		 
 		<main>
 			<!-- main1 -->
 			<section class="main1">

@@ -146,15 +146,32 @@ body{
 	margin: 30px auto 0 66px;
 }
 
-.container>.login_frame>.login_input ul {
-	display: block;
-	margin: 20px auto;
-	float: left;
+.find_account{
+	margin:20px auto;
+	text-align:center;
+}
+.api_login {
+	margin:10px auto;
+	text-align:center;
+}
+.api_login li{
+	width:50px;	
+	height:50px;
+}
+.api_login li a {
+	width:50px;
+	height:50px;
+	margin:20px auto;
+	display:block;
+/* 	text-indent:-9999px; */
 }
 
+.api_login li a img {
+		width:50px;
+		height:50px;
+}
 .container>.login_frame>.login_input ul li {
 	float: left;
-	/* margin-right: 20px; */
 }
 
 .container>.login_frame>.login_input ul li a {
@@ -220,32 +237,8 @@ body{
 	text-align:center;
 }
 
-.api_login {
-	margin:!important 0 auto;
-	text-align:center;
-}
-.api_login li{
-	width:50px;	
-	height:50px;
-}
-.api_login li a {
-	width:50px;
-	height:50px;
-	margin:0 auto;
-	display:block;
-/* 	text-indent:-9999px; */
-}
 
-.api_login li a img {
-		width:50px;
-		height:50px;
-}
-.api_login nvr_btn {
-	/* background-image:url("/img/naver_btn.png") 100% 100%;  */
-}
-.api_login kko_btn{
-/* 	background-image:url("/img/kakao_btn.png") 100% 100%; */
-}
+
 
 /* -----------------------------반응형 width 1450px------------------------------------- */
 @media screen and (max-width: 1450px) {
