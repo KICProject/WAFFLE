@@ -79,7 +79,7 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [memId=" + memId + ", memPass=" + memPass + ", memName=" + memName + ",memBirth=" + memBirth + ",memPhone="+memPhone+",memPhone2="+memPhone2+",memAddr="+memAddr+", regDate="
+		return "MemberVO [memId=" + memId + ", memPass=" + memPass + ", memName=" + memName + ",memBirth=" + memBirth + ",memPhone="+memPhone+",memPhone2="+memPhone2+",memAddr="+memAddr+",memAuthor="+memAuthor+", regDate="
 				+ regDate + "]";
 	}
 	

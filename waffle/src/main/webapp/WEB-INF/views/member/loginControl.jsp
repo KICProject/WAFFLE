@@ -10,12 +10,10 @@
 <link rel="stylesheet" type="text/css" href="/css/login.css" />	
 </head>
 <script type="text/javascript">
-	$(document).ready(function(){
-		
+	$(document).ready(function(){		
 		$("#signin_btn").on("click",function(){
 			location.href="./agree";
-		})
-			
+		})					
 	})
 </script>
 <body>
@@ -45,7 +43,7 @@
 				<span class="SNS"> SNS 로그인</span><br>
 				<ul class="api_login">
 					<li><a href="#" id="nvr_btn"><img src="/img/naver_btn.png"></a></li>
-					<li><a href="#" id="kko_btn"><img src="/img/kakao_btn.png"></a></li>
+					<li><a href="https://kauth.kakao.com/oauth/authorize?client_id=e1d6e555ab653c2367b93a83450e0e0e&redirect_uri=http://localhost:8090/member/kakaologin&response_type=code" id="kko_btn"><img src="/img/kakao_btn.png"></a></li>
 				</ul> 	
 							
 			</div>

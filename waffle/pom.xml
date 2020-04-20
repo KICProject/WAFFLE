@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>kr.co</groupId>
+	<groupId>com.waffle</groupId>
 	<artifactId>controller</artifactId>
 	<name>study</name>
 	<packaging>war</packaging>
@@ -10,7 +10,7 @@
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.3.8.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.6.10</org.aspectj-version>
+		<org.aspectj-version>1.8.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 		<!-- 오라클 -->
@@ -183,8 +183,7 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>5.0.13.RELEASE</version>
 		</dependency>
-	
-	
+		
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -203,8 +202,7 @@
 		    <groupId>com.googlecode.json-simple</groupId>
 		    <artifactId>json-simple</artifactId>
 		    <version>1.1.1</version>
-		</dependency>
-		
+		</dependency>		
 		<!-- 첨부파일 START-->
 		<!-- MultipartHttpServletRequset -->
 		 <dependency>
@@ -227,7 +225,33 @@
 		    <artifactId>spring-tx</artifactId>
 		    <version>3.1.1.RELEASE</version>
 		</dependency>
-		<!-- 트랜젝션 END -->  	    
+		<!-- 트랜젝션 END -->  
+		<!-- 아두이노 디펜던시 -->
+		<dependency>
+    		<groupId>org.bidib.jbidib.org.qbang.rxtx</groupId>
+    		<artifactId>rxtxcomm</artifactId>
+    		<version>2.2</version>
+		</dependency>
+		<!-- 아두이노 디펜던시 end -->   
+		<!-- kakao login rest api -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+		 <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.6</version>
+        </dependency>
+ 
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
 	</dependencies>
     <build>
         <plugins>

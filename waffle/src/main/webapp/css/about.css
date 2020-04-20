@@ -28,7 +28,7 @@ body {
 }
 /*----------------------- header---------------------------- */
 header .logo::before {
-  background: no-repeat url("../img/logo_bk.png") center center;
+  background: no-repeat url("/img/logo_bk.png") center center;
   background-size: cover;
 }
 /* --------로그인 & 검색 & 마이페이지 ----------- */
@@ -37,15 +37,15 @@ header .gnp li.login a {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background: no-repeat url("../img/power_white.png") center center #000; 
+  background: no-repeat url("/img/power_white.png") center center #000; 
   box-shadow: none;
 }
 header .gnp li.search a {
-  background: no-repeat url("../img/search_black.png") center center;
+  background: no-repeat url("/img/search_black.png") center center;
   background-size: 100%;
 }
 header .gnp li.my_page a {
-  background: no-repeat url("../img/mypage_black.png") center center;
+  background: no-repeat url("/img/mypage_black.png") center center;
 }
 /*----------------------- nav---------------------------- */
 
@@ -142,7 +142,7 @@ nav .hamburg:after {
   width: 1410px;
   height: 745px;
   margin-top: 110px;
-  background: no-repeat url(../img/login_img.jpeg) center center;
+  background: no-repeat url(/img/login_img.jpeg) center center;
 }
 .about_main .about_center .about_content .waffle_story div .story_img > p {
   padding-right: 180px; 

@@ -9,11 +9,14 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
-
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<c:if test="${member == null}">
+		<%-- ${sessionScope.token } --%>
+		<!-- 카카오톡 로그인 테스트용 
+			<a href="/member/kakaologout">카카오로그아웃</a> 
+		--> 
 		<main>
 			<!-- main1 -->
 			<section class="main1">
@@ -61,7 +64,8 @@
 			</section>
 		</main>		
 	</c:if>
-	<c:if test="${member != null}">
+	<c:if test="${(member !=null) && (member.memAuthor == 0)}">
+	<%-- <c:out value="${member}"/> --%>
 	<div class="container">
 		<a href="/board/list">게시판</a><br />
 		<div class="main_frame">
@@ -123,9 +127,11 @@
 			</div> 
 		</div>
 	</div>
-	<script type="text/javascript">
-
-	</script>
+	</c:if>
+	<c:if test="${(member !=null) && (member.memAuthor == 1)}">
+	<div class="container">
+		<p>관리자로 로그인했네?</p>
+	</div>
 	</c:if>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="/js/app.js"></script>

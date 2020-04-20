@@ -2,17 +2,23 @@ package com.waffle.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.waffle.service.KakaoService;
 import com.waffle.service.MemberService;
 import com.waffle.vo.MemberVO;
 
@@ -26,14 +32,61 @@ public class MemberController {
 	MemberService service;
 	
 	@Inject
+	KakaoService kakao;
+	
+	@Inject
 	BCryptPasswordEncoder pwdEncoder;
 	
-	//로그?��?��?���?�?
+	//로그인 페이지로 이동
 	@RequestMapping(value="/loginControl", method=RequestMethod.GET)
-	public String loginMove() throws Exception{
+	public String loginMove() throws Exception{					
 		return "member/loginControl";
-	}	
+	}
+	
+	/*
+	 * //로그인 페이지로 이동
+	 * 
+	 * @RequestMapping(value="/loginControl", method=RequestMethod.GET) public
+	 * String loginMove(Model model, HttpSession session) throws Exception{ String
+	 * kakaoUrl = kakao.getAuthorizationUrl(session);
+	 * model.addAttribute("kakaoUrl",kakaoUrl); return "member/loginControl"; }
+	 */
+	
+	
+	//카카오 로그인
+	//https://kauth.kakao.com/outh/authorize?client_id=REST API키 &redirect_uri="https://localhost:8080/kakaologin&response_type=code
+	@RequestMapping(value = "/kakaologin")
+	public String kakaoLogin(@RequestParam("code") String code,Model model, HttpSession session) throws Exception {	
+	  
+		System.out.println("로그인 시 임시 코드:"+code);
+		System.out.println("로그인 후 결과값");
+		JsonNode token = kakao.getAccessToken(code);
+		System.out.println(token);
 		
+		String token_string = token.get("access_token").toString();
+		
+		System.out.println(token_string);
+		//System.out.println(code);
+		//session.setAttribute("token", token_string);
+		
+		
+		JsonNode userInfo = kakao.getKakaoUserInfo(token);
+		System.out.println(userInfo);
+
+		return "redirect:/";
+	}
+	
+	//카카오로그아웃
+	@RequestMapping(value = "/kakaologout")
+	public String kakaoLogout(HttpSession session) {	
+		
+		JsonNode token = kakao.Logout(session.getAttribute("token").toString());
+		System.out.println(token);
+		System.out.println("로그인 후 받환되는 아이디:"+token.get("id"));
+		
+		return "redirect:/";
+	}
+	
 	
 	//로그인( Password 암호화, POST)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
