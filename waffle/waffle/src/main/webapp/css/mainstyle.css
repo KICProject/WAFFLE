@@ -1,0 +1,305 @@
+@import "/css/reset.css";
+@import "/css/header.css";
+@import "/css/footer.css";
+
+@font-face {
+  font-family: S-CoreDream-1;
+  src:url("../font/SCDream1.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-3;
+  src:url("../font/SCDream3.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-6;
+  src:url("../font/SCDream6.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background: no-repeat url("../img/main_background_Img.jpg") 100% 100%;
+  font-family: S-CoreDream-3;
+  color: #fff;
+}
+
+.container{
+	overflow:hidden;
+	width:100%;
+	height:1080px;
+	background:no-repeat url("/img/background_copy.jpg") 100% 100%;
+	margin-bottom:150px;		
+}
+.container .main_frame {
+	/* position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-35%); */
+	margin: 150px auto 0 auto;
+	width: 1583px;
+	height: 909px;
+	opacity: 0.5;
+	box-shadow: 0 0 21px 0 rgba(64, 64, 64, 0.67);
+	background-image: linear-gradient(to bottom, #1a78ae 14%, #1a78ae 14%, #405590 42%, #7283b3 63%, #6c8ab7 68%, #6890ba 72%, #5e9dc1 86%);
+}
+
+.container .main_frame .state {
+	width:548px;
+	height:784px;
+	margin: 92px auto auto 74px;
+    float: left;
+}
+.container .main_frame .controll{	
+	width:796px;
+	height:784px;
+	margin: 92px 74px 0px 0px;
+    float: right;
+    font-size:20px;
+	
+}
+
+ .container .main_frame .state .statebox {
+	width: 548px;
+	height: 220px;
+	/* opacity: 0.5; */
+	background-color:#000;
+	margin-bottom:62px;
+}
+
+.statebox div{
+	float:left;
+	margin:34px auto auto 30px;
+	
+}
+.statebox p{
+	color:#fff;
+	font-size:30px;
+	text-align:center;
+}
+.statebox span {
+	display:block;
+	color:#fff;
+	font-size:42px;
+	text-align:center;
+}
+
+
+
+.controll .room{
+	width:510px;
+	height:512px;
+	background-color:#000;	
+	float:left;
+}
+.controll .ctrlbox{
+	width:232px;
+	height:240px;
+	background-color:#000;
+	margin-left:48px;
+	margin-bottom:31px;
+	float:left;
+}
+
+.controll .tv {
+	width:232px;
+	height:240px;
+	background-color:#000;
+	margin-left:0px;
+	margin-bottom:31px;
+	float:left;
+}
+
+/* --------------------main 1----------------------------- */
+main .main1 {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+main .main1 .main1_left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+}
+main .main1 .main1_left .left_text_box {
+  width: 550px;
+}
+main .main1 .main1_left .left_text1 {
+  text-align: left;
+  font-size: 42.5px;
+}
+main .main1 .main1_left .left_text2 {
+  padding: 35px 0 70px 0;
+  text-align: center;
+  font-family: S-CoreDream-6;
+  font-size: 96px;
+}
+main .main1 .main1_left .left_text3 {
+  padding-left: 40px;
+  font-size: 18px;
+  line-height: 130%;
+  font-family: S-CoreDream-1;
+}
+main .main1 .main1_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+}
+main .main1 .main1_right .right_text {
+  position: relative;
+  top: 30px;
+  font-weight: bold;
+  font-size: 620px;
+}
+/* ---------------------main 1----------------------------- */
+main .main1 .scroll_down_box {
+  position: absolute;
+  left: 0;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
+main .main1 .scroll_down_box .scroll {
+  position: relative;
+  width: 25px;
+  height: 40px;
+  margin: 0 auto 10px;
+  border: 1.5px solid #fff;
+  border-radius: 13px;
+}
+main .main1 .scroll_down_box .scroll::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  width: 4px;
+  height: 6px;
+  margin-left: -2px;
+  border-radius: 3px;
+  background: #fff;
+  animation: scroll 1s 1s infinite linear alternate-reverse;
+}
+@keyframes scroll {
+  0% {
+    top: 13px;
+    opacity: 0.3;
+  }
+  50% {
+    top: 25px;
+    opacity: 1;
+  }
+  100% {
+    top: 13px;
+    opacity: 0.3;
+  }
+}
+/* --------------------main 2 ----------------------------- */
+main .main2 {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  
+}
+main .main2_left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+}
+main .main2_left img {
+  width: 620px;
+  height: 485px;
+}
+main .main2_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 100%;
+  text-align:right;
+}
+main .main2_right .right_text1 {
+  font-family: S-CoreDream-6;
+  font-size: 70px;
+}
+main .main2_right .right_text2 {
+  margin:50px 0 70px 0;
+  font-size: 40px;
+}
+main .main2_right button {
+  width: 200px;
+  height: 50px;
+  border: 2px solid #fff;
+  border-radius: 25px;
+  background: none;
+  cursor: pointer;
+  font-size: 28px;
+  color: #fff;
+}
+/* --------------------main 3 ----------------------------- */
+main .main3 {
+  width: 100%;
+  height: 70vh;
+  padding-top: 30vh;
+  text-align: center;
+}
+main .main3 div {
+  padding-bottom: 50px;
+}
+main .main3 .title {
+  font-size: 90px;
+}
+main .main3 .sub_title {
+  position: relative;
+  font-size: 60px;
+}
+main .main3 .sub_title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 25px;
+  width: 400px;
+  margin-left: -200px;
+  border: 1px solid #fff;
+}
+main .main3 .sub_title::before {
+  content: "";
+  position: absolute;
+  right: 52%;
+  bottom: 25px;
+  width: 170px;
+  border: 3px solid #fff;
+}
+main .main3 .comment {
+  font-size: 20px;
+}
+
+/* ------------------------------獄쏆꼷�벓占쎌굨 width 1450px------------------------------------- */
+@media screen and (max-width: 1450px) {
+  main .main1 .main1_left .left_text1 {
+    font-size: 30px;
+  }
+  main .main1 .main1_left .left_text2 {
+    padding: 25px 0 40px 0;
+    font-size: 80px;
+  }
+  main .main1 .main1_left .left_text3 {
+    font-size: 16px;
+  }
+  main .main1 .main1_right .right_text {
+    font-size: 500px;
+  }
+  main .main2_right .right_text2 {
+    font-size: 30px;
+  }
+}
