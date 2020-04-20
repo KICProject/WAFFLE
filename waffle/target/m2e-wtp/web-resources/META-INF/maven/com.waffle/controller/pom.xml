@@ -251,7 +251,9 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.2</version>
-        </dependency>		
+        </dependency>
+
+		<!-- 게시판 이미지 업로드 START-->
 		<!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
 		<dependency>
 		    <groupId>net.coobird</groupId>
@@ -263,7 +265,8 @@
 		    <groupId>commons-fileupload</groupId>
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.4</version>
-		</dependency>			 
+		</dependency>
+		<!-- 게시판 이미지 업로드 END --> 
 	</dependencies>
     <build>
         <plugins>
