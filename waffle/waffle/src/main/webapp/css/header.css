@@ -1,0 +1,214 @@
+/*----------------------- header---------------------------- */
+header {
+  position: relative;
+}
+header .logo {
+  display:block;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin-left: -45px;
+  font-family: S-CoreDream-1;
+  font-size: 67.5px;
+  color:#fff;
+}
+header .logo::before {
+  content: "";
+  position: absolute;
+  top: top;
+  left: 50%;
+  width: 100px;
+  height: 55px;
+  margin-left: -190px;
+  background: no-repeat url("../img/logo.png") center center;
+  background-size: cover;
+}
+
+/* --------濡쒓렇�씤 & 寃��깋 & 留덉씠�럹�씠吏� ----------- */
+header .gnp {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50px;
+  right: 0;
+}
+header .gnp li a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-right: 60px;
+}
+header .gnp li.login #login_btn {
+  width:40px; height:40px;
+  display:block;
+  border-radius: 20px;
+  background: no-repeat url("../img/power_white.png") center center; 
+  /* box-shadow: 0 0 13px 5px #c3fe5d; */
+}
+header .gnp li.logout #logoutBtn {
+  width:40px; height:40px;
+  border-radius: 20px;
+  background: no-repeat url("../img/power_white.png") center center #c3fe5d; 
+  box-shadow: 0 0 13px 5px #c3fe5d;
+}
+
+
+header .gnp li.search a {
+  width: 40px;
+  height: 40px;
+  background: no-repeat url("../img/search_white.png") center center;
+  background-size: 100%;
+}
+header .gnp li.my_page a {
+  background: no-repeat url("../img/profile_wh.png") center center;
+  background-size: 100%;
+}
+/*----------------------- nav---------------------------- */
+nav {
+  position: relative;
+  z-index: 1;
+}
+/* �쇊履쎌긽�떒 �뻹踰꾧굅�깭洹� */
+nav .hamburg_box {
+  position: fixed;
+  top: 60px;
+  left: 70px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+nav .hamburg_box .hamburg {
+  position: absolute;
+  width: 30px;
+  border-top: 2px solid #fff;
+}
+
+nav .hamburg:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 25px;
+  border-top: 2px solid #fff;
+}
+nav .hamburg:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 21px;
+  width: 30px;
+  border-top: 2px solid #fff;
+}
+/* �뻹踰꾧굅�깭洹� ainmation */
+nav .hamburg_box:hover .hamburg {
+  animation: bar 1.5s;
+}
+nav .hamburg_box:hover .hamburg::before {
+  animation: barBefore 1.5s 0.3s;
+}
+nav .hamburg_box:hover .hamburg::after {
+  animation: bar 1.5s 0.5s;
+}
+@keyframes bar {
+  0% {
+    width: 30px;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 30px;
+  }
+}
+@keyframes barBefore {
+  0% {
+    width: 25px;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 25px;
+  }
+}
+/* �뻹踰꾧굅�깭�겕 �겢由��뻽�쓣�븣 �굹�삤�뒗 menu */
+nav .menu_box .dimmed {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.82);
+  z-index: 1;
+}
+nav .menu_box .menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 20vw;
+  height: 100vh;
+  background: #fff;
+  transition: 2s;
+  z-index: 2;
+}
+nav .menu_box .menu .btn_x {
+  position: absolute;
+  top: 60px;
+  left: 70px;
+  width: 30px;
+  height: 30px;
+  transition: 1s;
+  cursor: pointer;
+}
+nav .menu_box .menu .btn_x::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 30px;
+  border-top: 2px solid #000;
+  transform: rotate(45deg);
+}
+nav .menu_box .menu .btn_x::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 30px;
+  border-top: 2px solid #000;
+  transform: rotate(-45deg);
+}
+
+nav .btn_x:hover {
+  transform: rotate(180deg);
+}
+
+nav .menu_box .menu ul {
+  position: absolute;
+  top: 180px;
+  left: 70px;
+}
+nav .menu_box .menu ul li {
+  padding-bottom: 45px;
+  font-size: 30.5px;
+  font-weight: 100;
+  line-height: 0.59;
+  text-align: left;
+  color: #000000;
+}
+nav .menu_box.active .dimmed {
+  display: block;
+}
+nav .menu_box.active .menu {
+  left: 0;
+  transition: 1s;
+}
+
+
+/* ------------------------------諛섏쓳�삎 width 1450px------------------------------------- */
+@media screen and (max-width: 1450px) {
+    nav .menu_box .menu {
+      width: 25vw;
+    }
+}
