@@ -9,6 +9,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
@@ -63,15 +64,14 @@
 		</main>		
 	</c:if>
 	<c:if test="${(member !=null) && (member.memAuthor == 0)}">
-	<%
 	
-		com.waffle.vo.MemberVO mem = (com.waffle.vo.MemberVO)session.getAttribute("member");
-	
-	%>
-	<script type="text/javascirpt">
-	
-	</script>
-	<c:out value="${member}"/>	
+	<c:out value="${member}"/>
+	<script type="text/javascript">
+	$(function(){
+		
+		location.href= "/api"
+	})
+</script>	
 	
 	<div class="container">
 		<a href="/board/list">게시판</a><br />
