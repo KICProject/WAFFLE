@@ -20,5 +20,10 @@ public class SubMenuController {
 	public String moveWaffleService() throws Exception{			
 		return "sub/waffleService";
 	}
+	@RequestMapping(value="/waffleBoard")
+	public String moveBoard() throws Exception {
+		 return "sub/waffleBoard";
+	}
+	
 	
 }
