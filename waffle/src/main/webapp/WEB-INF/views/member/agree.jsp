@@ -60,7 +60,7 @@
 	}
 </script>
 <body>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/header.jsp"/>
 	<div class="container">
 		<div class="frame">
 			<h2>SIGN IN</h2>
@@ -92,7 +92,7 @@
 				<button type="button" id="signin_btn">확인</button>
 		</div>	
 	</div>
-	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 	<script src="/js/app.js"></script>
 </body>
 </html>

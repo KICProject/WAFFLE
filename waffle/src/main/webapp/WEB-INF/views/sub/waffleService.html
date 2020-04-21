@@ -3,6 +3,13 @@
 <head>
     <title>WAFFLE</title>
 </head>
+<script type="text/javascript">
+	$(function(){
+		$('#basic_btn').on('click',function(){
+			location.href="/pay";
+		})
+	})
+</script>
 <body>
     <!DOCTYPE html>
 <html>
@@ -62,7 +69,8 @@
                     원룸에 사시거나 거실에만 스마트홈기기을 설치하시는<br>
                     고객님들께 추천해드립니다. 
                 </p>
-                <button type="button">신청하기</button>
+                <!-- <button type="button" id="basic_btn">신청하기</button> -->
+                <a href="../payment/pay">신청하기</a>
             </li>
             <li>
                 <p>

@@ -7,6 +7,31 @@
 <title>Waffle Service</title>
 <link rel="stylesheet" type="text/css" href="/css/waffleService.css" />
 </head>
+<script type="text/javascript">
+function fn_getMember() {
+	$.ajax({
+		url : "/sub/getMember",
+		type : "post",
+		dataType : "json",
+		data : {
+			"memId" : $("#memId").val()
+		},
+		success : function(data) {
+			if (data == 1) {
+				id_dbck = 0;
+				console.log(id_dbck);
+				alert("중복된 아이디입니다.");
+			} else if (data == 0) {
+				$("#idChk").attr("value", "Y");
+				id_dbck = 1;
+				console.log(id_dbck);
+				alert("사용가능한 아이디입니다.");
+			}
+		}
+	})
+}
+
+</script>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header_bk.jsp"/>
 	<section class="service_main">
@@ -33,6 +58,7 @@
                     고객님들께 추천해드립니다. 
                 </p>
                 <button type="button">신청하기</button>
+                <a href="../payment/pay">신청하기</a>"
             </li>
             <li>
                 <p>

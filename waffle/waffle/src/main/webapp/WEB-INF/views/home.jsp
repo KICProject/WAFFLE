@@ -9,7 +9,15 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
-
+<script type="text/javascript">
+	$(function(){
+		var member = '<%=(String)session.getAttribute("member.memId")%>';
+		alert(member);
+		/* sessionStorage.setItem("member", member);
+		sessionStorage.getItem( "member" ); */
+		
+	})	
+</script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	

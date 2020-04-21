@@ -14,8 +14,7 @@
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<c:if test="${member == null}">
 		 ${sessionScope.token }
-			<a href="/member/kakaologout">카카오로그아웃</a> 
-		 
+		<a href="/member/kakaologout">카카오로그아웃</a> 		 
 		<main>
 			<!-- main1 -->
 			<section class="main1">
@@ -64,7 +63,16 @@
 		</main>		
 	</c:if>
 	<c:if test="${(member !=null) && (member.memAuthor == 0)}">
-	<%-- <c:out value="${member}"/> --%>
+	<%
+	
+		com.waffle.vo.MemberVO mem = (com.waffle.vo.MemberVO)session.getAttribute("member");
+	
+	%>
+	<script type="text/javascirpt">
+	
+	</script>
+	<c:out value="${member}"/>	
+	
 	<div class="container">
 		<a href="/board/list">게시판</a><br />
 		<div class="main_frame">

@@ -35,7 +35,7 @@
 	<!-- 로그인 -->
 	<select id="login" parameterType="com.waffle.vo.MemberVO" resultType="com.waffle.vo.MemberVO">
 		SELECT *
-		FROM WF_MEM_LOGIN
+		FROM WF_MEMBER
 		WHERE MEMID = #{memId} 
 		<!-- AND MEMPASS = #{memPass} -->
 	</select>
