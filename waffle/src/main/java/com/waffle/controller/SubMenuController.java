@@ -14,11 +14,11 @@ public class SubMenuController {
 	
 	@RequestMapping(value="/about", method = RequestMethod.GET)
 	public String moveAbout() throws Exception{			
-		return "/sub/about";
+		return "sub/about";
 	}
 	@RequestMapping(value="/waffleService", method = RequestMethod.GET)
 	public String moveWaffleService() throws Exception{			
-		return "/sub/waffleService";
+		return "sub/waffleService";
 	}
 	
 }
