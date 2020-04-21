@@ -1,6 +1,8 @@
 /*----------------------- header---------------------------- */
 header {
   position: relative;
+  width:100%;
+  height:100px;
 }
 header .logo {
   display:block;
@@ -67,6 +69,8 @@ header .gnp li.my_page a {
 nav {
   position: relative;
   z-index: 1;
+  width:100%;
+  height:100px;
 }
 /* �쇊履쎌긽�떒 �뻹踰꾧굅�깭洹� */
 nav .hamburg_box {

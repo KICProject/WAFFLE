@@ -1,6 +1,8 @@
 /*----------------------- header---------------------------- */
 header {
   position: relative;
+  width:100%;
+  height:100px;
 }
 header .logo {
   display:block;
@@ -67,6 +69,8 @@ header .gnp li.my_page a {
 nav {
   position: relative;
   z-index: 1;
+  width:100%;
+  height:100px;
 }
 /*왼쪽 상단 햄버거태그*/
 nav .hamburg_box {
