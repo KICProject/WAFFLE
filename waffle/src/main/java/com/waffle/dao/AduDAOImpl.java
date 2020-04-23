@@ -16,7 +16,7 @@ public class AduDAOImpl implements AduDAO {
 	public void updateAdu(AduVO aduVO) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("저장할 값"+aduVO.getTemp());
-		sqlSession.update("updateadu",aduVO);
+		sqlSession.update("aduMapper.updateadu",aduVO);
 	}
 
 }

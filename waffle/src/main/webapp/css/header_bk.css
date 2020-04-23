@@ -3,6 +3,7 @@ header {
   position: relative;
   width:100%;
   height:100px;
+  z-index:0;
 }
 header .logo {
   display:block;
@@ -67,7 +68,7 @@ header .gnp li.my_page a {
 }
 /*----------------------- nav---------------------------- */
 nav {
-  position: relative;
+  position: absolute;
   z-index: 1;
   width:100%;
   height:100px;

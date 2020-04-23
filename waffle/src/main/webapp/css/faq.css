@@ -7,6 +7,9 @@ body{
     min-height: 100%;
     letter-spacing: -0.25px;
 }
+.full_container{
+
+}
 
 .tab_menu{
     width: 100%;
@@ -75,9 +78,23 @@ ul > li {
     display: none;
     width:100%;
     padding : 20px;
-    height:500px;
-    
+    height:500px;   
 }
+
+.a_img {
+	display : inline-block;
+	
+}
+
+.answer_content{
+	
+margin-left:55px;
+margin-top:-35px;
+margin-bottom:20px;
+
+	
+}
+
 .faq{
     width:100%;
 }
@@ -139,7 +156,7 @@ ul > li {
 .q_img{
     position: relative;
     float: left;
-    margin-top: 18px;
+    margin-top: 5px;
     margin-left: 15px;
 }
 
@@ -147,6 +164,7 @@ ul > li {
     display : flex;
     align-items: center;
     justify-content : center;
+    margin-bottom:20px;
 }
 
 .picture{
@@ -166,7 +184,8 @@ ul > li {
     font-size: 17px;
     padding-top: 20px;
     font-size: 20px;
-    padding-top: 24px;   
+    padding-top: 10px;   
+    padding-bottom:25px;
 }
 .choice{
     font-family: 'NotoSans-Medium';
@@ -201,6 +220,7 @@ ul > li {
     background-color: whitesmoke;
     
 }
+
 .color{
     background-color: whitesmoke;
 }
@@ -218,8 +238,6 @@ ul > li {
     background: #fff;
 }
 .page_choice:hover{background:lightgray;}
-
-a { text-decoration:none ; color:#000000}
 
 .img_hover{
   transform: scale(0.9);
@@ -290,7 +308,7 @@ transform: scale(1);
 
 .board_tab{
 font-family: S-CoreDream-3;
-margin: 0;
+width:100%;
 padding: 0;
 border: 0;
 font: inherit;
@@ -300,7 +318,8 @@ display: flex;
 background: #444;
 font-size: 20px;
 color: #fff;
-margin-top:50px;
+margin-top:55px;
+
 }
 .board_tab>li{
 font-family: S-CoreDream-3;

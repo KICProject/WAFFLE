@@ -49,7 +49,17 @@
 					location.href = "/member/loginControl";
 				})
 				$("#logoutBtn").on("click", function() {
-					location.href = "/member/kakaologout";
+					$.ajax({
+						url : "/member/logout",
+						type:"get",
+						success: function(){
+							sessionStorage.clear();
+							location.reload();
+							alert('로그아웃 되었습니다.\n 감사합니다.');							
+						},error:function(e){
+							alert('정상적으로 종료되지 않았습니다.');
+						}
+					})
 				})
 				$(".search").on("click", function() {
 					location.href = "redirect:/";

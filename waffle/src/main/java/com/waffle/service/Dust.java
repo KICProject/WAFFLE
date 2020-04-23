@@ -117,7 +117,7 @@ public class Dust implements IApi{
         
         NodeList nodeList = doc.getElementsByTagName("items");
         System.out.println("리스트 길이 :  " + nodeList.getLength()); 
-        
+        System.out.println(nodeList);
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node nNode = nodeList.item(i);
             if(nNode.getNodeType() == Node.ELEMENT_NODE) {
