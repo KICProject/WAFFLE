@@ -3,12 +3,12 @@ footer {
   width: 100%;
   height: 100%;
   font-size: 13px;
+  background: #222224;
 }
 footer .footer_top {
-  width: 100%;
+  width: 1300px;
   height: 187px;
   margin: 0 auto;
-  background: #222224;
 }
 footer .footer_top .cs_info .project_info {
   margin: 0 auto;
@@ -40,6 +40,7 @@ footer .footer_bottom {
 }
 footer .footer_bottom ul {
   display: flex;
+  width: 1300px;
   margin: 0 auto;
 }
 footer .footer_bottom ul li {
