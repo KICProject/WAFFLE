@@ -76,6 +76,16 @@
 				setInterval("dustCall()",3600000);
 				
 				var mem = "${member.memId}" // 회원의 서비스정보를 요청하기 위해 client상에 member객체를 저장
+				var usvo = "${Usvo.serviceName}"
+				
+				/* if(usvo=="basic"){
+					var rcnt = 1;
+					for(var i=0; i<rcnt; i++){
+						$('#room_sel').html('<option ')
+					}
+				} */
+				
+				
 					
 					if (sessionStorage.length != 0) { 
 						// 일단 로드가 되면, 기존에 회원이 조회한 방 정보는 브라우저의 sessionStorage에 저장되도록 했기 때문에, 데이터가 있으면 로드합니다. 
@@ -100,19 +110,19 @@
 						$('#lightStatus').html(light)
 						$('#serviceName').html(serviceName+'이용중')
 
-						if (room == '01') {
+						if (room == '1') {
 							$('#roomimg').attr('src', '/img/room01.jpg');
-						} else if (room == '02') {
+						} else if (room == '2') {
 							$('#roomimg').attr('src', '/img/room02.jpg');
-						} else if (room == '03') {
+						} else if (room == '3') {
 							$('#roomimg').attr('src', '/img/room03.jpg');
 						}
 						
 					}
 
+				
+					$('#room_sel').on('change',// 방 번호를 고르면, 그 방의 상태가 화면에 비동기적으로 표시됩니다.
 							
-					$('#room_sel').on( // 방 번호를 고르면, 그 방의 상태가 화면에 비동기적으로 표시됩니다.
-							'change',
 							function() {
 								var roomNumber = $('#room_sel option:selected').val();
 								$.ajax({
@@ -223,9 +233,9 @@
 							<p id="serviceName">이용중</p>							
 							<select id="room_sel">
 								<option value="">--선택해주세요--</option>
-								<option value="01">room1</option>
-								<option value="02">room2</option>
-								<option value="03">room3</option>
+								<option value="1">room1</option>
+								<option value="2">room2</option>
+								<option value="3">room3</option>
 							</select>
 						</div>
 						<div class="aircon ctrlbox">
