@@ -23,9 +23,7 @@ public class PaymentController {
 	 ServiceService service;
 	 
 	 @Inject 
-	 RoomService rservice;
-
-	
+	 RoomService rservice;	
 	
 	//private static final Logger logger = LoggerFactory.getLogger(PaymentContoller.class);
 	@ResponseBody
