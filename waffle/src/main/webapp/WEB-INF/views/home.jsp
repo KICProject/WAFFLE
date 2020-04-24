@@ -78,12 +78,22 @@
 				var mem = "${member.memId}" // 회원의 서비스정보를 요청하기 위해 client상에 member객체를 저장
 				var usvo = "${Usvo.serviceName}"
 				
-				/* if(usvo=="basic"){
+				if(usvo=="basic"){
 					var rcnt = 1;
-					for(var i=0; i<rcnt; i++){
-						$('#room_sel').html('<option ')
+					for(var i=1; i<=rcnt; i++){
+						$('#room_sel').append("<option value='"+i+"'>room0"+i+"</optoin>");				
 					}
-				} */
+				}else if(usvo=="pro"){
+					var rcnt = 3;
+					for(var i=1; i<=rcnt; i++){
+						$('#room_sel').append("<option value='"+i+"'>room0"+i+"</optoin>");				
+					}
+				}else if(usvo=="ultimate"){
+					var rcnt = 5;
+					for(var i=1; i<=rcnt; i++){
+						$('#room_sel').append("<option value='"+i+"'>room0"+i+"</optoin>");				
+					}
+				}
 				
 				
 					
@@ -101,7 +111,7 @@
 						var room = currentroom.roomNumber
 						var serviceName = currentroom.serviceName
 
-						$('#roomStatus').html('room' + room)	// 데이터가 보여질 위치에 .html()을 이용해서 출력합니다.
+						$('#roomStatus').html('room0' + room)	// 데이터가 보여질 위치에 .html()을 이용해서 출력합니다.
 						$('#innerTemp').html(innerTemp + '℃')
 						$('#innerHumid').html(innerWet + '%')
 						$('#airconStatus').html(aircon)
@@ -150,7 +160,7 @@
 											var light = currentroom.light
 											var room = currentroom.roomNumber
 
-											$('#roomStatus').html('room' + room)
+											$('#roomStatus').html('room0' + room)
 											$('#innerTemp').html(innerTemp + '℃')
 											$('#innerHumid').html(innerWet + '%')
 											$('#airconStatus').html(aircon)
@@ -158,11 +168,11 @@
 											$('#windowStatus').html(window)
 											$('#lightStatus').html(light)
 
-											if (room == '01') {
+											if (room == '1') {
 												$('#roomimg').attr('src', '/img/room01.jpg');
-											} else if (room == '02') {
+											} else if (room == '2') {
 												$('#roomimg').attr('src', '/img/room02.jpg');
-											} else if (room == '03') {
+											} else if (room == '3') {
 												$('#roomimg').attr('src', '/img/room03.jpg');
 											}
 
@@ -232,10 +242,7 @@
 							<p>${member.memId}님의집</p>
 							<p id="serviceName">이용중</p>							
 							<select id="room_sel">
-								<option value="">--선택해주세요--</option>
-								<option value="1">room1</option>
-								<option value="2">room2</option>
-								<option value="3">room3</option>
+								<option value="">--선택해주세요--</option>								
 							</select>
 						</div>
 						<div class="aircon ctrlbox">

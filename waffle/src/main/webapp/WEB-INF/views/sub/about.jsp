@@ -44,22 +44,22 @@
             <p>강남역 마지노선은</p>
             <ul>
               <li>
-                <img src="img/5.png" />
+                <img src="/img/5.png" />
               </li>
               <li>
-                <img src="img/6.png" />
+                <img src="/img/6.png" />
               </li>
               <li>
-                <img src="img/7.png" />
+                <img src="/img/7.png" />
               </li>
               <li>
-                <img src="img/8.png" />
+                <img src="/img/8.png" />
               </li>
               <li>
-                <img src="img/9.png" />
+                <img src="/img/9.png" />
               </li>
               <li>
-                <img src="img/10.png" />
+                <img src="/img/10.png" />
               </li>
             </ul>
             <p>6명으로 이루어진 웹개발 팀입니다.</p>

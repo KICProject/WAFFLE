@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(function(){
 		setTimeout(function(){
-			window.href="/home"
+			location.href="/"
 		},3000)
 	})
 </script>

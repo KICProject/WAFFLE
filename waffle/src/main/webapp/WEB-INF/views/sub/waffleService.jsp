@@ -80,12 +80,12 @@ $(function(){
 		
 		//var paydata_str = $('#payForm').serializeArray();
 		var paydata_str = $('#payForm').serialize();
-		var json_pay = JSON.stringify(paydata_str);
+		//var json_pay = JSON.stringify(paydata_str);
 		
 		//var json_pay = JSON.parse(paydata_str);
 		
 		console.log(paydata_str)
-		console.log(json_pay);
+		//console.log(json_pay);
 		//console.log(json_pay)
 		$.ajax({
 			url : "/payment/payReady",

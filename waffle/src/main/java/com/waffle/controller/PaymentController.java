@@ -31,6 +31,7 @@ public class PaymentController {
 	@ResponseBody
 	@RequestMapping(value="/payReady", method=RequestMethod.POST)
 	public int paymentReady(ServiceVO svo, HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception{
+		
 		System.out.println("payReady() called");
 		int result = 0;
 		response.setContentType("text/html;charset=UTF-8");
@@ -42,8 +43,11 @@ public class PaymentController {
 		svo.setMemId(memId);
 		svo.setServiceName(serviceName);
 		svo.setServiceId(memId, serviceName);
+		
 		System.out.println(svo.getServiceId());
+		
 		session.setAttribute("svo", svo);
+		
 		if(svo != null) {
 			result =1;
 		}
