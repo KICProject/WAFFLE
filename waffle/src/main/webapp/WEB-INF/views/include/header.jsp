@@ -54,6 +54,7 @@
 						type:"get",
 						success: function(){
 							sessionStorage.clear();
+							location.href="/home"
 							location.reload();
 							alert('로그아웃 되었습니다.\n 감사합니다.');							
 						},error:function(e){

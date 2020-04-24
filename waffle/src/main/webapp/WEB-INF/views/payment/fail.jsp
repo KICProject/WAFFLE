@@ -10,11 +10,11 @@
 <script type="text/javascript">
 	$(function(){
 		setTimeout(function(){
-			window.href="/home"
+			location.href="/"
 		},3000)
 	})
 </script>
 <body>
-결제가 완료되었습니다. 잠시후 메인페이지로 이동합니다.
+결제가 실패하였습니다. 잠시 후 서비스 페이지로 이동합니다.
 </body>
 </html>

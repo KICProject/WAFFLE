@@ -17,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.waffle.service.KakaoService;
 import com.waffle.service.MemberService;
+import com.waffle.service.ServiceService;
 import com.waffle.vo.MemberVO;
+import com.waffle.vo.ServiceVO;
 
 @Controller
 @RequestMapping("/member/*")
@@ -27,6 +29,9 @@ public class MemberController {
 	
 	@Inject
 	MemberService service;
+	
+	@Inject
+	ServiceService sservice;
 	
 	@Inject
 	KakaoService kakao;
@@ -104,14 +109,18 @@ public class MemberController {
 		logger.info("post login");
 		
 		session.getAttribute("member");
+		session.getAttribute("svo");
 		MemberVO login = service.login(vo);
+		ServiceVO usingService = sservice.getService(vo);
 		boolean pwdMatch =pwdEncoder.matches(vo.getMemPass(), login.getMemPass());
 		
 		if(login != null && pwdMatch==true) {
 			session.setAttribute("member",login);
+			session.setAttribute("Usvo", usingService);
 			return "redirect:/";
 		}else {
 			session.setAttribute("member", null);
+			session.setAttribute("Usvo", null);
 			rttr.addFlashAttribute("msg", false);
 			return "redirect:/member/loginControl";
 		}		
