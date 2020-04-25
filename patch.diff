@@ -1,0 +1,244 @@
+From d5a7313e5dcd006b49974abfa7b78d5326121a74 Mon Sep 17 00:00:00 2001
+From: jonghyuk park <jkzombie7@gmail.com>
+Date: Fri, 24 Apr 2020 22:40:23 +0900
+Subject: [PATCH] =?UTF-8?q?=EA=B2=B0=EC=A0=9C=20=EB=B6=80=EB=B6=84=20?=
+ =?UTF-8?q?=EB=B3=80=EA=B2=BD?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ .../waffle/controller/PaymentController.java  |  4 +++
+ waffle/src/main/webapp/WEB-INF/views/home.jsp | 33 +++++++++++--------
+ .../webapp/WEB-INF/views/payment/complete.jsp |  2 +-
+ .../webapp/WEB-INF/views/payment/fail.jsp     |  2 +-
+ .../main/webapp/WEB-INF/views/payment/pay.jsp |  8 ++---
+ .../main/webapp/WEB-INF/views/sub/about.jsp   | 12 +++----
+ .../WEB-INF/views/sub/waffleService.jsp       |  4 +--
+ .../com.waffle/controller/pom.properties      |  2 +-
+ 8 files changed, 39 insertions(+), 28 deletions(-)
+
+diff --git a/waffle/src/main/java/com/waffle/controller/PaymentController.java b/waffle/src/main/java/com/waffle/controller/PaymentController.java
+index 8b8ec80..7807bbf 100644
+--- a/waffle/src/main/java/com/waffle/controller/PaymentController.java
++++ b/waffle/src/main/java/com/waffle/controller/PaymentController.java
+@@ -31,6 +31,7 @@ public class PaymentController {
+ 	@ResponseBody
+ 	@RequestMapping(value="/payReady", method=RequestMethod.POST)
+ 	public int paymentReady(ServiceVO svo, HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception{
++		
+ 		System.out.println("payReady() called");
+ 		int result = 0;
+ 		response.setContentType("text/html;charset=UTF-8");
+@@ -42,8 +43,11 @@ public class PaymentController {
+ 		svo.setMemId(memId);
+ 		svo.setServiceName(serviceName);
+ 		svo.setServiceId(memId, serviceName);
++		
+ 		System.out.println(svo.getServiceId());
++		
+ 		session.setAttribute("svo", svo);
++		
+ 		if(svo != null) {
+ 			result =1;
+ 		}
+diff --git a/waffle/src/main/webapp/WEB-INF/views/home.jsp b/waffle/src/main/webapp/WEB-INF/views/home.jsp
+index 1c3c3ed..341cf43 100644
+--- a/waffle/src/main/webapp/WEB-INF/views/home.jsp
++++ b/waffle/src/main/webapp/WEB-INF/views/home.jsp
+@@ -78,12 +78,22 @@
+ 				var mem = "${member.memId}" // 회원의 서비스정보를 요청하기 위해 client상에 member객체를 저장
+ 				var usvo = "${Usvo.serviceName}"
+ 				
+-				/* if(usvo=="basic"){
++				if(usvo=="basic"){
+ 					var rcnt = 1;
+-					for(var i=0; i<rcnt; i++){
+-						$('#room_sel').html('<option ')
++					for(var i=1; i<=rcnt; i++){
++						$('#room_sel').append("<option value='"+i+"'>room0"+i+"</optoin>");				
+ 					}
+-				} */
++				}else if(usvo=="pro"){
++					var rcnt = 3;
++					for(var i=1; i<=rcnt; i++){
++						$('#room_sel').append("<option value='"+i+"'>room0"+i+"</optoin>");				
++					}
++				}else if(usvo=="ultimate"){
++					var rcnt = 5;
++					for(var i=1; i<=rcnt; i++){
++						$('#room_sel').append("<option value='"+i+"'>room0"+i+"</optoin>");				
++					}
++				}
+ 				
+ 				
+ 					
+@@ -101,7 +111,7 @@
+ 						var room = currentroom.roomNumber
+ 						var serviceName = currentroom.serviceName
+ 
+-						$('#roomStatus').html('room' + room)	// 데이터가 보여질 위치에 .html()을 이용해서 출력합니다.
++						$('#roomStatus').html('room0' + room)	// 데이터가 보여질 위치에 .html()을 이용해서 출력합니다.
+ 						$('#innerTemp').html(innerTemp + '℃')
+ 						$('#innerHumid').html(innerWet + '%')
+ 						$('#airconStatus').html(aircon)
+@@ -150,7 +160,7 @@
+ 											var light = currentroom.light
+ 											var room = currentroom.roomNumber
+ 
+-											$('#roomStatus').html('room' + room)
++											$('#roomStatus').html('room0' + room)
+ 											$('#innerTemp').html(innerTemp + '℃')
+ 											$('#innerHumid').html(innerWet + '%')
+ 											$('#airconStatus').html(aircon)
+@@ -158,11 +168,11 @@
+ 											$('#windowStatus').html(window)
+ 											$('#lightStatus').html(light)
+ 
+-											if (room == '01') {
++											if (room == '1') {
+ 												$('#roomimg').attr('src', '/img/room01.jpg');
+-											} else if (room == '02') {
++											} else if (room == '2') {
+ 												$('#roomimg').attr('src', '/img/room02.jpg');
+-											} else if (room == '03') {
++											} else if (room == '3') {
+ 												$('#roomimg').attr('src', '/img/room03.jpg');
+ 											}
+ 
+@@ -232,10 +242,7 @@
+ 							<p>${member.memId}님의집</p>
+ 							<p id="serviceName">이용중</p>							
+ 							<select id="room_sel">
+-								<option value="">--선택해주세요--</option>
+-								<option value="1">room1</option>
+-								<option value="2">room2</option>
+-								<option value="3">room3</option>
++								<option value="">--선택해주세요--</option>								
+ 							</select>
+ 						</div>
+ 						<div class="aircon ctrlbox">
+diff --git a/waffle/src/main/webapp/WEB-INF/views/payment/complete.jsp b/waffle/src/main/webapp/WEB-INF/views/payment/complete.jsp
+index 3f976b3..4afa0bd 100644
+--- a/waffle/src/main/webapp/WEB-INF/views/payment/complete.jsp
++++ b/waffle/src/main/webapp/WEB-INF/views/payment/complete.jsp
+@@ -10,7 +10,7 @@
+ <script type="text/javascript">
+ 	$(function(){
+ 		setTimeout(function(){
+-			window.href="/home"
++			location.href="/"
+ 		},3000)
+ 	})
+ </script>
+diff --git a/waffle/src/main/webapp/WEB-INF/views/payment/fail.jsp b/waffle/src/main/webapp/WEB-INF/views/payment/fail.jsp
+index ae046e6..96a60bb 100644
+--- a/waffle/src/main/webapp/WEB-INF/views/payment/fail.jsp
++++ b/waffle/src/main/webapp/WEB-INF/views/payment/fail.jsp
+@@ -15,6 +15,6 @@
+ 	})
+ </script>
+ <body>
+-결제가 실패하였습니다. 잠시 후 서비스 페이지로 이동합니다.
++결제가 실패하였습니다. 잠시 후 메인 페이지로 이동합니다.
+ </body>
+ </html>
+\ No newline at end of file
+diff --git a/waffle/src/main/webapp/WEB-INF/views/payment/pay.jsp b/waffle/src/main/webapp/WEB-INF/views/payment/pay.jsp
+index cba0ef9..9b7e3b5 100644
+--- a/waffle/src/main/webapp/WEB-INF/views/payment/pay.jsp
++++ b/waffle/src/main/webapp/WEB-INF/views/payment/pay.jsp
+@@ -17,7 +17,7 @@
+ 		    pg : 'inicis',
+ 		    pay_method : 'card',
+ 		    merchant_uid : 'merchant_' + new Date().getTime(),
+-		    name : '주문명:결제테스트',
++		    name : "${svo.serviceName}",
+ 		    amount : "${price}", 
+             buyer_email : "${member.memEmail}",
+             buyer_name : "${member.memName}",
+@@ -39,15 +39,15 @@
+ 		    	}).done(function(data) {
+ 		    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+ 		    		if ( data == 1 ) {
+-		    			alert(data);
++		    			//alert(data);
+ 		    			var msg = '결제가 완료되었습니다.';
+ 		    			msg += '\n고유ID : ' + rsp.imp_uid;
+ 		    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+ 		    			msg += '\결제 금액 : ' + rsp.paid_amount;
+ 		    			msg += '카드 승인번호 : ' + rsp.apply_num;
+-
+-		    			alert(msg);
+ 		    			
++		    			alert(msg);
++		    			sessionStorage.clear();
+ 		    			location.href="/payment/complete"
+ 		    		} else {
+ 		    			//[3] 아직 제대로 결제가 되지 않았습니다.
+diff --git a/waffle/src/main/webapp/WEB-INF/views/sub/about.jsp b/waffle/src/main/webapp/WEB-INF/views/sub/about.jsp
+index 1ef686c..f4e2c2b 100644
+--- a/waffle/src/main/webapp/WEB-INF/views/sub/about.jsp
++++ b/waffle/src/main/webapp/WEB-INF/views/sub/about.jsp
+@@ -44,22 +44,22 @@
+             <p>강남역 마지노선은</p>
+             <ul>
+               <li>
+-                <img src="img/5.png" />
++                <img src="/img/5.png" />
+               </li>
+               <li>
+-                <img src="img/6.png" />
++                <img src="/img/6.png" />
+               </li>
+               <li>
+-                <img src="img/7.png" />
++                <img src="/img/7.png" />
+               </li>
+               <li>
+-                <img src="img/8.png" />
++                <img src="/img/8.png" />
+               </li>
+               <li>
+-                <img src="img/9.png" />
++                <img src="/img/9.png" />
+               </li>
+               <li>
+-                <img src="img/10.png" />
++                <img src="/img/10.png" />
+               </li>
+             </ul>
+             <p>6명으로 이루어진 웹개발 팀입니다.</p>
+diff --git a/waffle/src/main/webapp/WEB-INF/views/sub/waffleService.jsp b/waffle/src/main/webapp/WEB-INF/views/sub/waffleService.jsp
+index b068679..cfe977e 100644
+--- a/waffle/src/main/webapp/WEB-INF/views/sub/waffleService.jsp
++++ b/waffle/src/main/webapp/WEB-INF/views/sub/waffleService.jsp
+@@ -80,12 +80,12 @@ $(function(){
+ 		
+ 		//var paydata_str = $('#payForm').serializeArray();
+ 		var paydata_str = $('#payForm').serialize();
+-		var json_pay = JSON.stringify(paydata_str);
++		//var json_pay = JSON.stringify(paydata_str);
+ 		
+ 		//var json_pay = JSON.parse(paydata_str);
+ 		
+ 		console.log(paydata_str)
+-		console.log(json_pay);
++		//console.log(json_pay);
+ 		//console.log(json_pay)
+ 		$.ajax({
+ 			url : "/payment/payReady",
+diff --git a/waffle/target/m2e-wtp/web-resources/META-INF/maven/com.waffle/controller/pom.properties b/waffle/target/m2e-wtp/web-resources/META-INF/maven/com.waffle/controller/pom.properties
+index b0b4f91..d0e8c4e 100644
+--- a/waffle/target/m2e-wtp/web-resources/META-INF/maven/com.waffle/controller/pom.properties
++++ b/waffle/target/m2e-wtp/web-resources/META-INF/maven/com.waffle/controller/pom.properties
+@@ -1,5 +1,5 @@
+ #Generated by Maven Integration for Eclipse
+-#Fri Apr 24 08:36:21 KST 2020
++#Fri Apr 24 21:38:10 KST 2020
+ version=1.0.0-BUILD-SNAPSHOT
+ groupId=com.waffle
+ m2e.projectName=waffle
+-- 
+2.20.1.windows.1
+

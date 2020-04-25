@@ -40,12 +40,13 @@ body {
 	top:50%;
 	left:50%;
 	transform:translate(-50%,-35%); */
-	margin: 100px auto 0 auto;
+	margin: 300px auto 0 auto;
 	width: 1583px;
 	height: 909px;
 	opacity: 0.5;
 	box-shadow: 0 0 21px 0 rgba(64, 64, 64, 0.67);
 	background-image: linear-gradient(to bottom, #1a78ae 14%, #1a78ae 14%, #405590 42%, #7283b3 63%, #6c8ab7 68%, #6890ba 72%, #5e9dc1 86%);
+	display:none;
 }
 
 .container .main_frame .state {

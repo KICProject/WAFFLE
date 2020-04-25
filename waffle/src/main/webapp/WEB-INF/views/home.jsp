@@ -64,20 +64,35 @@
 			</section>
 		</main>
 		</c:if>
-		<c:if test="${(member !=null) && (member.memAuthor == 0)}"> <!-- 로그인을 했고, 일반회원인 경우 페이지 -->			
+		<!-- 일반회원 로그인 후 메인 페이지 -->	
+		<c:if test="${(member !=null) && (member.memAuthor == 0)}"> 		
 			<script type="text/javascript">
 			$(function() {
-				$('body').attr('background','none');
-				$('header').css('background-color','#b1d2e5')
+				/* 메인페이지를 c:if 태그로 넣게되면서 생긴 문제로 로그인 전 body의 백그라운드 컬러가  로그인 후 헤더에 영향을 미쳐서 클라이언트에서 직접 바꿔줌*/
+				$('body').attr('background','none');					
+				$('header').css('background-color','#b1d2e5') 
 				
-				setTimeout("weatherCall()",0)
-				setTimeout("dustCall()",0)
+				/* onload 되면서 메인프레임이 fadeIn, 그리고 외부환경정보를 얻는 API들을 call */
+				setTimeout(function(){
+					$('.main_frame').fadeIn(700)
+					$('.main_frame').css('transform','translateY(-200px)')
+					$('.main_frame').css('transition-duration','0.7s')
+				},300)
+				/*
+				setTimeout(function(){
+					$('.main_frame').fadeIn(2500)
+				},500)*/
+				
+				
+				setTimeout("weatherCall()",3000)
+				setTimeout("dustCall()",3000)
 				setInterval("weatherCall()",1800000);
 				setInterval("dustCall()",3600000);
 				
 				var mem = "${member.memId}" // 회원의 서비스정보를 요청하기 위해 client상에 member객체를 저장
-				var usvo = "${Usvo.serviceName}"
+				var usvo = "${Usvo.serviceName}"//마찬가지로 회원이 이용중인 서비스명을 얻어옴
 				
+				/* 서비스 명에 따라서 select 할 수 있는 room의 갯수를 할당*/
 				if(usvo=="basic"){
 					var rcnt = 1;
 					for(var i=1; i<=rcnt; i++){
@@ -96,10 +111,9 @@
 				}
 				
 				
-					
-					if (sessionStorage.length != 0) { 
-						// 일단 로드가 되면, 기존에 회원이 조회한 방 정보는 브라우저의 sessionStorage에 저장되도록 했기 때문에, 데이터가 있으면 로드합니다. 
-						// 새로고침을 했을때, 회원이 조회한 정보가 초기화 되지 않도록 하기 위함입니다.
+					/* 페이지가 로드가 되면, 기존에 회원이 조회한 방 정보는 브라우저의 sessionStorage에 저장되도록 했기 때문에, 데이터가 있으면 로드합니다.  
+					      새로고침을 했을때, 회원이 조회한 정보가 초기화 되지 않도록 하기 위함입니다.*/
+					if (sessionStorage.length != 0) { 						
 						var currentroom = JSON.parse(sessionStorage.getItem("currentdata")); //sessionStorage로부터 현재 저장되어 있는 방 정보를 JSON형태로 가져옵니다.
 
 						var innerTemp = currentroom.innerTemp	// 데이터를 파싱해서 각 변수에 담습니다.
@@ -130,9 +144,8 @@
 						
 					}
 
-				
-					$('#room_sel').on('change',// 방 번호를 고르면, 그 방의 상태가 화면에 비동기적으로 표시됩니다.
-							
+				    /*방 번호를 고르면, ajax 통신을 통해 그 방의 상태가 화면에 비동기적으로 표시됩니다.*/
+					$('#room_sel').on('change',							
 							function() {
 								var roomNumber = $('#room_sel option:selected').val();
 								$.ajax({
@@ -143,11 +156,11 @@
 										"roomNumber" : roomNumber
 									},
 									dataType : "json",
-									success : function(data) {
-										if (data == null) {
+									success : function(data) { // 성공적으로 id와 roomNumber를 넘기고, 요청한 데이터를 돌려받으면
+										if (data == null) { // 돌려받았지만, 데이터가 없음 = 서비스이용만료
 											alert('서비스를 이용이 만료되었습니다. 결제를 해주세요');
 											location.href="/sub/waffleService"
-										} else {
+										} else { //정상적인 서비스 이용 유저일 경우 (onload 때와 마찬가지로 브라우저의 sessionStorage에 저장)
 											sessionStorage.setItem("currentdata", JSON.stringify(data));
 
 											var currentroom = JSON.parse(sessionStorage.getItem("currentdata"));
@@ -175,7 +188,6 @@
 											} else if (room == '3') {
 												$('#roomimg').attr('src', '/img/room03.jpg');
 											}
-
 										}
 									},
 									error : function(e) {
@@ -185,6 +197,7 @@
 								})
 							})							
 			});	
+			/* onloade 시 loading 되는 동안 보이는 laoder를 작업이 완료되면 없애고, 메인 컨테이너를 보여준다. */
 			$(window).ready(function() {
 				$('.loader').css("display", "none");
 				$('.container').css("display", "block");
@@ -193,7 +206,7 @@
 			
 			<div class="loader"></div>
 			<div class="container"> <!-- 회원에게 보여지는 컨테이너 -->
-				<div class="main_frame">
+				<div class="main_frame" style="display:none; margin-top:300px;">
 					<div class="state">
 						<div class="temp statebox" id="temp">
 							<div>
