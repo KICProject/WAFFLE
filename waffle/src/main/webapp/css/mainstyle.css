@@ -157,6 +157,7 @@ body {
 }	
 
 .room img{
+	display:none;
 	width:400px;
 	height:400px;
 	margin:36px 55px;

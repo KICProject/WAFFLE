@@ -72,18 +72,13 @@
 				$('body').attr('background','none');					
 				$('header').css('background-color','#b1d2e5') 
 				
-				/* onload 되면서 메인프레임이 fadeIn, 그리고 외부환경정보를 얻는 API들을 call */
+				/* onload 되면서 메인프레임이 fadeIn,transform*/
 				setTimeout(function(){
 					$('.main_frame').fadeIn(700)
 					$('.main_frame').css('transform','translateY(-200px)')
 					$('.main_frame').css('transition-duration','0.7s')
 				},300)
-				/*
-				setTimeout(function(){
-					$('.main_frame').fadeIn(2500)
-				},500)*/
-				
-				
+				/* 외부환경정보를 얻는 API들을 call */
 				setTimeout("weatherCall()",3000)
 				setTimeout("dustCall()",3000)
 				setInterval("weatherCall()",1800000);
@@ -132,7 +127,9 @@
 						$('#tvStatus').html(tv)
 						$('#windowStatus').html(window)
 						$('#lightStatus').html(light)
-						$('#serviceName').html(serviceName+'이용중')
+						if(serviceName != ""){
+							$('#serviceName').html(serviceName+'이용중')
+						}
 
 						if (room == '1') {
 							$('#roomimg').attr('src', '/img/room01.jpg');
@@ -141,6 +138,8 @@
 						} else if (room == '3') {
 							$('#roomimg').attr('src', '/img/room03.jpg');
 						}
+						$('#roomimg').fadeIn(700)
+						
 						
 					}
 
@@ -179,8 +178,11 @@
 											$('#airconStatus').html(aircon)
 											$('#tvStatus').html(tv)
 											$('#windowStatus').html(window)
-											$('#lightStatus').html(light)
-
+											if(serviceName != ""){
+												$('#serviceName').html(serviceName+'이용중')
+											}$('#lightStatus').html(light)
+											
+											
 											if (room == '1') {
 												$('#roomimg').attr('src', '/img/room01.jpg');
 											} else if (room == '2') {
@@ -251,7 +253,7 @@
 							<img id="roomimg" src="" alt="">
 						</div>
 						<div class="user">
-							<img src="/img/profile_wh.png" alt="">
+							<img src="/img/profile_wh.png" alt="" style="display:none;">
 							<p>${member.memId}님의집</p>
 							<p id="serviceName">이용중</p>							
 							<select id="room_sel">
