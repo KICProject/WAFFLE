@@ -66,8 +66,6 @@
 		<!-- 일반회원 로그인 후 메인 페이지 -->	
 		<c:if test="${(member !=null) && (member.memAuthor == 0)}"> 		
 			<script type="text/javascript">
-			const on = '49'
-			const off = '48'
 			$(function() {
 				/* 메인페이지를 c:if 태그로 넣게되면서 생긴 문제로 로그인 전 body의 백그라운드 컬러가  로그인 후 헤더에 영향을 미쳐서 클라이언트에서 직접 바꿔줌*/
 				$('body').attr('background','none');					
@@ -85,10 +83,9 @@
 				setInterval("weatherCall()",1800000);
 				setInterval("dustCall()",3600000);
 				
+				
 				var mem = "${member.memId}" // 회원의 서비스정보를 요청하기 위해 client상에 member객체를 저장
 				var usvo = "${usvo.serviceName}"//마찬가지로 회원이 이용중인 서비스명을 얻어옴
-				
-				$('#serviceName').html(usvo+'이용중')
 				
 				/* 서비스 명에 따라서 select 할 수 있는 room의 갯수를 할당*/
 				if(usvo=="basic"){
@@ -107,6 +104,8 @@
 						$('#room_sel').append("<option value='"+i+"'>room0"+i+"</optoin>");				
 					}
 				}
+				
+				
 				
 			    /*방 번호를 고르면, ajax 통신을 통해 그 방의 상태가 화면에 비동기적으로 표시됩니다.*/
 				$('#room_sel').on('change',							
@@ -131,34 +130,24 @@
 										var innerTemp = currentroom.innerTemp
 										var innerWet = currentroom.innerWet
 										var aircon = currentroom.aircon
-										if(aircon =='49'){											
-											$('input:checkbox[id=aircon_switch]').attr('checked',true);
-										}
 										var tv = currentroom.tv
-										if(tv =='49'){											
-											$('input:checkbox[id=tv_switch]').attr('checked',true);
-										}
 										var window = currentroom.window
-										if(window =='49'){											
-											$('input:checkbox[id=window_switch]').attr('checked',true);
-										}
 										var light = currentroom.light
-										if(light =='49'){											
-											$('input:checkbox[id=light_switch]').attr('checked',true);
-										}
 										var room = currentroom.roomNumber
 										var serviceName = currentroom.serviceName
+										
 										$('#roomStatus').html('room0' + room)
 										$('#innerTemp').html(innerTemp + '℃')
 										$('#innerHumid').html(innerWet + '%')
-										/* $('#airconStatus').html(aircon)
+										$('#airconStatus').html(aircon)
 										$('#tvStatus').html(tv)
 										$('#windowStatus').html(window)
-										$('#lightStatus').html(light) */
 										if(serviceName != ""){
-											$('#serviceName').html(serviceName+'이용중')
+											alert(serviceName)
+											/* $('#serviceName').html(serviceName+'이용중') */
 										}
 										
+										$('#lightStatus').html(light)
 										
 										
 										if (room == '1') {
@@ -177,40 +166,37 @@
 							})
 						});
 				$('.round').on('click',function(){
-					var roomNumber = $('#room_sel option:selected').val();
+					//var currentroom = JSON.parse(sessionStorage.getItem("currentdata"));
+					
 					var value = '48';
 					var change = $(this).prev().attr('id');		//클릭한 컨트롤 버튼id			
 					var idx = change.indexOf('_');				//id값에서 _이후를 빼기위해 인덱스
 					var control_pannel = change.substring(0,idx); //테이블에 전송할 필드명과 일치시키기 위해 substring
+					
 					var status = !$(this).prev().is(":checked"); //클릭 상황에서는 false, 이기때문에 !을 붙여 true로, 들어가는 값
+					
+					
 					if (status == true){
-						value = '49';	//controller의 값이 on 이면 49로 세팅
-					}					
+						value = '49';
+					}
+					
+					
 					$.ajax({
 						url:"/room/updateroom",
 						type:"post",
 						dataType:"json",
 						data:{
-							"control_pannel" : control_pannel,	//필드명을 id값으로 파싱해서 보냄(ex : aircon_switch => aircon)
-							"value" : value,	// 49(on) / 48(off) 값
-							"memId" : mem, // 현재 로그인 중인 id (roomVo를 가져오기위해)
-							"roomNumber":roomNumber, // 현재 선택된 방번호 (정확한 roomVo를 가져오기위해)
+							"control_pannel" : control_pannel,
+							"value" : value,
+							/* "aircon":currentroom.aircon,
+							"tv":currentroom.tv,
+							"window":currentroom.window,
+							"light":currentroom.light */							
 						},
 						success : function(data) {
-							var currentroom = JSON.parse(JSON.stringify(data))										
-							/*var innerTemp = currentroom.innerTemp
-							var innerWet = currentroom.innerWet*/
-							var aircon = currentroom.aircon
-							
-							var tv = currentroom.tv
-							var window = currentroom.window
-							var light = currentroom.light
-							/*$('#innerTemp').html(innerTemp + '℃')
-							$('#innerHumid').html(innerWet + '%')*/
-							/* $('#airconStatus').html(aircon)
-							$('#tvStatus').html(tv)
-							$('#windowStatus').html(window)
-							$('#lightStatus').html(light)	 */						
+							if(data == 1){
+								console.log("데이터 업데이트 성공");
+							}
 						}
 					})					
 				});						
@@ -219,7 +205,7 @@
 			$(window).ready(function() {
 				$('.loader').css("display", "none");
 				$('.container').css("display", "block");
-			});	        
+			});        
 			</script>
 			
 			<div class="loader"></div>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roomMapper">
+  
+  	<insert id="makeroom" parameterType="com.waffle.vo.RoomVO">
+  		INSERT INTO MEM_ROOM(MEMID
+  							,SERVICENAME
+  							,SERVICEID
+  							,ROOMNUMBER)
+  					VALUES(#{memId,jdbcType=VARCHAR}
+  						  ,#{serviceName,jdbcType=VARCHAR}
+  						  ,#{serviceId,jdbcType=VARCHAR}
+  						  ,#{roomNumber,jdbcType=VARCHAR})
+  	</insert>
+  
+  
+    <select id="selectroom" parameterType="com.waffle.vo.RoomVO" resultType="com.waffle.vo.RoomVO">
+    	SELECT * FROM MEM_ROOM
+    	WHERE MEMID = #{memId,jdbcType=VARCHAR} AND ROOMNUMBER = #{roomNumber,jdbcType=VARCHAR}
+    </select>
+    <update id="updateroom" parameterType="com.waffle.vo.RoomVO">
+    	UPDATE MEM_ROOM SET
+    		AIRCON = #{aircon,jdbcType=VARCHAR}
+    	   ,TV = #{tv,jdbcType=VARCHAR}
+    	   ,WINDOW = #{window,jdbcType=VARCHAR}
+    	   ,LIGHT = #{light,jdbcType=VARCHAR}
+    	WHERE MEMID = #{memId,jdbcType=VARCHAR}    					
+    </update>
+</mapper>

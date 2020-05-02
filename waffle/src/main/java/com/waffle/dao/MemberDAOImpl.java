@@ -17,17 +17,13 @@ public class MemberDAOImpl implements MemberDAO {
 	public void register(MemberVO vo) throws Exception {
 		sql.insert("memberMapper.register",vo);
 		sql.insert("memberMapper.reg_for_login",vo);
-	}
-	
-	
+	}	
 	/*
 	 * @Override public void kakaoReg(MemberVO vo) throws Exception { // TODO
 	 * Auto-generated method stub
 	 * 
 	 * }
 	 */
-
-
 	//로그인
 	@Override
 	public MemberVO login(MemberVO vo) throws Exception {

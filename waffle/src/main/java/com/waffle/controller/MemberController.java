@@ -108,10 +108,12 @@ public class MemberController {
 	public String login(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
 		logger.info("post login");
 		
-		session.getAttribute("member");
-		session.getAttribute("svo");
-		MemberVO login = service.login(vo);
-		ServiceVO usingService = sservice.getService(vo);
+		MemberVO login = service.login(vo); //login control에서 받은 memId, memPass으로 로그인시도
+		if(login ==null) {
+			rttr.addFlashAttribute("msg", false);
+			return "redirect:/member/loginControl";
+		}
+		ServiceVO usingService = sservice.getService(vo); //마찬가지로 memId로 서비스정보를 불러옴
 		boolean pwdMatch =pwdEncoder.matches(vo.getMemPass(), login.getMemPass());
 		
 		if(login != null && pwdMatch==true) {
