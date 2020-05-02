@@ -28,8 +28,6 @@ public class PaymentController {
 
 	@Inject
 	RoomService rservice;
-	
-	//private static final Logger logger = LoggerFactory.getLogger(PaymentContoller.class);
 
 	@ResponseBody
 	@RequestMapping(value = "/payReady", method = RequestMethod.POST)

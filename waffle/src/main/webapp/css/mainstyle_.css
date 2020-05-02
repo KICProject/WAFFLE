@@ -2,19 +2,19 @@
 
 @font-face {
   font-family: S-CoreDream-1;
-  src:url("/font/SCDream1.otf") format("opentype");
+  src:url("../font/SCDream1.otf") format("opentype");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: S-CoreDream-3;
-  src:url("/font/SCDream3.otf") format("opentype");
+  src:url("../font/SCDream3.otf") format("opentype");
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: S-CoreDream-6;
-  src:url("/font/SCDream6.otf") format("opentype");
+  src:url("../font/SCDream6.otf") format("opentype");
   font-style: normal;
   font-weight: normal;
 }
@@ -55,7 +55,7 @@ body {
 	margin: 40px auto auto 60px;
     float: left;
 }
-.container .main_frame .control{	
+.container .main_frame .controll{	
 	width:685px;
 	height:720px;
 	margin: 40px 60px 0px 0px;
@@ -138,7 +138,7 @@ body {
 	clear:both;
 	float:left;
 }
-.control .room{
+.controll .room{
 	width:440px;
 	height:465px;
 	background-color:#000;	
@@ -209,44 +209,6 @@ body {
     margin:20px;
     font-size:20px;
 } 
-
-.control checkbox, .control label{
-    margin-top:35px;
-}
-#aircon_switch, #tv_switch, #window_switch, #light_switch{
-    display:none;
-}
-
-label{
-    display:inline-block;
-    width:100px;
-    height:34px;
-    cursor:pointer;
-    position:relative;
-    background-color:#ccc;
-    border-radius:
-}
-label::before{
-    content:'';
-    display:block;
-    width:26px;
-    height:26px;
-    left:4px;
-    bottom:4px;
-    position:absolute;
-    background-color:#fff;
-    transition: all .4s ease;
-}
-
-
-input:checked + label{background-color:#2196f3;}
-input:checked + label:before{
-    -webkit-transform:translateX(65px;);
-    -ms-transform:translateX(65px);
-    transform:translateX(65px);
-}
-label.round {border-radius:34px;}
-label.round::before {border-radius:50%;}
 
 
 /* --------------------main 1----------------------------- */

@@ -10,8 +10,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
 		<link rel="stylesheet" type="text/css" href="/css/reset.css" />		
-	</head>
-	
+	</head>	
 	<body>
 		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
 		<c:if test="${member == null}"> <!-- 로그인 하지 않은 상태에서의 화면 -->
@@ -67,6 +66,8 @@
 		<!-- 일반회원 로그인 후 메인 페이지 -->	
 		<c:if test="${(member !=null) && (member.memAuthor == 0)}"> 		
 			<script type="text/javascript">
+			const on = '49'
+			const off = '48'
 			$(function() {
 				/* 메인페이지를 c:if 태그로 넣게되면서 생긴 문제로 로그인 전 body의 백그라운드 컬러가  로그인 후 헤더에 영향을 미쳐서 클라이언트에서 직접 바꿔줌*/
 				$('body').attr('background','none');					
@@ -85,7 +86,9 @@
 				setInterval("dustCall()",3600000);
 				
 				var mem = "${member.memId}" // 회원의 서비스정보를 요청하기 위해 client상에 member객체를 저장
-				var usvo = "${Usvo.serviceName}"//마찬가지로 회원이 이용중인 서비스명을 얻어옴
+				var usvo = "${usvo.serviceName}"//마찬가지로 회원이 이용중인 서비스명을 얻어옴
+				
+				$('#serviceName').html(usvo+'이용중')
 				
 				/* 서비스 명에 따라서 select 할 수 있는 room의 갯수를 할당*/
 				if(usvo=="basic"){
@@ -105,180 +108,206 @@
 					}
 				}
 				
-				
-					/* 페이지가 로드가 되면, 기존에 회원이 조회한 방 정보는 브라우저의 sessionStorage에 저장되도록 했기 때문에, 데이터가 있으면 로드합니다.  
-					      새로고침을 했을때, 회원이 조회한 정보가 초기화 되지 않도록 하기 위함입니다.*/
-					if (sessionStorage.length != 0) { 						
-						var currentroom = JSON.parse(sessionStorage.getItem("currentdata")); //sessionStorage로부터 현재 저장되어 있는 방 정보를 JSON형태로 가져옵니다.
-
-						var innerTemp = currentroom.innerTemp	// 데이터를 파싱해서 각 변수에 담습니다.
-						var innerWet = currentroom.innerWet
-						var aircon = currentroom.aircon
-						var tv = currentroom.tv
-						var window = currentroom.window
-						var light = currentroom.light
-						var room = currentroom.roomNumber
-						var serviceName = currentroom.serviceName
-
-						$('#roomStatus').html('room0' + room)	// 데이터가 보여질 위치에 .html()을 이용해서 출력합니다.
-						$('#innerTemp').html(innerTemp + '℃')
-						$('#innerHumid').html(innerWet + '%')
-						$('#airconStatus').html(aircon)
-						$('#tvStatus').html(tv)
-						$('#windowStatus').html(window)
-						$('#lightStatus').html(light)
-						if(serviceName != ""){
-							$('#serviceName').html(serviceName+'이용중')
-						}
-
-						if (room == '1') {
-							$('#roomimg').attr('src', '/img/room01.jpg');
-						} else if (room == '2') {
-							$('#roomimg').attr('src', '/img/room02.jpg');
-						} else if (room == '3') {
-							$('#roomimg').attr('src', '/img/room03.jpg');
-						}
-						$('#roomimg').fadeIn(700)
-						
-						
-					}
-
-				    /*방 번호를 고르면, ajax 통신을 통해 그 방의 상태가 화면에 비동기적으로 표시됩니다.*/
-					$('#room_sel').on('change',							
-							function() {
-								var roomNumber = $('#room_sel option:selected').val();
-								$.ajax({
-									url : "/room/getroom",
-									type : "post",
-									data : {
-										"memId" : mem,
-										"roomNumber" : roomNumber
-									},
-									dataType : "json",
-									success : function(data) { // 성공적으로 id와 roomNumber를 넘기고, 요청한 데이터를 돌려받으면
-										if (data == null) { // 돌려받았지만, 데이터가 없음 = 서비스이용만료
-											alert('서비스를 이용이 만료되었습니다. 결제를 해주세요');
-											location.href="/sub/waffleService"
-										} else { //정상적인 서비스 이용 유저일 경우 (onload 때와 마찬가지로 브라우저의 sessionStorage에 저장)
-											sessionStorage.setItem("currentdata", JSON.stringify(data));
-
-											var currentroom = JSON.parse(sessionStorage.getItem("currentdata"));
-
-											var innerTemp = currentroom.innerTemp
-											var innerWet = currentroom.innerWet
-											var aircon = currentroom.aircon
-											var tv = currentroom.tv
-											var window = currentroom.window
-											var light = currentroom.light
-											var room = currentroom.roomNumber
-
-											$('#roomStatus').html('room0' + room)
-											$('#innerTemp').html(innerTemp + '℃')
-											$('#innerHumid').html(innerWet + '%')
-											$('#airconStatus').html(aircon)
-											$('#tvStatus').html(tv)
-											$('#windowStatus').html(window)
-											if(serviceName != ""){
-												$('#serviceName').html(serviceName+'이용중')
-											}$('#lightStatus').html(light)
-											
-											
-											if (room == '1') {
-												$('#roomimg').attr('src', '/img/room01.jpg');
-											} else if (room == '2') {
-												$('#roomimg').attr('src', '/img/room02.jpg');
-											} else if (room == '3') {
-												$('#roomimg').attr('src', '/img/room03.jpg');
-											}
+			    /*방 번호를 고르면, ajax 통신을 통해 그 방의 상태가 화면에 비동기적으로 표시됩니다.*/
+				$('#room_sel').on('change',							
+						function() {
+							var roomNumber = $('#room_sel option:selected').val();
+							$.ajax({
+								url : "/room/getroom",
+								type : "post",
+								data : {
+									"memId" : mem,
+									"roomNumber" : roomNumber
+								},
+								dataType : "json",
+								success : function(data) { // 성공적으로 id와 roomNumber를 넘기고, 요청한 데이터를 돌려받으면
+									if (data == null) { // 돌려받았지만, 데이터가 없음 = 서비스이용만료
+										alert('서비스를 이용이 만료되었습니다. 결제를 해주세요');
+										location.href="/sub/waffleService"
+									} else { //정상적인 서비스 이용 유저일 경우 (onload 때와 마찬가지로 브라우저의 sessionStorage에 저장)
+										/* sessionStorage.setItem("currentdata", JSON.stringify(data));
+										var currentroom = JSON.parse(sessionStorage.getItem("currentdata")); */
+										var currentroom = JSON.parse(JSON.stringify(data))										
+										var innerTemp = currentroom.innerTemp
+										var innerWet = currentroom.innerWet
+										var aircon = currentroom.aircon
+										if(aircon =='49'){											
+											$('input:checkbox[id=aircon_switch]').attr('checked',true);
 										}
-									},
-									error : function(e) {
-										console.log(e);
-										alert("통신 실패");
+										var tv = currentroom.tv
+										if(tv =='49'){											
+											$('input:checkbox[id=tv_switch]').attr('checked',true);
+										}
+										var window = currentroom.window
+										if(window =='49'){											
+											$('input:checkbox[id=window_switch]').attr('checked',true);
+										}
+										var light = currentroom.light
+										if(light =='49'){											
+											$('input:checkbox[id=light_switch]').attr('checked',true);
+										}
+										var room = currentroom.roomNumber
+										var serviceName = currentroom.serviceName
+										$('#roomStatus').html('room0' + room)
+										$('#innerTemp').html(innerTemp + '℃')
+										$('#innerHumid').html(innerWet + '%')
+										$('#airconStatus').html(aircon)
+										$('#tvStatus').html(tv)
+										$('#windowStatus').html(window)
+										if(serviceName != ""){
+											$('#serviceName').html(serviceName+'이용중')
+										}
+										$('#lightStatus').html(light)
+										
+										
+										if (room == '1') {
+											$('#roomimg').attr('src', '/img/room01.jpg');
+										} else if (room == '2') {
+											$('#roomimg').attr('src', '/img/room02.jpg');
+										} else if (room == '3') {
+											$('#roomimg').attr('src', '/img/room03.jpg');
+										}
 									}
-								})
-							})							
+								},
+								error : function(e) {
+									console.log(e);
+									alert("통신 실패");
+								}
+							})
+						});
+				$('.round').on('click',function(){
+					var roomNumber = $('#room_sel option:selected').val();
+					var value = '48';
+					var change = $(this).prev().attr('id');		//클릭한 컨트롤 버튼id			
+					var idx = change.indexOf('_');				//id값에서 _이후를 빼기위해 인덱스
+					var control_pannel = change.substring(0,idx); //테이블에 전송할 필드명과 일치시키기 위해 substring
+					
+					var status = !$(this).prev().is(":checked"); //클릭 상황에서는 false, 이기때문에 !을 붙여 true로, 들어가는 값
+					
+					
+					if (status == true){
+						value = '49';
+					}
+					
+					
+					$.ajax({
+						url:"/room/updateroom",
+						type:"post",
+						dataType:"json",
+						data:{
+							"control_pannel" : control_pannel,
+							"value" : value,
+							"memId" : mem,
+							"roomNumber":roomNumber,
+						},
+						success : function(data) {
+							var currentroom = JSON.parse(JSON.stringify(data))										
+							/*var innerTemp = currentroom.innerTemp
+							var innerWet = currentroom.innerWet*/
+							var aircon = currentroom.aircon
+							
+							var tv = currentroom.tv
+							var window = currentroom.window
+							var light = currentroom.light
+							/*$('#innerTemp').html(innerTemp + '℃')
+							$('#innerHumid').html(innerWet + '%')*/
+							$('#airconStatus').html(aircon)
+							$('#tvStatus').html(tv)
+							$('#windowStatus').html(window)
+							$('#lightStatus').html(light)							
+						}
+					})					
+				});						
 			});	
 			/* onloade 시 loading 되는 동안 보이는 laoder를 작업이 완료되면 없애고, 메인 컨테이너를 보여준다. */
 			$(window).ready(function() {
 				$('.loader').css("display", "none");
 				$('.container').css("display", "block");
 			});
+			
+			       
+	        
 			</script>
 			
 			<div class="loader"></div>
 			<div class="container"> <!-- 회원에게 보여지는 컨테이너 -->
-				<div class="main_frame" style="display:none; margin-top:300px;">
-					<div class="state">
-						<div class="temp statebox" id="temp">
-							<div>
-								<p>외부온도</p>
-								<span id="outerTemp">℃</span>
-							</div>
-							<div>
-								<p>내부온도</p>
-								<span id="innerTemp">-℃</span>
-							</div>
+			<div class="main_frame" style="display: none; margin-top: 300px;">
+				<div class="state">
+					<div class="temp statebox" id="temp">
+						<div>
+							<p>외부온도</p>
+							<span id="outerTemp">℃</span>
 						</div>
-						<div class="humd statebox">
-							<div>
-								<p>외부습도</p>
-								<span id="outerHumid">%</span>
-	
-							</div>
-							<div>
-								<p>내부습도</p>
-								<span id="innerHumid">-%</span>
-							</div>
-						</div>
-						<div class="dust">
-							<div class="dustDsp">
-								<p>미세먼지농도</p>
-									<div>
-										<p>pm10 농도</p>
-										<span id="pm10v"></span>
-										<span id="pm10g"></span>
-									</div>
-									<div>
-										<p>pm25 농도</p>
-										<span id="pm25v"></span>
-										<span id="pm25g"></span>
-									</div>
-							</div>
+						<div>
+							<p>내부온도</p>
+							<span id="innerTemp">-℃</span>
 						</div>
 					</div>
-					<div class="controll">
-						<div class="room">
-							<p id="roomStatus"></p>
-							<img id="roomimg" src="" alt="">
+					<div class="humd statebox">
+						<div>
+							<p>외부습도</p>
+							<span id="outerHumid">%</span>
+
 						</div>
-						<div class="user">
-							<img src="/img/profile_wh.png" alt="" style="display:none;">
-							<p>${member.memId}님의집</p>
-							<p id="serviceName">이용중</p>							
-							<select id="room_sel">
-								<option value="">--선택해주세요--</option>								
-							</select>
+						<div>
+							<p>내부습도</p>
+							<span id="innerHumid">-%</span>
 						</div>
-						<div class="aircon ctrlbox">
-							<p>에어컨 on/off</p>
-							<p id="airconStatus"></p>
-						</div>
-						<div class="tv">
-							<p>tv on/off</p>
-							<p id="tvStatus"></p>
-						</div>
-						<div class="window ctrlbox">
-							<p>창문 open/close</p>
-							<p id="windowStatus"></p>
-						</div>
-						<div class="light ctrlbox">
-							<p>조명 on/off</p>
-							<p id="lightStatus"></p>
+					</div>
+					<div class="dust">
+						<div class="dustDsp">
+							<p>미세먼지농도</p>
+							<div>
+								<p>pm10 농도</p>
+								<span id="pm10v"></span> <span id="pm10g"></span>
+							</div>
+							<div>
+								<p>pm25 농도</p>
+								<span id="pm25v"></span> <span id="pm25g"></span>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class="control">
+					<div class="room">
+						<p id="roomStatus"></p>
+						<img id="roomimg" src="" alt="">
+					</div>
+					<div class="user">
+						<img src="/img/profile_wh.png">
+						<p>${member.memId}님의집</p>
+						<p id="serviceName">이용중</p>
+						<select id="room_sel">
+							<option value="">--선택해주세요--</option>
+						</select>
+					</div>
+					<div class="aircon">
+						<p>에어컨 on/off</p>
+						<p id="airconStatus"></p>
+						<input type="checkbox" id="aircon_switch" class="swtich">
+						<label for="aircon_switch" class="round"></label>
+					</div>
+					<div class="tv">
+						<p>tv on/off</p>
+						<p id="tvStatus"></p>
+						<input type="checkbox" id="tv_switch" class="swtich">
+						<label for="tv_switch" class="round"></label>
+					</div>
+					<div class="window">
+						<p>창문 open/close</p>
+						<p id="windowStatus"></p> 
+						<input type="checkbox" id="window_switch" class="swtich">
+						<label for="window_switch" class="round"></label>						
+					</div>
+					<div class="light">
+						<p>조명 on/off</p>
+						<p id="lightStatus"></p>
+						<input type="checkbox" id="light_switch" class="swtich">
+						<label for="light_switch" class="round"></label>						
+					</div>
+				</div>
 			</div>
+		</div>
 		</c:if>
 		<c:if test="${(member !=null) && (member.memAuthor == 1)}"><!-- 관리자로 로그인 했을 경우입니다. redirect로 관리자 페이지로 바로 넘어갑니니다. -->
 			<div class="container">

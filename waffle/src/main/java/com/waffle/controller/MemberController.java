@@ -116,11 +116,11 @@ public class MemberController {
 		
 		if(login != null && pwdMatch==true) {
 			session.setAttribute("member",login);
-			session.setAttribute("Usvo", usingService);
+			session.setAttribute("usvo", usingService);
 			return "redirect:/";
 		}else {
 			session.setAttribute("member", null);
-			session.setAttribute("Usvo", null);
+			session.setAttribute("usvo", null);
 			rttr.addFlashAttribute("msg", false);
 			return "redirect:/member/loginControl";
 		}		

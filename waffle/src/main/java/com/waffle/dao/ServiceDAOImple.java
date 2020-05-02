@@ -21,8 +21,7 @@ public class ServiceDAOImple implements ServiceDAO {
 	@Override
 	public ServiceVO getService(MemberVO vo) throws Exception {
 		System.out.println("ServiceVO , membervo:"+vo);
-		return sql.selectOne("serviceMapper.getService", vo);
-		
+		return sql.selectOne("serviceMapper.getService", vo);		
 	}
 	
 }
