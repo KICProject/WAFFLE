@@ -3,14 +3,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
-		<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 	
+	 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	 	
-	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	 	
-	 	<title>게시판</title>
+	 	<!-- ckeditor -->	 	
+	 	<script src="/resources/ckeditor/ckeditor.js"></script>
+	 	<!-- <title>게시판 수정하기</title> -->
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -95,17 +98,29 @@
 			<hr />
 			
 			<section id="container">
+			 <div class="form-group row justify-content-center">
 				<form name="updateForm" role="form" method="post" action="/notice/update" enctype="multipart/form-data">				
-					<table>
+					<table style="width : 1000px;">
 						<tbody>
 							<tr>
 								<td>
-									<label for="ntitle">제목</label><input type="text" id="ntitle" name="ntitle" value="${update.ntitle}" class="chk" title="제목을 입력하세요."/>
+									<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">제목</label>
+									<input type="text" id="ntitle" name="ntitle" value="${update.ntitle}" title="제목을 입력하세요." style="width: 1000px; height:40px; margin-bottom:10px; border : solid 1px lightgray;" />
 								</td>
 							</tr>	
 							<tr>
 								<td>
 									<label for="ncontent">내용</label><textarea id="ncontent" name="ncontent" class="chk" title="내용을 입력하세요."><c:out value="${update.ncontent}" /></textarea>
+									<script>
+											 var ckeditor_config = {
+											   resize_enaleb : false,
+											   enterMode : CKEDITOR.ENTER_BR,
+											   shiftEnterMode : CKEDITOR.ENTER_P,
+											   filebrowserUploadUrl : "/ckUpload"
+											 };
+											 
+											 CKEDITOR.replace("ncontent", ckeditor_config);
+									</script>
 								</td>
 							</tr>
 							
@@ -168,6 +183,7 @@
 					</div>
 					
 				</form>
+				</div>
 			</section>
 			<hr />
 	 </div>

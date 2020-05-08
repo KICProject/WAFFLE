@@ -13,7 +13,7 @@
 	 	
 	 	<!-- ckeditor -->	 	
 	 	<script src="/resources/ckeditor/ckeditor.js"></script>
-	 	<!-- <title>게시판</title> -->
+	 	<!-- <title>게시판 글쓰기</title> -->
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
