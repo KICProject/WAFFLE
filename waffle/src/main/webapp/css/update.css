@@ -1,3 +1,7 @@
+@import "reset.css";
+@import "header.css";
+@import "footer.css";
+
 @font-face {
   font-family: S-CoreDream-1;
   src:url("../font/SCDream1.otf") format("opentype");
@@ -20,13 +24,50 @@
 body{
 		background-image:url("/img/join_background_copy.jpg");
 		font-family: S-CoreDream-3;
-		color:#000;	
+		color:#fff;	
 	}
 	
 .container{
 		overflow:hidden;
 		margin-bottom:100px;
 }
+
+/*----------------login_first----------------------*/
+.container > .login_first{
+		width:800px;
+		height:440px;
+		margin: 0 auto;
+		margin-top: 250px;
+		/* position:absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%,-50%); */
+		text-align:center;
+	}	
+	.login_first p{
+		margin:20px auto;
+		line-height:20px;
+		font-size:18px;
+	}
+	
+	.login_first .btn_group {
+		width:510px;
+		height:50px;
+		margin:30px auto;
+	}
+	#tomain_btn, #signin_btn{
+		width: 240px;
+		height: 50px;
+		border-radius: 24.5px;
+		border:2px solid #fff;
+		background:rgba(255,255,255,0);
+		float:left;	
+		color:#fff;
+		font-size:18px;
+	}
+	#tomain_btn{
+		margin-right:20px;
+	}
 
 
 /*---------------- signup_container ----------------*/
@@ -134,7 +175,7 @@ body{
 	width:200px;
 	height:20px;
 	
-.input .updategrp {
+.input .form-group {
 	width: 600px;
 	height: 40px;
 	color: #fff;
@@ -142,7 +183,7 @@ body{
 	margin: 20px 0;
 }
 
-.input .updategrp label {
+.input .form-group label {
 	display: block;
 	width: 200px;
 	height: 35px;
@@ -150,7 +191,7 @@ body{
 	line-height: 35px;
 }
 
-.input .updategrp input {
+.input .form-group input {
 	width: 290px;
 	height: 33px;
 	float: left;

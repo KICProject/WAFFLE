@@ -2,15 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
-	<head>
-		<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	 	
-	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	 	
-	 	<title></title>
+	<head>		
+		<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	 	
+	 	<!-- <title>글상세보기</title> -->
 	</head>
 	
 	<script type="text/javascript">
@@ -72,6 +71,19 @@
 					+ "&keyword=${scri.keyword}"
 					+ "&nrno="+$(this).attr("data-nrno");
 			});
+			
+			$(document).ready(function(){
+				var formObj = $("form[name='updateForm']");
+				
+				$(".cancel_btn").on("click", function(){
+					location.href = "/notice/readView?nno=${replyUpdate.nno}"
+						   + "&page=${scri.page}"
+						   + "&perPageNum=${scri.perPageNum}"
+						   + "&searchType=${scri.searchType}"
+						   + "&keyword=${scri.keyword}";
+				})
+				
+			})
 		})
 		
 	</script>
@@ -81,13 +93,21 @@
 			<header>
 				<!-- <h1> 게시판</h1> -->
 			</header>
-			<hr />		
+			<hr />	
+			<%-- <!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
+			<c:if test>
 			<div>
-					<button type="button" class="update_btn btn btn-warning">관리자 글 수정</button>
-					<button type="button" class="delete_btn btn btn-danger">관리자 글 삭제</button>
+					<button type="button" class="update_btn btn">관리자 글 수정</button>
+					<button type="button" class="delete_btn btn">관리자 글 삭제</button>
 					<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
 				</div>
-				
+			</c:if>	 --%>
+			<!-- 편집 끝나고 아래 코드 삭제 -->
+			<div>
+					<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
+					<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>					
+			</div>
+			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
@@ -95,18 +115,15 @@
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-					<input type="hidden" id="FILE_NO" name="FILE_NO" value=""> 
+					<!-- <input type="hidden" id="FILE_NO" name="FILE_NO" value="">  -->
 				</form>
 				
-				<div class="form-group row text-center">					
-					<%-- <input type="text" id="ntitle" name="ntitle" class="display-1" value="${read.ntitle}" readonly="readonly" /> --%>
-					<h1 class="display-1"><c:out value="${read.ntitle}" /></h1>
-				</div>
-				
-				<div class="form-group row text-center">
-					<h2><small><label for="regdate" class="col-sm-2 control-label" style="width: 100%; float:40; margin:10 auto; ">작성일 : 					
-					<fmt:formatDate value="${read.regdate}" pattern="yyyy.MM.dd"  />	</label></small></h2>
-					
+				<div class="form-group row justify-content-center">					
+					<h1><label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; margin:10 auto;">${read.ntitle} </label></h1>
+				</div>		
+				<div class="form-group row justify-content-center">	
+					<label for="regdate" class="col-sm-3 control-label" style="width: 100%; float:40; margin:10 auto;font-size:20px;">
+					작성일 : <fmt:formatDate value="${read.regdate}" pattern="yyyy.MM.dd"  /></label>			
 				</div>
 				
 				<hr />
@@ -114,27 +131,13 @@
 				<br>
 				<br>
 				
-				<div class="form-group row text-center">
-					<!-- <label for="ncontent" class="col-sm-2 control-label">내용</label><br><br> -->
-					<%-- <textarea id="ncontent" name="ncontent" class="form-control" readonly="readonly">
-					<c:out value="${read.ncontent}" /></textarea> --%>
+				<div class="form-group row justify-content-center">					
+					<pre class="ncontent"><c:out value="${read.ncontent}" /></pre>
 					<img src="${read.gdsImg}" class="oriImg"/>
 				</div>
-				<%-- <div class="form-group">
-					<label for="nwriter" class="col-sm-2 control-label">작성자</label>
-					<input type="text" id="nwriter" name="nwriter" class="form-control" value="${read.nwriter}"  readonly="readonly"/>
-				</div> --%>
-				
 				
 				<hr>				
-				
-				<%-- <div class="inputArea">
-					 <label for="gdsImg">이미지</label>
-					 					 
-					 <img src="${read.gdsImg}" class="oriImg"/>	 
-					 
-				</div>	 --%>
-				
+								
 				<!-- 댓글 -->
 				<div id="reply" class="panel panel-default" style="margin-top: 10px;">
 					<ol class="replyList">
@@ -147,8 +150,8 @@
 								  
 								<p>${replyList.nrcontent}</p>
 								<div class="form-group row text-center">
-									<button type="button" class="replyUpdateBtn btn btn-warning" data-nrno="${replyList.nrno}">수정</button>
-									<button type="button" class="replyDeleteBtn btn btn-danger" data-nrno="${replyList.nrno}">삭제</button>
+									<button type="button" class="replyUpdateBtn btn" data-nrno="${replyList.nrno}">수정</button>
+									<button type="button" class="replyDeleteBtn btn" data-nrno="${replyList.nrno}">삭제</button>
 								</div>
 							</li>
 						</c:forEach>   
@@ -180,7 +183,7 @@
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="replyWriteBtn btn btn-success">작성</button>
+							<button type="button" class="replyWriteBtn btn btn-outline-dark">작성</button>
 						</div>
 					</div>					
 				</form>

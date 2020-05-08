@@ -3,12 +3,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-		<link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 	
+	 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	 	
-	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	 	
-	 	<title>게시판</title>
+	 	<!-- ckeditor -->	 	
+	 	<script src="/resources/ckeditor/ckeditor.js"></script>
+	 	<!-- <title>게시판</title> -->
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -20,9 +25,9 @@
 				formObj.attr("action", "/notice/write");
 				formObj.attr("method", "post");
 				formObj.submit();
-			});
-			fn_addFile();
+			});		
 		})
+		
 		function fn_valiChk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
 			for(var i = 0; i<regForm; i++){
@@ -31,14 +36,26 @@
 					return true;
 				}
 			}
-		}			 
+		}	
+		
+		$("#gdsImg").change(function(){
+			   if(this.files && this.files[0]) {
+			    var reader = new FileReader;
+			    reader.onload = function(data) {
+			     $(".select_img img").attr("src", data.target.result).width(500);        
+			    }
+			    reader.readAsDataURL(this.files[0]);
+			   }
+			  });
+		
+		
 		
 	</script>
 	<body>
 	
 		<div id="root">
 			<header>
-				<h1> 게시판</h1>
+				<!-- <h1> 게시판</h1> -->
 			</header>
 			<hr />
 			 
@@ -47,33 +64,58 @@
 			</div>
 			<hr />			
 			<section id="container">
+			<div class="form-group row justify-content-center">
 				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">
-					<table>
+					<table style="width : 1000px;">
 						<tbody>
 							<%-- <c:if test="${member.memId != null}"> --%>
 								<tr>
 									<td>
-										<label for="ntitle">제 목</label><input type="text" id="ntitle" name="ntitle" class="chk" title="제목을 입력하세요."/>
-									</td>
-								</tr>	
-								<tr>
-									<td>
-										<label for="ncontent">내 용</label><textarea id="ncontent" name="ncontent" class="chk" title="내용을 입력하세요."></textarea>
+										<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">제목</label>
+										<input  type="text" id="ntitle" name="ntitle" class="chk" title="제목을 입력하세요." placeholder="제목을 입력하세요." style="width: 1000px; height:40px; margin-bottom:10px; border : solid 1px lightgray;"/>
+										
 									</td>
 								</tr>
+										
+										
+	
 								<tr>
 									<td>
-										<label for="nwriter">작성자</label><input type="text" id="nwriter" name="nwriter" class="chk" title="작성자를 입력하세요." />
+										<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" title="내용을 입력하세요.">내용</label>
+										<textarea id="ncontent" name="ncontent" placeholder="내용을 입력하세요." style ="height: 300px; width:1000px; border:solid 1px lightgray"></textarea>
+										<script>
+											 var ckeditor_config = {
+											   resize_enaleb : false,
+											   enterMode : CKEDITOR.ENTER_BR,
+											   shiftEnterMode : CKEDITOR.ENTER_P,
+											   filebrowserUploadUrl : "/ckUpload"
+											 };
+											 
+											 CKEDITOR.replace("ncontent", ckeditor_config);
+											</script>
+											
+									</td>
+								</tr>								
+							
+								<tr>
+									<td>
+										<label for="gdsImg" style="width : 100%; margin-bottom:10px; margin-top:10px" class="col-sm-2 control-label" >이미지 첨부</label><br>
+										<input type="file" id="gdsImg" name="file"  style="margin-bottom:10px; border : solid 1px lightgray;"/>				
+										<%=request.getRealPath("/") %><br />
 									</td>
 								</tr>
+ 
+								
+								
 								<tr>
-								<tr>
-									<td id="fileIndex">
+									<td>
+										<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="nwriter">작성자</label><br />
+										<input type="text" id="nwriter" name="nwriter" style="width: 200px; height:40px; margin-bottom:10px; border : solid 1px lightgray;" value="${member.memId}" />
 									</td>
 								</tr>
 								<tr>
 									<td>						
-										<button class="write_btn" type="submit">작성</button>										
+										<button class="col-sm-2 control-label write_btn btn btn-outline-dark" type="submit" style="margin-bottom:10px; margin-top:10px">작성</button>										
 									</td>
 								</tr>	
 							<%-- </c:if> 
@@ -82,28 +124,10 @@
 							</c:if> --%>
 							
 						</tbody>			
-					</table>
+					</table>					
 					
-					<div class="inputArea">
-						 <label for="gdsImg">이미지</label>
-						 <input type="file" id="gdsImg" name="file" />
-						 <div class="select_img"><img src="" /></div>
-						 
-						 <script>
-						  $("#gdsImg").change(function(){
-						   if(this.files && this.files[0]) {
-						    var reader = new FileReader;
-						    reader.onload = function(data) {
-						     $(".select_img img").attr("src", data.target.result).width(500);        
-						    }
-						    reader.readAsDataURL(this.files[0]);
-						   }
-						  });
-						 </script>
-						 <%=request.getRealPath("/") %>
-					</div>
-					
-				</form>				
+				</form>
+				</div>				
 			</section>
 			<hr />
 		</div>

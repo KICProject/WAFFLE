@@ -14,11 +14,11 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- 오라클 접속 -->
-    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+   <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
-        <property name="url" value="jdbc:log4jdbc:oracle:thin:@devtaco-db1.c9eolnk2xsaa.ap-northeast-2.rds.amazonaws.com:1521/orcl"/>
-        <property name="username" value="devtaco"/>
-        <property name="password" value="devtaco01"/>
+        <property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521/orcl"/>
+        <property name="username" value="scott"/>
+        <property name="password" value="tiger"/>
     </bean>
    
     <!-- Mybatis 연동 -->
@@ -40,5 +40,5 @@
     <context:component-scan base-package="com.waffle.service"></context:component-scan>
     <context:component-scan base-package="com.waffle.dao"></context:component-scan>
     <context:component-scan base-package="com.waffle.vo"></context:component-scan>
-    <context:component-scan base-package="com.waffle.util"></context:component-scan>
+    <context:component-scan base-package="com.waffle.utils"></context:component-scan>
 </beans>

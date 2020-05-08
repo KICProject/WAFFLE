@@ -70,12 +70,22 @@
  			$("#fileNoDel").attr("value", fileNoArry);
  			$("#fileNameDel").attr("value", fileNameArry);
  		}
+ 		
+ 		 $("#gdsImg").change(function(){
+			   if(this.files && this.files[0]) {
+			    var reader = new FileReader;
+			    reader.onload = function(data) {
+			     $(".select_img img").attr("src", data.target.result).width(500);        
+			    }
+			    reader.readAsDataURL(this.files[0]);
+			   }
+			  });						 
 	</script>
 	<body>
 	
 		<div id="root">
 			<header>
-				<h1> 게시판</h1>
+				<!-- <h1> 게시판 수정</h1> -->
 			</header>
 			<hr />
 			 
@@ -85,97 +95,7 @@
 			<hr />
 			
 			<section id="container">
-				<form name="updateForm" role="form" method="post" action="/notice/update" enctype="multipart/form-data">
-					<input type="hidden" name="nno" value="${update.nno}" readonly="readonly"/>
-					<input type="hidden" id="page" name="page" value="${scri.page}"> 
-					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-					<input type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> 
-					<input type="hidden" id="fileNameDel" name="fileNameDel[]" value=""> 
-					
-					<div class="inputArea">
-					 <label for="gdsImg">이미지</label>
-					 <input type="file" id="gdsImg" name="file" />
-					 <div class="select_img">
-					  <img src="${read.gdsImg}" />
-					  <input type="hidden" name="gdsImg" value="${read.gdsImg}" />
-					  <input type="hidden" name="gdsThumbImg" value="${read.gdsThumbImg}" /> 
-					 </div>
-					 
-					 <script>
-					  $("#gdsImg").change(function(){
-					   if(this.files && this.files[0]) {
-					    var reader = new FileReader;
-					    reader.onload = function(data) {
-					     $(".select_img img").attr("src", data.target.result).width(500);        
-					    }
-					    reader.readAsDataURL(this.files[0]);
-					   }
-					  });
-					  
-					  
-					  
-					  $(document).ready(function() {
-						    $('#emailForm').bootstrapValidator({        
-						        feedbackIcons: {
-						            valid: 'glyphicon glyphicon-ok',
-						            invalid: 'glyphicon glyphicon-remove',
-						            validating: 'glyphicon glyphicon-refresh'
-						        },
-						        fields: {
-						            uname: {
-						                validators: {
-						                        stringLength: {
-						                        min: 2,
-						                    },
-						                        notEmpty: {
-						                        message: 'Please enter your name'
-						                    }
-						                }
-						            },             
-						            email: {
-						                validators: {
-						                    notEmpty: {
-						                        message: 'Please enter your email address'
-						                    },
-						                    emailAddress: {
-						                        message: 'Please enter a valid email address'
-						                    }
-						                }
-						            },
-									attachFile: {
-						                validators: {
-						                    file: {
-						                        extension: 'jpeg,png,pdf,zip,gif,txt,doc',
-						                        type: 'image/jpeg,image/png,application/pdf,application/zip,image/gif,text/plain,application/msword',
-						                        maxSize: 2048 * 1024,
-						                        message: 'The selected file is not valid'
-						                    }
-						                }
-						            },
-						            message: {
-						                validators: {
-						                      stringLength: {
-						                        min: 10,
-						                        max: 200,
-						                        message:'Please enter at least 10 characters and no more than 200'
-						                    },
-						                    notEmpty: {
-						                        message: 'Please enter a message'
-						                    }
-						                }
-						            }
-						        }
-						    });
-						});
-					  
-					  
-					  
-					  
-					 </script>
-					 <%=request.getRealPath("/") %>
-					</div>
+				<form name="updateForm" role="form" method="post" action="/notice/update" enctype="multipart/form-data">				
 					<table>
 						<tbody>
 							<tr>
@@ -188,18 +108,26 @@
 									<label for="ncontent">내용</label><textarea id="ncontent" name="ncontent" class="chk" title="내용을 입력하세요."><c:out value="${update.ncontent}" /></textarea>
 								</td>
 							</tr>
-							<tr>
+							
+							<tr>		
+								<td>						
+									<label for="gdsImg">이미지</label><input type="file"  id="gdsImg" name="file" class="chk" title="이미지 파일을 선택하세요." value="${read.gdsImg}" />
+								</td>
+							</tr>
+							
+							
+							<%-- <tr>
 								<td>
 									<label for="nwriter">작성자</label><input type="text" id="nwriter" name="nwriter" value="${update.nwriter}" readonly="readonly"/>
 								</td>
-							</tr>
+							</tr> --%>
 							<tr>
 								<td>
 									<label for="regdate">작성날짜</label>
 									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
 								</td>
 							</tr>
-							<tr>
+							<%-- <tr>
 								<td id="fileIndex">
 									<c:forEach var="file" items="${file}" varStatus="var">
 									<div>
@@ -210,55 +138,38 @@
 									</div>
 									</c:forEach>
 								</td>
-							</tr>
+							</tr> --%>
 						</tbody>			
 					</table>
+					
+					<input type="hidden" name="nno" value="${update.nno}" readonly="readonly"/>
+					<input type="hidden" id="page" name="page" value="${scri.page}"> 
+					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					<!-- <input type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> 
+					<input type="hidden" id="fileNameDel" name="fileNameDel[]" value="">  -->
+					
+					<%-- <div class="inputArea">
+					 <label for="gdsImg">이미지</label>
+					 <input type="file" id="gdsImg" name="file" />
+					 <div class="select_img">
+					  <img src="${read.gdsImg}" />
+					  <input type="hidden" name="gdsImg" value="${read.gdsImg}" />
+					  <input type="hidden" name="gdsThumbImg" value="${read.gdsThumbImg}" /> 
+					 </div>
+					 <%=request.getRealPath("/") %>
+					 </div> --%>
+					 
 					<div>
-						<button type="button" class="update_btn">저장</button>
-						<button type="button" class="cancel_btn">취소</button>
-						<button type="button" class="fileAdd_btn">파일추가</button>
+						<button type="button" class="update_btn btn">저장</button>
+						<button type="button" class="cancel_btn btn">취소</button>
+						<!-- <button type="button" class="fileAdd_btn">파일추가</button> -->
 					</div>
+					
 				</form>
 			</section>
 			<hr />
-		</div>
-		
-		<form action="mail.php" method="post" id="emailForm" enctype="multipart/form-data">
-	<div class="contact-form">
-	<?php if(!empty($_GET['success']) && $_GET['success']) { ?>
-		<div id="message" class="alert alert-danger alert-dismissible fade show">The message has been sent.</div>
-	<?php } ?>
-	<div class="form-group">				  
-	  <label class="control-label col-sm-2" for="fname">Name*:</label>
-	  <div class="col-sm-10">          
-		<input type="text" class="form-control" id="uname" name="uname" placeholder="Enter Name" >
-	  </div>
-	</div>				
-	<div class="form-group">
-	  <label class="control-label col-sm-2" for="email">Email*:</label>
-	  <div class="col-sm-10">
-		<input type="email" class="form-control" id="email" name="email" placeholder="Enter email" >
-	  </div>
-	</div>
-	<div class="form-group">
-	  <label class="control-label col-sm-2" for="lname">Attach File:</label>
-	  <div class="col-sm-10">          
-		<input type="file" class="form-control" id="attachFile" name="attachFile">
-	  </div>
-	</div>
-	<div class="form-group">
-	  <label class="control-label col-sm-2" for="comment">Message*:</label>
-	  <div class="col-sm-10">
-		<textarea class="form-control" rows="5" name="message" id="message"></textarea>
-	  </div>
-	</div>
-	<div class="form-group">        
-	  <div class="col-sm-offset-2 col-sm-10">
-		<button type="submit" class="btn btn-default" name="sendEmail">Send Email</button>
-	  </div>
-	</div>
-	</div>
-</form>
-		
+	 </div>
 	</body>
 </html>
