@@ -58,7 +58,7 @@
 								</tr>	
 								<tr>
 									<td>
-										<label for="ncontent">내용</label><textarea id="ncontent" name="ncontent" class="chk" title="내용을 입력하세요."></textarea>
+										<label for="ncontent">내 용</label><textarea id="ncontent" name="ncontent" class="chk" title="내용을 입력하세요."></textarea>
 									</td>
 								</tr>
 								<tr>
