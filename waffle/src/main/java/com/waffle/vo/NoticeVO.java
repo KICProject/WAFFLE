@@ -12,13 +12,21 @@ public class NoticeVO { //DTO
 		private int nhit;
 		//추가
 		private String gdsThumbImg;
+		private String gdsImg;
 		
+		public String getGdsImg() {
+			return gdsImg;
+		}
+		public void setGdsImg(String gdsImg) {
+			this.gdsImg = gdsImg;
+		}
 		public String getGdsThumbImg() {
 			return gdsThumbImg;
 		}
 		public void setGdsThumbImg(String gdsThumbImg) {
 			this.gdsThumbImg = gdsThumbImg;
 		}
+		
 		public int getNno() {
 			return nno;
 		}

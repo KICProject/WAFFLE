@@ -44,6 +44,13 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.idChk(vo);
 		return result;
 	}
+	//이메일 중복체크
+	@Override
+	public int emailChk(MemberVO vo) throws Exception {
+		int result = dao.emailChk(vo);
+		return result;
+	}
+	
 	
 	
 	

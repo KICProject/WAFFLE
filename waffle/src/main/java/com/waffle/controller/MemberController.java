@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.waffle.service.KakaoService;
 import com.waffle.service.MemberService;
+import com.waffle.service.RoomService;
 import com.waffle.service.ServiceService;
 import com.waffle.vo.MemberVO;
 import com.waffle.vo.ServiceVO;
@@ -32,6 +33,9 @@ public class MemberController {
 	
 	@Inject
 	ServiceService sservice;
+	
+	@Inject
+	RoomService rservice;
 	
 	@Inject
 	KakaoService kakao;
@@ -145,7 +149,11 @@ public class MemberController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		logger.info("post register");
-		int result = service.idChk(vo); //
+		if(vo.getExtraAddress()==null) {
+			vo.setExtraAddress("");
+		}		
+		vo.setMemAddr(vo.getZipcode(),vo.getRoadAddress(), vo.getDetailAddress(),vo.getExtraAddress());		
+		int result = service.idChk(vo); 
 		try {
 			if(result==1) {
 				return "/register";
@@ -158,10 +166,8 @@ public class MemberController {
 		}catch(Exception e) {
 			throw new RuntimeException();
 		}
-		
 		return "member/welcome";
-	}
-	
+	}	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception{
@@ -170,31 +176,70 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	//
+	
+	@RequestMapping(value="/mypage", method = RequestMethod.GET)
+	public String moveMyPageGet() {
+		logger.info("get register");
+		return "member/mypage";
+	}
+	
+	@RequestMapping(value="/mypage", method = RequestMethod.POST)
+	public String moveMyPage() {
+		return "member/mypage";
+	}
+	
+	
 	//회원정보수정페이지로 이동
-	@RequestMapping(value = "/memberUpdateView", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateView", method = RequestMethod.GET)
 	public String registerUpdateView() throws Exception{
-			return "member/memberUpdateView";
+			return "member/updateView";
 	}
 	//회원정보수정
+	@ResponseBody
 	@RequestMapping(value="/memberUpdate",method=RequestMethod.POST)
-	public String registerUpdate(MemberVO vo, HttpSession session) throws Exception{
+	public boolean registerUpdate(MemberVO vo, HttpSession session){
+		boolean result = false;
+		try {
+			String inputPass = vo.getMemPass();
+			String pwd = pwdEncoder.encode(inputPass);
+			vo.setMemPass(pwd);			
 			service.memberUpdate(vo);
-			session.invalidate();
-			return "redirect:/";
+			session.setAttribute("member",vo);
+			result = true;
+			return result;
+		}catch(Exception e) {
+			return result;
+		}		
 	}
 	//회원 탈퇴 페이지로 이동
 	@RequestMapping(value="/memberDeleteView", method = RequestMethod.GET)
 	public String memberDeleteView() throws Exception{
 		return "member/memberDeleteView";
 	}
-	
-	// 회원탈퇴 (POST)/
-	@RequestMapping(value="/memberDelete", method = RequestMethod.POST)
-	public String memberDelete(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
-		
-		service.memberDelete(vo);
-		session.invalidate();
-		return "redirect:/";
+
+	/*
+	 * // 회원탈퇴 (GET)/
+	 * 
+	 * @RequestMapping(value="/memberDelete", method = RequestMethod.GET) public
+	 * String memberDeleteGet(MemberVO vo, HttpSession session, RedirectAttributes
+	 * rttr) throws Exception{ logger.info("get memdelete"); return
+	 * "member/memberDelete"; }
+	 */
+	// 회원탈퇴 (POST)
+	@ResponseBody
+	@RequestMapping(value="/memberDelete",method=RequestMethod.POST)
+	public boolean memberDelete(MemberVO vo, HttpSession session){
+		System.out.println(vo.getMemId());
+		boolean result = false;
+		try {
+			service.memberDelete(vo);
+			session.invalidate();
+			result = true;
+			return result;
+		}catch(Exception e) {
+			return result;
+		}
 	}
 	//패스워드 체크
 	@ResponseBody
@@ -204,15 +249,34 @@ public class MemberController {
 		boolean pwdChk = pwdEncoder.matches(vo.getMemPass(), login.getMemPass());
 		return pwdChk;
 	}
+	//패스워드 체크2 (정보수정,삭제를 위한)
+	@ResponseBody
+	@RequestMapping(value="/passDbChk", method=RequestMethod.POST)
+	public boolean passDbChk(MemberVO vo) throws Exception{
+		System.out.println("passDbChk 실행");
+		System.out.println(vo.getMemId());
+		System.out.println(vo.getMemPass());
+		MemberVO userDbChk = service.login(vo); 
+		System.out.println(userDbChk.toString());
+		boolean pwdMatch =pwdEncoder.matches(vo.getMemPass(), userDbChk.getMemPass());
+		System.out.println(pwdMatch);
+		return pwdMatch;
+	}
 	//아이디 중복 체크
 	@ResponseBody
 	@RequestMapping(value="/idChk", method=RequestMethod.POST)
 	public int idChk(MemberVO vo) throws Exception{
 		logger.info("post register");
-		int result = service.idChk(vo);
-		
+		int result = service.idChk(vo);		
 		return result;
 	}
-
+	//이메일 중복 체크
+	@ResponseBody
+	@RequestMapping(value="/emailChk", method=RequestMethod.POST)
+	public int emailChk(MemberVO vo) throws Exception{
+		logger.info("post register");
+		int result = service.emailChk(vo);		
+		return result;
+	}
 	
 }

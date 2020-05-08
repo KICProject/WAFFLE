@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WAFFLE</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="/css/header_bk.css" />
+<link rel="stylesheet" type="text/css" href="/css/header_bk_.css" />
 </head>
 <body>	
 	<!-- header -->
@@ -66,7 +66,7 @@
 					location.href = "redirect:/";
 				})
 				$(".my_page").on("click", function() {
-					location.href = "/member/memberUpdateView";
+					location.href = "/member/mypage";
 				})
 				$("#about").on("click", function(){
 					location.href ="/sub/about"

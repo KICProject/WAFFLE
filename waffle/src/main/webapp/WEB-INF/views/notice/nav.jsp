@@ -6,12 +6,7 @@
 </style>
 <ul>
 	<li><a href="/notice/list">목록</a></li>
-	<li><a href="/notice/writeView">글 작성</a></li>
-	<li><a href="/member/register">로그인</a></li>
-	<li>
-		<c:if test="${member != null}"><a href="/member/welcome">로그아웃</a></c:if>
-		<c:if test="${member == null}"><a href="/">로그인</a></c:if>
-	</li>
+	<li><a href="/notice/writeView">글 작성</a></li>	
 	<li>
 		<c:if test="${member != null}">
 			<p>${wf_mem_login.memId}님 안녕하세요.</p>

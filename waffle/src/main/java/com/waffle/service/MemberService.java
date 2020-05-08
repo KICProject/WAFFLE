@@ -16,4 +16,6 @@ public interface MemberService {
 	public int passChk(MemberVO vo) throws Exception;
 	//아이디중복체크
 	public int idChk(MemberVO vo) throws Exception;
+	// 이메일 중복 체크
+	public int emailChk(MemberVO vo) throws Exception;
 }

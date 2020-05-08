@@ -9,6 +9,10 @@ public class MemberVO {
 	private String memBirth;
 	private String memPhone;
 	private String memPhone2;
+	private String zipcode;
+	private String roadAddress;
+	private String detailAddress;
+	private String extraAddress;
 	private String memAddr;
 	private String memEmail;	
 	private String memAuthor;
@@ -53,14 +57,42 @@ public class MemberVO {
 	public String getMemEmail() {
 		return memEmail;
 	}
-	public void setMemEmail(String memEmail) {
+	public void setMemEmail(String memEmail) {		
 		this.memEmail = memEmail;
+	}	
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {		
+		this.zipcode = zipcode;
+	}
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
 	}
 	public String getMemAddr() {
 		return memAddr;
 	}
 	public void setMemAddr(String memAddr) {
 		this.memAddr = memAddr;
+	}
+	public void setMemAddr(String zipcode, String roadAddress, String detailAddress,String extraAddress) {
+		System.out.println("setMemAddr called");
+		this.memAddr = zipcode + " " + roadAddress + " " + detailAddress + " " + extraAddress;
 	}
 	
 	public Date getRegDate() {

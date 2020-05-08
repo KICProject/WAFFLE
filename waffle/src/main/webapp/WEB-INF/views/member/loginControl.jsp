@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WAFFLE</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/login.css" />	
 </head>
@@ -40,11 +40,11 @@
 					<li><a href="#">아이디 찾기</a><span>&nbsp;&nbsp;&nbsp;|</span></li>					
 					<li><a href="#">비밀번호 찾기</a></li>
 				</ul><br>
-				<span class="SNS"> SNS 로그인</span><br>
+				<!-- <span class="SNS"> SNS 로그인</span><br>
 				<ul class="api_login">
 					<li><a href="#" id="nvr_btn"><img src="/img/naver_btn.png"></a></li>
 					<li><a href="https://kauth.kakao.com/oauth/authorize?client_id=e1d6e555ab653c2367b93a83450e0e0e&redirect_uri=http://localhost:8090/member/kakaologin&response_type=code" id="kko_btn"><img src="/img/kakao_btn.png"></a></li>
-				</ul> 	
+				</ul> --> 	
 							
 			</div>
 			<span class="middle_line"></span>

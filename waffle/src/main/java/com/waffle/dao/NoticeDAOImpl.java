@@ -58,35 +58,7 @@ import com.waffle.vo.NoticeVO;
 		
 		return sqlSession.selectOne("noticeMapper.listCount", scri);
 	}
-
-	// 첨부파일 업로드
-	@Override
-	public void insertFile(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		sqlSession.insert("noticeMapper.insertFile", map);
-	}
 	
-	//첨부파일 조회 
-	@Override
-	public List<Map<String, Object>> selectFileList(int nno) throws Exception {
-		
-		return sqlSession.selectList("noticeMapper.selectFileList", nno);
-	}
-
-	// 첨부파일 다운로드 
-	@Override
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
-		
-		return sqlSession.selectOne("noticeMapper.selectFileInfo", map);
-	}
-
-	//첨부파일 수정
-	@Override
-	public void updateFile(Map<String, Object> map) throws Exception {
-		
-		sqlSession.update("noticeMapper.updateFile", map);		
-	}
-
 	//게시판 조회수 
 	@Override
 	public void boardHit(int nno) throws Exception {

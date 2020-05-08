@@ -5,7 +5,7 @@
 <mapper namespace="serviceMapper">
   			
     <insert id="registService" parameterType="com.waffle.vo.ServiceVO">
-    	INSERT INTO MEMSERVICE( MEMID
+    	INSERT INTO MEM_SERVICE( MEMID
 							,SERVICENAME
 							,SERVICEID )
 						VALUES(	#{memId,jdbcType=VARCHAR}
@@ -13,7 +13,11 @@
 							,#{serviceId,})	
     </insert>
     <select id="getService" parameterType="com.waffle.vo.MemberVO" resultType="com.waffle.vo.ServiceVO">
-    	SELECT * FROM MEMSERVICE
+    	SELECT * FROM MEM_SERVICE
     	WHERE MEMID = #{memId}
     </select>
+    <delete id="deleteService">
+    	DELETE FROM MEM_SERVICE
+		WHERE MEMID = #{memId}
+    </delete>
 </mapper>

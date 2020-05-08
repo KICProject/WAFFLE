@@ -11,11 +11,8 @@ import com.waffle.vo.NoticeVO;
 
 public interface NoticeService {
 	
-	//게시글 작성
-	//public void write(BoardVO boardVO) throws Exception;
-	
 	// 게시글 작성
-	public void write(NoticeVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception;
+	public void write(NoticeVO boardVO) throws Exception;
 	
 	//게시물 목록 조회
 	public List<NoticeVO> list(NoticeSearchCri scri) throws Exception;
@@ -27,18 +24,9 @@ public interface NoticeService {
 	public NoticeVO read(int nno) throws Exception;
 	
 	// 게시물 수정
-	public void update(NoticeVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception;
+	public void update(NoticeVO boardVO) throws Exception;
 	
 	//게시물 삭제 
 	public void delete(int nno) throws Exception;	
-	
-	// 첨부파일 조회
-	public List<Map<String, Object>> selectFileList(int nno) throws Exception;
-	
-	// 첨부파일 다운
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
-	
-	
-	
 	
 }

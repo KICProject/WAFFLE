@@ -11,11 +11,15 @@
 	    INSERT INTO NOTICE(    NNO  
 	   					       , NTITLE  
 	   					       , NCONTENT 
-	   					       , NWRITER  )
+	   					       , NWRITER 
+	   					       , gdsImg
+	   					       , gdsThumbImg )
 	                  VALUES(    #{nno}
 	                 		   , #{ntitle}
 	                 		   , #{ncontent}
-	                 		   , #{nwriter}  )   
+	                 		   , #{nwriter}
+	                 		   , #{gdsImg}
+	                 		   , #{gdsThumbImg}  )   
     </insert>
    
 	<select id="listPage" resultType="com.waffle.vo.NoticeVO" parameterType="com.waffle.vo.NoticeSearchCri">
@@ -23,13 +27,16 @@
 		        NTITLE, 
 		        NCONTENT,
 		        NWRITER, 
-		        REGDATE
+		        REGDATE,
+		        NHIT
+		 
 		 FROM ( 
 		        SELECT NNO, 
 		               NTITLE, 
 		               NCONTENT, 
 		               NWRITER, 
 		               REGDATE, 
+		               NHIT,
 		               ROW_NUMBER() OVER(ORDER BY NNO DESC) AS RNUM
 		         FROM NOTICE
 		         WHERE 1=1 
@@ -62,14 +69,18 @@
 			   , NCONTENT
 			   , NWRITER
 			   , REGDATE
+			   , gdsImg
+         	   , gdsThumbImg			 
 		  FROM NOTICE
 		 WHERE NNO = #{nno}
 	</select>
 	
 	<update id="update" parameterType="com.waffle.vo.NoticeVO">
 		UPDATE NOTICE
-		   SET NTITLE    =   #{ntitle},
-		   	   NCONTENT  =   #{ncontent}
+		SET NTITLE    =   #{ntitle},
+		   	  NCONTENT  =   #{ncontent},
+		   	  gdsImg = #{gdsImg},
+         	  gdsThumbImg = #{gdsThumbImg}
 		 WHERE NNO = #{nno} 
 	</update>
 	
@@ -77,52 +88,7 @@
 		DELETE 
 		  FROM NOTICE
 		 WHERE NNO = #{nno}
-	</delete>
-   
-   <!-- 첨부파일 업로드 -->
-    <insert id="insertFile" parameterType="hashMap">
-		INSERT INTO NFILE(
-			FILE_NO,
-			NNO,
-			ORG_FILE_NAME,
-			STORED_FILE_NAME,
-			FILE_SIZE
-		)VALUES(
-			FSEQ.NEXTVAL,
-			#{NNO},
-			#{ORG_FILE_NAME},
-			#{STORED_FILE_NAME},
-			#{FILE_SIZE}
-		)
-    </insert>
-    
-    <!-- 첨부파일 조회 -->
-    <select id="selectFileList" parameterType="int" resultType="hashMap">
-    	SELECT FILE_NO,
-    		   ORG_FILE_NAME,
-    		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE,
-    		   DEL_GB
-    	  FROM NFILE
-    	 WHERE NNO = #{NNO}
-    	   AND DEL_GB = 'N'
-    	 ORDER BY FILE_NO ASC
-    </select>
-    
-    <!-- 첨부파일 다운 -->
-    <select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
-    	SELECT 
-    		STORED_FILE_NAME,
-    		ORG_FILE_NAME
-    	FROM NFILE
-    	WHERE FILE_NO = #{FILE_NO}
-    </select>
-    
-    <!--첨부파일 삭제 시 DEL_GB를 Y로 바꿈 (N값이면 보여주고 Y값이면 보여주지 않는 식) -->
-    <update id="updateFile" parameterType="hashMap">
-    	UPDATE NFILE SET
-    	DEL_GB = 'Y'
-    	WHERE FILE_NO = #{FILE_NO}
-    </update>
+	</delete>   
     
     <!-- 게시판 조회수 -->
     <update id="boardHit" parameterType="int">

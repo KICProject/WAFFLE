@@ -1,13 +1,11 @@
 package com.waffle.controller;
 
 import java.io.File;
-import java.net.URLEncoder;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.waffle.service.NoticeReService;
 import com.waffle.service.NoticeService;
-import com.waffle.vo.NoticeCri;
+import com.waffle.utils.UploadFileUtils;
 import com.waffle.vo.NoticePageMaker;
 import com.waffle.vo.NoticeReVO;
 import com.waffle.vo.NoticeSearchCri;
@@ -38,7 +35,8 @@ public class noticeController {
 	NoticeService service;
 	
 	@Inject
-	NoticeReService replyService;
+	NoticeReService replyService;	
+	
 	//추가 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -51,10 +49,22 @@ public class noticeController {
 	
 	// 게시판 글 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(NoticeVO boardVO, MultipartHttpServletRequest mpRequest) throws Exception{
-		logger.info("write");
+	public String write(NoticeVO boardVO, MultipartFile file) throws Exception{
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+
+		if(file != null) {
+			 fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+			} else {
+			 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			}
+
+		boardVO.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		boardVO.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		
-		service.write(boardVO, mpRequest);		
+		logger.info("write");
+		service.write(boardVO);
 		
 		return "redirect:/notice/list";
 	}	
@@ -86,9 +96,7 @@ public class noticeController {
 
 			List<NoticeReVO> replyList = replyService.readReply(boardVO.getNno());
 			model.addAttribute("replyList", replyList);
-
-			List<Map<String, Object>> fileList = service.selectFileList(boardVO.getNno());
-			model.addAttribute("file", fileList);
+			
 			return "notice/readView";
 		}
 		
@@ -100,32 +108,42 @@ public class noticeController {
 			logger.info("updateView");
 
 			model.addAttribute("update", service.read(boardVO.getNno())); 
-			model.addAttribute("scri", scri);
-
-			List<Map<String, Object>> fileList = service.selectFileList(boardVO.getNno());
-			model.addAttribute("file", fileList); //updateView페이지에 파일리스트가 보이게 추가
+			model.addAttribute("scri", scri);		
+			
 			return "notice/updateView";
 		}
 
 		// 게시판 수정
 		@RequestMapping(value = "/update", method = RequestMethod.POST)
-		public String update(NoticeVO boardVO, 
-							 @ModelAttribute("scri") NoticeSearchCri scri, 
-							 RedirectAttributes rttr,
-							 @RequestParam(value="fileNoDel[]") String[] files,
-							 @RequestParam(value="fileNameDel[]") String[] fileNames,
-							 MultipartHttpServletRequest mpRequest) throws Exception {
+		public String update(NoticeVO boardVO, MultipartFile file, HttpServletRequest req) throws Exception {
 			logger.info("update");
-			service.update(boardVO, files, fileNames, mpRequest);
-
-			rttr.addAttribute("page", scri.getPage());
-			rttr.addAttribute("perPageNum", scri.getPerPageNum());
-			rttr.addAttribute("searchType", scri.getSearchType());
-			rttr.addAttribute("keyword", scri.getKeyword());
+			
+			 // 새로운 파일이 등록되었는지 확인
+			 if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			  // 기존 파일을 삭제
+			  new File(uploadPath + req.getParameter("gdsImg")).delete();
+			  new File(uploadPath + req.getParameter("gdsThumbImg")).delete();
+			  
+			  // 새로 첨부한 파일을 등록
+			  String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			  String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			  String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			  
+			 boardVO.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			 boardVO.setGdsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			  
+			 } else {  // 새로운 파일이 등록되지 않았다면
+			  // 기존 이미지를 그대로 사용
+			 boardVO.setGdsImg(req.getParameter("gdsImg"));
+			 boardVO.setGdsThumbImg(req.getParameter("gdsThumbImg"));			  
+			 }
+			 
+			 service.update(boardVO);
 
 			return "redirect:/notice/list";
 		}
 
+		
 		// 게시판 삭제
 		@RequestMapping(value = "/delete", method = RequestMethod.POST)
 		public String delete(NoticeVO boardVO, @ModelAttribute("scri") NoticeSearchCri scri, RedirectAttributes rttr) throws Exception{
@@ -213,30 +231,5 @@ public class noticeController {
 			rttr.addAttribute("keyword", scri.getKeyword());
 			
 			return "redirect:/notice/readView";
-		}
-		
-		//첨부파일 다운로드 -HttpServletResponse response는 처음에 첨부파일을 업로드 할때는 MultipartHttpServletRequest mpRequest을 이용하여 서버에 요청을 했었는데요. 
-		//request는 jsp화면에서 서버로 요청할 때 쓰고, response는 서버에서 jsp화면으로 응답할때에 쓰입니다. 그래서 파일정보들을 responses에 담아 처리를 합니다.
-		@RequestMapping(value="/fileDown")
-		public void fileDown(@RequestParam Map<String, Object> map, HttpServletResponse response) throws Exception{
-			Map<String, Object> resultMap = service.selectFileInfo(map);
-			String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
-			String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
-			
-			// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
-			byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\mp\\file\\"+storedFileName));
-			
-			response.setContentType("application/octet-stream");
-			response.setContentLength(fileByte.length);
-			response.setHeader("Content-Disposition",  "attachment; fileName=\""+URLEncoder.encode(originalFileName, "UTF-8")+"\";");
-			response.getOutputStream().write(fileByte);
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
-			
-		}
-		
-
-		
-
-		
+		}		
 }

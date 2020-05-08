@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.waffle.service.RoomService;
 import com.waffle.service.ServiceService;
+import com.waffle.vo.MemberVO;
 import com.waffle.vo.RoomVO;
 import com.waffle.vo.ServiceVO;
 
@@ -28,6 +29,7 @@ public class PaymentController {
 
 	@Inject
 	RoomService rservice;
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/payReady", method = RequestMethod.POST)
@@ -47,7 +49,7 @@ public class PaymentController {
 		svo.setServiceId(memId, serviceName);
 
 		System.out.println(svo.getServiceId());
-
+		
 		session.setAttribute("svo", svo);
 
 		if (svo != null) {
@@ -76,6 +78,7 @@ public class PaymentController {
 		// 결제가 되면서, 해당 아이디 유저의 방 정보도 default로 등록한다.
 		RoomVO rvo = new RoomVO();
 		rservice.makeRoom(session, rvo, regSvo);
+		session.setAttribute("usvo", regSvo);
 		return result;
 	}
 

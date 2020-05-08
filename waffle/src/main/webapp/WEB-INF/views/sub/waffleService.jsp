@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Waffle Service</title>
+<title>WAFFLE</title>
 <link rel="stylesheet" type="text/css" href="/css/waffleService.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
+	input, label {margin:0; padding:0;}
 	#cover{
 		width:100%;
 		height:100%;
@@ -27,9 +28,9 @@
 	}
 	#prePayForm {
 		display:none;
-		width:400px;
-		height:400px;
-		background-color:#000;
+		width:300px;
+		height:300px;
+		background-color:#444;
 		position:fixed;
 		z-index:99;
 		top:50%;
@@ -37,9 +38,22 @@
 		transform:translate(-50%,-50%);
 		color:#000;
 	}
+	#prePayForm label {
+		float:left;
+		color:#fff;
+		font-size:16px;
+		width:120px;
+		height:30px;
+		line-height:30px;
+		margin-top:20px;
+		
+	}
 	#prePayForm input {
-		width:150px;
-		height: 
+		width:120px;
+		height: 30px;
+		line-height:30px;
+		float:right;
+		margin-top:20px;
 	}
 </style>
 </head>
@@ -69,24 +83,10 @@ $(function(){
 		$('#prePayForm').hide();
 		$('#cover').hide();
 	})
-	
-	/* $('#pay').click(function(){
-		location.href="/payment/pay"
-	}) */
-	
+
 	$('#pay').click(function(){
-		//var paydata_str = JSON.stringify($('#payForm').serializeArray());
-		//var json_pay = JSON.parse(paydata_str);
-		
-		//var paydata_str = $('#payForm').serializeArray();
 		var paydata_str = $('#payForm').serialize();
-		//var json_pay = JSON.stringify(paydata_str);
-		
-		//var json_pay = JSON.parse(paydata_str);
-		
 		console.log(paydata_str)
-		//console.log(json_pay);
-		//console.log(json_pay)
 		$.ajax({
 			url : "/payment/payReady",
 			type:"post",
@@ -103,8 +103,7 @@ $(function(){
 				alert('결제에 실패하였습니다.');
 				//location.reload();
 			}
-		})
-		
+		})		
 	})
 })
 

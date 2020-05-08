@@ -10,7 +10,7 @@
 	 	
 	 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	 	
-	 	<title>게시판</title>
+	 	<title></title>
 	</head>
 	
 	<script type="text/javascript">
@@ -73,26 +73,21 @@
 					+ "&nrno="+$(this).attr("data-nrno");
 			});
 		})
-		//첨부파일 다운로드 
-		function fn_fileDown(fileNo){
-			var formObj = $("form[name='readForm']");
-			$("#FILE_NO").attr("value", fileNo);
-			formObj.attr("action", "/notice/fileDown");
-			formObj.submit();
-		}
+		
 	</script>
 	
 	<body>
 		<div class="container">
 			<header>
-				<h1> 게시판</h1>
+				<!-- <h1> 게시판</h1> -->
 			</header>
-			<hr />
-			 
+			<hr />		
 			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			
+					<button type="button" class="update_btn btn btn-warning">관리자 글 수정</button>
+					<button type="button" class="delete_btn btn btn-danger">관리자 글 삭제</button>
+					<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
+				</div>
+				
 			<section id="container">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
@@ -103,38 +98,45 @@
 					<input type="hidden" id="FILE_NO" name="FILE_NO" value=""> 
 				</form>
 				
-				<div class="form-group">
-					<label for="ntitle" class="col-sm-2 control-label">제목</label>
-					<input type="text" id="ntitle" name="ntitle" class="form-control" value="${read.ntitle}" readonly="readonly" />
-				</div>
-				<div class="form-group">
-					<label for="ncontent" class="col-sm-2 control-label">내용</label>
-					<textarea id="ncontent" name="ncontent" class="form-control" readonly="readonly"><c:out value="${read.ncontent}" /></textarea>
-				</div>
-				<div class="form-group">
-					<label for="nwriter" class="col-sm-2 control-label">작성자</label>
-					<input type="text" id="nwriter" name="nwriter" class="form-control" value="${read.nwriter}"  readonly="readonly"/>
-				</div>
-				<div class="form-group">
-					<label for="regdate" class="col-sm-2 control-label">작성날짜</label>
-					<fmt:formatDate value="${read.regdate}" pattern="yyyy-MM-dd" />	
-				</div>
-				<hr>
-				<span>파일 목록</span>
-				<div class="form-group" style="border: 1px solid #dbdbdb;">
-					<c:forEach var="file" items="${file}">
-						<a href="#" onclick="fn_fileDown('${file.FILE_NO}'); return false;">${file.ORG_FILE_NAME}</a>(${file.FILE_SIZE}kb)<br>
-					</c:forEach>
-				</div>
-				<hr>
-				<div>
-					<button type="button" class="update_btn btn btn-warning">수정</button>
-					<button type="button" class="delete_btn btn btn-danger">삭제</button>
-					<button type="button" class="list_btn btn btn-primary">목록</button>	
+				<div class="form-group row text-center">					
+					<%-- <input type="text" id="ntitle" name="ntitle" class="display-1" value="${read.ntitle}" readonly="readonly" /> --%>
+					<h1 class="display-1"><c:out value="${read.ntitle}" /></h1>
 				</div>
 				
+				<div class="form-group row text-center">
+					<h2><small><label for="regdate" class="col-sm-2 control-label" style="width: 100%; float:40; margin:10 auto; ">작성일 : 					
+					<fmt:formatDate value="${read.regdate}" pattern="yyyy.MM.dd"  />	</label></small></h2>
+					
+				</div>
+				
+				<hr />
+				<br>
+				<br>
+				<br>
+				
+				<div class="form-group row text-center">
+					<!-- <label for="ncontent" class="col-sm-2 control-label">내용</label><br><br> -->
+					<%-- <textarea id="ncontent" name="ncontent" class="form-control" readonly="readonly">
+					<c:out value="${read.ncontent}" /></textarea> --%>
+					<img src="${read.gdsImg}" class="oriImg"/>
+				</div>
+				<%-- <div class="form-group">
+					<label for="nwriter" class="col-sm-2 control-label">작성자</label>
+					<input type="text" id="nwriter" name="nwriter" class="form-control" value="${read.nwriter}"  readonly="readonly"/>
+				</div> --%>
+				
+				
+				<hr>				
+				
+				<%-- <div class="inputArea">
+					 <label for="gdsImg">이미지</label>
+					 					 
+					 <img src="${read.gdsImg}" class="oriImg"/>	 
+					 
+				</div>	 --%>
+				
 				<!-- 댓글 -->
-				<div id="reply">
+				<div id="reply" class="panel panel-default" style="margin-top: 10px;">
 					<ol class="replyList">
 						<c:forEach items="${replyList}" var="replyList">
 							<li>
@@ -144,7 +146,7 @@
 								</p>
 								  
 								<p>${replyList.nrcontent}</p>
-								<div>
+								<div class="form-group row text-center">
 									<button type="button" class="replyUpdateBtn btn btn-warning" data-nrno="${replyList.nrno}">수정</button>
 									<button type="button" class="replyDeleteBtn btn btn-danger" data-nrno="${replyList.nrno}">삭제</button>
 								</div>
@@ -152,6 +154,8 @@
 						</c:forEach>   
 					</ol>
 				</div>
+				
+				
 				
 				<form name="replyForm" method="post" class="form-horizontal">
 					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
@@ -178,10 +182,14 @@
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="button" class="replyWriteBtn btn btn-success">작성</button>
 						</div>
-					</div>
+					</div>					
 				</form>
 			</section>
-			<hr />
+			<hr /><br><br>
+					<div>
+						<%@include file="listNav.jsp" %>
+					</div>	
+								
 		</div>
 	</body>
 </html>

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>About</title>
+<title>WAFFLE</title>
 <link rel="stylesheet" type="text/css" href="/css/about.css" />
 </head>
 <body>

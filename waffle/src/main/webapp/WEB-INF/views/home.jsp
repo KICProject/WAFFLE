@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>WAFFLE</title>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
 		<link rel="stylesheet" type="text/css" href="/css/reset.css" />		
@@ -87,8 +87,14 @@
 				
 				var mem = "${member.memId}" // 회원의 서비스정보를 요청하기 위해 client상에 member객체를 저장
 				var usvo = "${usvo.serviceName}"//마찬가지로 회원이 이용중인 서비스명을 얻어옴
+				if(usvo == null){
+					$('#serviceName').html('서비스 결제필요')
+					
+				}
+				if(usvo != null){
+					$('#serviceName').html(usvo+'이용중')					
+				}
 				
-				$('#serviceName').html(usvo+'이용중')
 				
 				/* 서비스 명에 따라서 select 할 수 있는 room의 갯수를 할당*/
 				if(usvo=="basic"){
@@ -132,19 +138,19 @@
 										var innerWet = currentroom.innerWet
 										var aircon = currentroom.aircon
 										if(aircon =='49'){											
-											$('input:checkbox[id=aircon_switch]').attr('checked',true);
+											$('input:checkbox[id=aircon_switch]').prop('checked',true);
 										}
 										var tv = currentroom.tv
 										if(tv =='49'){											
-											$('input:checkbox[id=tv_switch]').attr('checked',true);
+											$('input:checkbox[id=tv_switch]').prop('checked',true);
 										}
 										var window = currentroom.window
 										if(window =='49'){											
-											$('input:checkbox[id=window_switch]').attr('checked',true);
+											$('input:checkbox[id=window_switch]').prop('checked',true);
 										}
 										var light = currentroom.light
 										if(light =='49'){											
-											$('input:checkbox[id=light_switch]').attr('checked',true);
+											$('input:checkbox[id=light_switch]').prop('checked',true);
 										}
 										var room = currentroom.roomNumber
 										var serviceName = currentroom.serviceName
@@ -157,10 +163,7 @@
 										$('#lightStatus').html(light) */
 										if(serviceName != ""){
 											$('#serviceName').html(serviceName+'이용중')
-										}
-										
-										
-										
+										}										
 										if (room == '1') {
 											$('#roomimg').attr('src', '/img/room01.jpg');
 										} else if (room == '2') {
@@ -200,8 +203,7 @@
 							var currentroom = JSON.parse(JSON.stringify(data))										
 							/*var innerTemp = currentroom.innerTemp
 							var innerWet = currentroom.innerWet*/
-							var aircon = currentroom.aircon
-							
+							var aircon = currentroom.aircon							
 							var tv = currentroom.tv
 							var window = currentroom.window
 							var light = currentroom.light
@@ -211,6 +213,10 @@
 							$('#tvStatus').html(tv)
 							$('#windowStatus').html(window)
 							$('#lightStatus').html(light)	 */						
+						},error : function(e){
+							console.log(e)
+							$('input:checkbox').prop('checked',false);
+							alert('서비스에 가입되어 있지 않습니다.')							
 						}
 					})					
 				});						

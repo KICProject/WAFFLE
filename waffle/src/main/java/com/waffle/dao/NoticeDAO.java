@@ -25,20 +25,8 @@ public interface NoticeDAO {
 	public void update(NoticeVO boardVO) throws Exception;
 	
 	//게시물 삭제
-	public void delete(int nno) throws Exception;
+	public void delete(int nno) throws Exception;	
 	
-	//첨부파일
-	public void insertFile(Map<String, Object> map) throws Exception;
-	
-	// 첨부파일 조회
-	public List<Map<String, Object>> selectFileList(int nno) throws Exception;
-	
-	// 첨부파일 다운
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
-	
-	// 첨부파일 수정
-	public void updateFile(Map<String, Object> map) throws Exception;
-
 	// 게시판 조회수
 	public void boardHit(int nno) throws Exception;
 }

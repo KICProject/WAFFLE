@@ -1,4 +1,3 @@
-//main nav
 const menu = document.querySelector(".menu_box");
 
 document.querySelector(".hamburg_box").onclick = function () {

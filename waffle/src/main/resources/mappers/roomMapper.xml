@@ -26,6 +26,6 @@
     	   ,TV = #{tv,jdbcType=VARCHAR}
     	   ,WINDOW = #{window,jdbcType=VARCHAR}
     	   ,LIGHT = #{light,jdbcType=VARCHAR}
-    	WHERE MEMID = #{memId,jdbcType=VARCHAR}    					
+    	WHERE MEMID = #{memId,jdbcType=VARCHAR} AND ROOMNUMBER =#{roomNumber,jdbcType=VARCHAR}    					
     </update>
 </mapper>
