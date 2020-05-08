@@ -53,7 +53,7 @@
 							<%-- <c:if test="${member.memId != null}"> --%>
 								<tr>
 									<td>
-										<label for="ntitle">제목</label><input type="text" id="ntitle" name="ntitle" class="chk" title="제목을 입력하세요."/>
+										<label for="ntitle">제 목</label><input type="text" id="ntitle" name="ntitle" class="chk" title="제목을 입력하세요."/>
 									</td>
 								</tr>	
 								<tr>
