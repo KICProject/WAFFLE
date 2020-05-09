@@ -14,8 +14,6 @@
 	<body>
 		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
 		<c:if test="${member == null}"> <!-- 로그인 하지 않은 상태에서의 화면 -->
-		<%-- ${sessionScope.token } --%>
-		<!-- <a href="/member/kakaologout">카카오로그아웃</a> -->
 		<main>
 			<!-- main1 -->
 			<section class="main1">
@@ -63,6 +61,7 @@
 			</section>
 		</main>
 		</c:if>
+		
 		<!-- 일반회원 로그인 후 메인 페이지 -->	
 		<c:if test="${(member !=null) && (member.memAuthor == 0)}"> 		
 			<script type="text/javascript">
