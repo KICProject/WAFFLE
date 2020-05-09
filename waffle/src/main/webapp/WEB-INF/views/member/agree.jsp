@@ -8,8 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/css/agree.css" />
 </head>
 <script type="text/javascript">
-	$(function(){
-		
+	$(function(){		
 		setCheckAll();
 		
 		$('#all').on('change', function () {
@@ -23,14 +22,6 @@
 		
 		$('#signin_btn').on('click',function(){
 		// check를 하지 않으면 alert
-			/* if($('input[name="agree"]').attr('checked')==false){
-				alert('약관에 동의체크를 해주세요');
-				return false;
-			}
-			if(!$('#agree1').attr('checked') && !$('#agree2').attr('checked')){
-				alert('약관에 동의체크를 해주세요');
-				return false;
-			*/
 			if(!$('#all').prop('checked')){
 				alert('약관에 동의체크를 해주세요');
 				return false;
@@ -81,11 +72,7 @@
 					<ul class="terms_list">
 						<li><span><input type="checkbox" id="agree1" name="agree1"> &nbsp;이용약관동의(필수)</span><a href="#">전체보기 &gt;</a></li>
 						<li><span><input type="checkbox" id="agree2" name="agree2"> &nbsp;개인정보 수집 및 이용 동의(필수)</span><a href="#">전체보기 &gt;</a></li>
-					</ul>
-					<!-- <ul class="terms_check">
-						<li><a href="#">전체보기 &gt;</a>
-						<li><a href="#">전체보기 &gt;</a>
-					</ul> -->
+					</ul>					
 				</div>					
 			</div>
 				<button type="button" id="cancle_btn">취소</button>

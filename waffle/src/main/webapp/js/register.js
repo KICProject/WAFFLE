@@ -4,7 +4,7 @@ var email_dbck =0;
 var re = /^[a-zA-Z0-9]{4,12}$/; // 아이디와 패스워드가 적합한지 검사할 정규식
 var re2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,16}$/;
 var re3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-var re4 = /^\d{2,3}\d{3,4}\d{4}$/; // 전화번호 검사 규칙
+var re4 = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g; // 전화번호 검사 규칙
 
 
 function check(re, what, message) {
@@ -78,21 +78,30 @@ $(document).ready(function() {
 	})
 	//전화번호 체크
 	$('#memPhone').on("blur",function() {
+		console.log($(this).val());
 		var validate = re4.test($(this).val());
+		console.log(validate);
 		if(!validate){
-			$(this).val("");
+			$(this).empty();
 			$(this).focus();
-			alert('전화번호는 숫자만 입력해주세요');
+			$('#phoneValidate_message').attr('style','color:#f00; display:block; clear:left; float:left; margin-left:230px;');
+			$('#phoneValidate_message').text('숫자만 입력해주세요.');
 			return false;
+		}else{
+			$('#phoneValidate_message').text('');
 		}
 	})
 	$('#memPhone2').on("blur",function() {
+		console.log($(this).val());
 		var validate = re4.test($(this).val());
 		if(!validate){
-			$(this).val("");
+			$(this).empty();
 			$(this).focus();
-			alert('전화번호는 숫자만 입력해주세요');			
+			$('#phone2Validate_message').attr('style','color:#f00; display:block; clear:left; float:left; margin-left:230px;');
+			$('#phone2Validate_message').text('숫자만 입력해주세요.');
 			return false;
+		}else{
+			$('#phone2Validate_message').text('');
 		}
 	})
 	$("#submit").on("click", function(){

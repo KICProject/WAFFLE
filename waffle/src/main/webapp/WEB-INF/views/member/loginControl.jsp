@@ -44,8 +44,7 @@
 				<ul class="api_login">
 					<li><a href="#" id="nvr_btn"><img src="/img/naver_btn.png"></a></li>
 					<li><a href="https://kauth.kakao.com/oauth/authorize?client_id=e1d6e555ab653c2367b93a83450e0e0e&redirect_uri=http://localhost:8090/member/kakaologin&response_type=code" id="kko_btn"><img src="/img/kakao_btn.png"></a></li>
-				</ul> --> 	
-							
+				</ul> --> 								
 			</div>
 			<span class="middle_line"></span>
 			<div class="singin_box">
