@@ -1,5 +1,7 @@
 package com.waffle.controller;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -131,6 +133,22 @@ public class MemberController {
 			return "redirect:/member/loginControl";
 		}		
 		
+	}
+	
+	//로그인시 index.js로 id와 roominfo를 넘기기 위한 매핑
+	@ResponseBody
+	@RequestMapping(value="/getMem", method = RequestMethod.POST)
+	public HashMap<String, String> getMem(HttpSession session) throws Exception{
+		
+		HashMap<String, String> memInfo = new HashMap<String, String>();
+		
+		MemberVO currentMem = (MemberVO)session.getAttribute("member");
+		ServiceVO memService = (ServiceVO)session.getAttribute("usvo");
+		
+		memInfo.put("mem", currentMem.getMemId());
+		memInfo.put("usvo", memService.getServiceName());
+		
+		return memInfo;
 	}
 	
 	//약관 동의 페이지로 이동
