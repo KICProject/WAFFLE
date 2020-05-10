@@ -2,13 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
-	<head>		
+	<head>
+		<link rel="stylesheet" type="text/css" href="/css/noticeList.css" />		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
-	  	<meta name="viewport" content="width=device-width, initial-scale=1">
-	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	 	
+	  	<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	 	<!-- <title>글상세보기</title> -->
 	</head>
 	
@@ -84,29 +92,26 @@
 				})
 				
 			})
+			
+			
 		})
 		
 	</script>
 	
 	<body>
-		<div class="container">
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>	
+	
+		<section class="board_main">
+   		<!-- service WAFFLE -->
+        <div class="board_head">
+          <p class="title_big">Notice</p>
+          <p class="title_small">WAFFLE</p>
+        </div>
+        
+      	<div class="container">
 			<header>
 				<!-- <h1> 게시판</h1> -->
-			</header>
-			<hr />	
-			<%-- <!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
-			<c:if test>
-			<div>
-					<button type="button" class="update_btn btn">관리자 글 수정</button>
-					<button type="button" class="delete_btn btn">관리자 글 삭제</button>
-					<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
-				</div>
-			</c:if>	 --%>
-			<!-- 편집 끝나고 아래 코드 삭제 -->
-			<div>
-					<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
-					<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>					
-			</div>
+			</header>			
 			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
@@ -119,7 +124,7 @@
 				</form>
 				
 				<div class="form-group row justify-content-center">					
-					<h1><label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; margin:10 auto;">${read.ntitle} </label></h1>
+					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; margin:10 auto; font-size:40px;">${read.ntitle} </label>
 				</div>		
 				<div class="form-group row justify-content-center">	
 					<label for="regdate" class="col-sm-3 control-label" style="width: 100%; float:40; margin:10 auto;font-size:20px;">
@@ -136,28 +141,41 @@
 					<img src="${read.gdsImg}" class="oriImg"/>
 				</div>
 				
-				<hr>				
-								
+				<hr>
+						
 				<!-- 댓글 -->
-				<div id="reply" class="panel panel-default" style="margin-top: 10px;">
-					<ol class="replyList">
+				<div id="reply" class="panel panel-default" style="margin-top: 50px;">
+					<ul class="replyList" style="list-style:none">
 						<c:forEach items="${replyList}" var="replyList">
 							<li>
-								<p>
-								작성자 : ${replyList.nrwriter}<br />
-								작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
+								<p class="nrwiter float-left" style = "font-size:15px; color: #848484;">
+								${replyList.nrwriter}
 								</p>
-								  
-								<p>${replyList.nrcontent}</p>
-								<div class="form-group row text-center">
-									<button type="button" class="replyUpdateBtn btn" data-nrno="${replyList.nrno}">수정</button>
-									<button type="button" class="replyDeleteBtn btn" data-nrno="${replyList.nrno}">삭제</button>
-								</div>
+								<p class="nrdate float-right">
+								<fmt:formatDate value="${replyList.regdate}" pattern="yyyy/MM/dd" />
+								</p>
 							</li>
+							<br />
+							<br />
+							<li>	  
+								<span class="nrcontent float-left">
+								${replyList.nrcontent}
+								</span>
+							</li>							
+							<br />
+							<br />
+							<li>
+								<div class="form-group row text-center" style="margin-left:1020px;color:yellow;">
+									<button type="button" class="replyUpdateBtn btn btn-sm" data-nrno="${replyList.nrno}">수정 </button>
+									<button type="button" class="replyDeleteBtn btn btn-sm" data-nrno="${replyList.nrno}">삭제</button>
+								</div>
+							</li>							
+							<hr style="border-color:black;">
+							<br />
 						</c:forEach>   
-					</ol>
+					</ul>
 				</div>
-				
+				<br /><br /><br />
 				
 				
 				<form name="replyForm" method="post" class="form-horizontal">
@@ -168,16 +186,16 @@
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 				
 					<div class="form-group">
-						<label for="nrwriter" class="col-sm-2 control-label">댓글 작성자</label>
+						<label for="nrwriter" class="col-sm-2 control-label" style="margin-left:5px">writer</label>						
 						<div class="col-sm-10">
-							<input type="text" id="nrwriter" name="nrwriter" class="form-control" />
+							<input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;"/>
 						</div>
 					</div>
 					
-					<div class="form-group">
-						<label for="nrcontent" class="col-sm-2 control-label">content</label>
+					<div class="form-group" style="margin-top:10px;">
+						<label for="nrcontent" class="col-sm-2 control-label" style="margin-left:5px">content</label>
 						<div class="col-sm-10">
-							<input type="text" id="nrcontent" name="nrcontent" class="form-control"/>
+							<input type="text" id="nrcontent" name="nrcontent" class="form-control" style="margin-top:10px;"/>
 						</div>
 					</div>
 					
@@ -185,14 +203,30 @@
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="button" class="replyWriteBtn btn btn-outline-dark">작성</button>
 						</div>
-					</div>					
-				</form>
-			</section>
-			<hr /><br><br>
-					<div>
-						<%@include file="listNav.jsp" %>
-					</div>	
+					</div>
+					
+					<hr />
 								
+					<%-- <!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
+			<c:if test="${(member !=null) && (member.memAuthor == 1)}">
+			<div>
+					<button type="button" class="update_btn btn">관리자 글 수정</button>
+					<button type="button" class="delete_btn btn">관리자 글 삭제</button>
+					<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
+				</div>
+			</c:if>	 --%>
+			<!-- 편집 끝나고 아래 코드 삭제 -->
+			<div>
+					<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
+					<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>					
+			</div>								
+			</form>
+			</section>			
 		</div>
+		
+		<!-- footer -->
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>
+		</section>
 	</body>
 </html>

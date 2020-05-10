@@ -3,24 +3,53 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
-		<meta charset="utf-8">
-	  	<meta name="viewport" content="width=device-width, initial-scale=1">
-	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	 
-		<script src="https://kit.fontawesome.com/44f00f680d.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="/css/noticeList.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="https://kit.fontawesome.com/44f00f680d.js" crossorigin="anonymous"></script>		
 	 	<!-- <title>공지 게시판</title> -->
 	</head>
-	<body>
+	<body>	
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
+	
+	<section class="board_main">
+   		<!-- service WAFFLE -->
+        <div class="board_head">
+          <p class="title_big">Notice</p>
+          <p class="title_small">WAFFLE</p>
+        </div>
+        
+       <ul class="board_tab">
+        <li id="moveFaq">FAQ</li>
+        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
+        <li id="moveQna">QNA</li>
+   	   </ul>
+    
 		<div class="container">
 			<header>
-				<h1></h1>
-			</header>
-			<hr />	
+				<!-- <h1>공지 게시판</h1> -->
+			</header>				
+			<div>
+				<%@include file="nav.jsp" %>
+			</div>	
+			<c:if test="${member != null}">
+			<p>${member.memId}님 안녕하세요.</p>
+			</c:if>
+			<br /><br /><br />
+			
 			<div class="search row justify-content-center">
 				<div class="col-xs-2 col-sm-2">
-					<div class="border-bottom">
+					<div class="border-bottom" >
 					<select name="searchType" class="form-control border-0">
 						<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>---------</option>
 						<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
@@ -50,27 +79,16 @@
 					</div>
 				</div>	
 				
-			</div>			
-			 			
-			<br>
-			<br>
-			<br>
+			</div>				 			
 			
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
+			
 							
-			<section id="container">
-				<form role="form" method="get">
-				
-				
-				<div>
-                 
-                전체 <span style="color: purple; font-size:15pt">${pageMaker.totalCount }</span> 건
-                             
-                </div>
-				
-					<table class="table ">
+			<section id="container" style="margin-top:10px;">
+				<form role="form" method="get">			
+				<div style="margin-top: 10px;">                
+               	 전체 <span style="color: purple; font-size:15pt">${pageMaker.totalCount }</span> 건                             
+                </div>				
+					<table class="table" style="margin-top: 20px;">
 						<thead class="thead-light border-top">
 						<tr>
 							<th>번호</th>
@@ -79,22 +97,22 @@
 							<th >조회수</th>
 						</tr>
 						</thead>
-						<tbody class="text-dark border-bottom">
+						<tbody class="text-dark border-bottom align-middle">
 						<c:forEach items="${list}" var = "list">
-							<tr>
-								<td><c:out value="${list.nno}" /></td>
-								<td>
+							<tr style="height: 70px;">
+								<td class="align-middle"><c:out value="${list.nno}" /></td>
+								<td class="align-middle">
 									<a href="/notice/readView?nno=${list.nno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}" class="text-secondary"><c:out value="${list.ntitle}" /></a>
 								</td>
 								<%-- <td><c:out value="${list.nwriter}" /></td> --%>
-								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
-								<td><c:out value="${list.nhit}" /></td>
+								<td class="align-middle"><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
+								<td class="align-middle"><c:out value="${list.nhit}" /></td>
 							</tr>
 						</c:forEach>
 						</tbody>						
 					</table>
 										
-					<div class="col-md-offset-3">
+					<div class="col-md-offset-3" style="margin-bottom:100px;">
 						<ul class="pagination justify-content-center">
 							<c:if test="${pageMaker.prev}">
 								<li class="page-item">
@@ -114,13 +132,16 @@
         						<span class="sr-only">Next</span>
         						</a></li>
         					</c:if>
-						</ul>					
-						
+						</ul>						
 					</div>
 				</form>
-			</section>
-			
-			
-		</div>
+			</section>								
+		</div>	
+		
+		<!-- footer -->
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>
+		
+		</section>
 	</body>
 </html>

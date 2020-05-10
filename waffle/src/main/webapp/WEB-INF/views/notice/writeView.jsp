@@ -3,18 +3,24 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="/css/noticeList.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
-	  	<meta name="viewport" content="width=device-width, initial-scale=1">
-	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 	
-	 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	  	<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	 	
-	 	<!-- ckeditor -->	 	
-	 	<script src="/resources/ckeditor/ckeditor.js"></script>
 	 	<!-- <title>게시판 글쓰기</title> -->
 	</head>
+		
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='writeForm']");
@@ -36,42 +42,34 @@
 					return true;
 				}
 			}
-		}	
-		
-		$("#gdsImg").change(function(){
-			   if(this.files && this.files[0]) {
-			    var reader = new FileReader;
-			    reader.onload = function(data) {
-			     $(".select_img img").attr("src", data.target.result).width(500);        
-			    }
-			    reader.readAsDataURL(this.files[0]);
-			   }
-			  });
-		
-		
+		}			
 		
 	</script>
 	<body>
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
 	
+		<section class="board_main">
+		<!-- service WAFFLE -->
+        <div class="board_head">
+          <p class="title_big">Notice</p>
+          <p class="title_small">WAFFLE</p>
+        </div>       
+			
 		<div id="root">
 			<header>
 				<!-- <h1> 게시판</h1> -->
 			</header>
-			<hr />
-			 
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			<hr />			
+					
 			<section id="container">
 			<div class="form-group row justify-content-center">
 				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">
+					<span> * 공지글은 관리자만 입력 및 게시가 가능합니다. </span>
 					<table style="width : 1000px;">
 						<tbody>
 							<%-- <c:if test="${member.memId != null}"> --%>
 								<tr>
 									<td>
-										<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">제목</label>
+										<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">공지 제목</label>
 										<input  type="text" id="ntitle" name="ntitle" class="chk" title="제목을 입력하세요." placeholder="제목을 입력하세요." style="width: 1000px; height:40px; margin-bottom:10px; border : solid 1px lightgray;"/>
 										
 									</td>
@@ -81,18 +79,9 @@
 	
 								<tr>
 									<td>
-										<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" title="내용을 입력하세요.">내용</label>
-										<textarea id="ncontent" name="ncontent" placeholder="내용을 입력하세요." style ="height: 300px; width:1000px; border:solid 1px lightgray"></textarea>
-										<script>
-											 var ckeditor_config = {
-											   resize_enaleb : false,
-											   enterMode : CKEDITOR.ENTER_BR,
-											   shiftEnterMode : CKEDITOR.ENTER_P,
-											   filebrowserUploadUrl : "/ckUpload"
-											 };
-											 
-											 CKEDITOR.replace("ncontent", ckeditor_config);
-											</script>
+										<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" title="내용을 입력하세요." >공지 내용</label>
+										<textarea id="ncontent" name="ncontent" placeholder="내용을 입력하세요." style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;"></textarea>
+										
 											
 									</td>
 								</tr>								
@@ -100,13 +89,22 @@
 								<tr>
 									<td>
 										<label for="gdsImg" style="width : 100%; margin-bottom:10px; margin-top:10px" class="col-sm-2 control-label" >이미지 첨부</label><br>
-										<input type="file" id="gdsImg" name="file"  style="margin-bottom:10px; border : solid 1px lightgray;"/>				
-										<%=request.getRealPath("/") %><br />
+										<input type="file" id="gdsImg" name="file"  style="margin-bottom:10px; border : solid 1px lightgray;"/>	
+										<script>
+											$("#gdsImg").change(function(){
+											   if(this.files && this.files[0]) {
+											    var reader = new FileReader;
+											    reader.onload = function(data) {
+											     $(".select_img img").attr("src", data.target.result).width(500);        
+											    }
+											    reader.readAsDataURL(this.files[0]);
+											   }
+											  });	
+										</script>	
+												
+										<%=request.getRealPath("/") %><br /><br />
 									</td>
-								</tr>
- 
-								
-								
+								</tr>							
 								<tr>
 									<td>
 										<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="nwriter">작성자</label><br />
@@ -114,8 +112,10 @@
 									</td>
 								</tr>
 								<tr>
-									<td>						
-										<button class="col-sm-2 control-label write_btn btn btn-outline-dark" type="submit" style="margin-bottom:10px; margin-top:10px">작성</button>										
+									<td><br /><br /><br /><br /><br />						
+										<!-- <button class="col-sm-2 control-label write_btn btn btn-outline-dark" type="submit" style="margin-bottom:10px; margin-top:10px; text-align:center;">작 성</button><br /><br /> -->	
+										<a href="/notice/list" class="medium_btn">작 성</a>
+										<br /><br /><br /><br /><br /><br /><br />									
 									</td>
 								</tr>	
 							<%-- </c:if> 
@@ -124,12 +124,14 @@
 							</c:if> --%>
 							
 						</tbody>			
-					</table>					
-					
+					</table>									
 				</form>
 				</div>				
 			</section>
+			
 			<hr />
+			
 		</div>
+		</section>
 	</body>
 </html>
