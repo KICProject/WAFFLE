@@ -17,6 +17,8 @@
 		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		
+		
 	 	
 	 	<!-- <title>게시판 글쓰기</title> -->
 	</head>
@@ -46,24 +48,21 @@
 		
 	</script>
 	<body>
-		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
-	
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>	
 		<section class="board_main">
 		<!-- service WAFFLE -->
         <div class="board_head">
           <p class="title_big">Notice</p>
           <p class="title_small">WAFFLE</p>
         </div>       
-			
+		</section>			
 		<div id="root">
 			<header>
 				<!-- <h1> 게시판</h1> -->
-			</header>
-					
+			</header>					
 			<section id="container">
 			<div class="form-group row justify-content-center">
-				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">
-					<span> * 공지글은 관리자만 입력 및 게시가 가능합니다. </span>
+				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">										
 					<table style="width : 1000px;">
 						<tbody>
 							<%-- <c:if test="${member.memId != null}"> --%>
@@ -82,7 +81,6 @@
 										<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" title="내용을 입력하세요." >공지 내용</label>
 										<textarea id="ncontent" name="ncontent" placeholder="내용을 입력하세요." style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;"></textarea>
 										
-											
 									</td>
 								</tr>								
 							
@@ -112,12 +110,17 @@
 									</td>
 								</tr>
 								<tr>
-									<td><br /><br /><br /><br /><br />						
-										<!-- <button class="col-sm-2 control-label write_btn btn btn-outline-dark" type="submit" style="margin-bottom:10px; margin-top:10px; text-align:center;">작 성</button><br /><br /> -->	
-										<a href="/notice/list" class="medium_btn">작 성</a>
-										<br /><br /><br /><br /><br /><br /><br />									
+									<td>						
+										<button class="write_btn btn btn-outline-dark" type="submit">작성</button>										
 									</td>
 								</tr>	
+								<!-- <tr>
+									<td><br /><br /><br /><br /><br />						
+										<button class="col-sm-2 control-label write_btn btn btn-outline-dark" type="submit" style="margin-bottom:10px; margin-top:10px; text-align:center;">작 성</button><br /><br />	
+										<button type="submit" class="write_btn" onclick="location.href='/notice/list.jsp'">작 성</button>
+										<br /><br /><br /><br /><br /><br /><br />									
+									</td>
+								</tr> -->	
 							<%-- </c:if> 
 								 <c:if test="${member.memId == null}">
 								<p>로그인 후에 작성하실 수 있습니다.</p>
@@ -126,12 +129,9 @@
 						</tbody>			
 					</table>									
 				</form>
-				</div>				
-			</section>
-			
-			<hr />
-			
-		</div>
-		</section>
+			</div>				
+			</section>			
+			<hr />			
+		</div>		
 	</body>
 </html>

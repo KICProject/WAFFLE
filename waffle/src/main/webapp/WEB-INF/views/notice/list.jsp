@@ -42,6 +42,7 @@
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>	
+			
 			<c:if test="${member != null}">
 			<p>${member.memId}님 안녕하세요.</p>
 			</c:if>
@@ -77,8 +78,7 @@
 						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control border-0" onkeyup="enterkey();" placeholder="검색어를 입력하세요."/>
 						&nbsp; &nbsp;<i class="fas fa-search fa-2x" id="searchBtn"></i>						
 					</div>
-				</div>	
-				
+				</div>				
 			</div>				 			
 			
 			

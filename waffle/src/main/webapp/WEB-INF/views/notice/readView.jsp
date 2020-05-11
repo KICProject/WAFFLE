@@ -7,14 +7,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
 	  	<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">		
 		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
 		<!-- Popper JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	 	<!-- <title>글상세보기</title> -->
@@ -22,79 +19,78 @@
 	
 	<script type="text/javascript">
 		
+	$(document).ready(function(){
+		var formObj = $("form[name='readForm']");
+		
+		// 수정 
+		$(".update_btn").on("click", function(){
+			formObj.attr("action", "/notice/updateView");
+			formObj.attr("method", "get");
+			formObj.submit();				
+		})
+		
+		// 삭제
+		$(".delete_btn").on("click", function(){
+			
+			var deleteYN = confirm("삭제하시겠습니까?");
+			if(deleteYN == true){
+				
+			formObj.attr("action", "/notice/delete");
+			formObj.attr("method", "post");
+			formObj.submit();
+				
+			}
+		})
+		
+		// 목록
+		$(".list_btn").on("click", function(){
+			
+			location.href = "/notice/list?page=${scri.page}"
+					      +"&perPageNum=${scri.perPageNum}"
+					      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
+		})
+		
+		//글 작성
+		$(".replyWriteBtn").on("click", function(){
+			var formObj = $("form[name='replyForm']");
+			formObj.attr("action", "/notice/replyWrite");
+			formObj.submit();
+		});
+		
+		//댓글 수정 View
+		$(".replyUpdateBtn").on("click", function(){
+			location.href = "/notice/replyUpdateView?nno=${read.nno}"
+							+ "&page=${scri.page}"
+							+ "&perPageNum=${scri.perPageNum}"
+							+ "&searchType=${scri.searchType}"
+							+ "&keyword=${scri.keyword}"
+							+ "&nrno="+$(this).attr("data-nrno");
+		});
+		
+		//댓글 삭제 View
+		$(".replyDeleteBtn").on("click", function(){
+			location.href = "/notice/replyDeleteView?nno=${read.nno}"
+				+ "&page=${scri.page}"
+				+ "&perPageNum=${scri.perPageNum}"
+				+ "&searchType=${scri.searchType}"
+				+ "&keyword=${scri.keyword}"
+				+ "&nrno="+$(this).attr("data-nrno");
+		});
+		
 		$(document).ready(function(){
-			var formObj = $("form[name='readForm']");
+			var formObj = $("form[name='updateForm']");
 			
-			// 수정 
-			$(".update_btn").on("click", function(){
-				formObj.attr("action", "/notice/updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
+			$(".cancel_btn").on("click", function(){
+				location.href = "/notice/readView?nno=${replyUpdate.nno}"
+					   + "&page=${scri.page}"
+					   + "&perPageNum=${scri.perPageNum}"
+					   + "&searchType=${scri.searchType}"
+					   + "&keyword=${scri.keyword}";
 			})
-			
-			// 삭제
-			$(".delete_btn").on("click", function(){
-				
-				var deleteYN = confirm("삭제하시겠습니까?");
-				if(deleteYN == true){
-					
-				formObj.attr("action", "/notice/delete");
-				formObj.attr("method", "post");
-				formObj.submit();
-					
-				}
-			})
-			
-			// 목록
-			$(".list_btn").on("click", function(){
-				
-				location.href = "/notice/list?page=${scri.page}"
-						      +"&perPageNum=${scri.perPageNum}"
-						      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
-			})
-			
-			//글 작성
-			$(".replyWriteBtn").on("click", function(){
-				var formObj = $("form[name='replyForm']");
-				formObj.attr("action", "/notice/replyWrite");
-				formObj.submit();
-			});
-			
-			//댓글 수정 View
-			$(".replyUpdateBtn").on("click", function(){
-				location.href = "/notice/replyUpdateView?nno=${read.nno}"
-								+ "&page=${scri.page}"
-								+ "&perPageNum=${scri.perPageNum}"
-								+ "&searchType=${scri.searchType}"
-								+ "&keyword=${scri.keyword}"
-								+ "&nrno="+$(this).attr("data-nrno");
-			});
-			
-			//댓글 삭제 View
-			$(".replyDeleteBtn").on("click", function(){
-				location.href = "/notice/replyDeleteView?nno=${read.nno}"
-					+ "&page=${scri.page}"
-					+ "&perPageNum=${scri.perPageNum}"
-					+ "&searchType=${scri.searchType}"
-					+ "&keyword=${scri.keyword}"
-					+ "&nrno="+$(this).attr("data-nrno");
-			});
-			
-			$(document).ready(function(){
-				var formObj = $("form[name='updateForm']");
-				
-				$(".cancel_btn").on("click", function(){
-					location.href = "/notice/readView?nno=${replyUpdate.nno}"
-						   + "&page=${scri.page}"
-						   + "&perPageNum=${scri.perPageNum}"
-						   + "&searchType=${scri.searchType}"
-						   + "&keyword=${scri.keyword}";
-				})
-				
-			})
-			
 			
 		})
+	})
+		
 		
 	</script>
 	
@@ -119,9 +115,9 @@
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 										 
 					<!-- <input type="hidden" id="FILE_NO" name="FILE_NO" value="">  -->
-				</form>
+				</form>				
 				
 				<div class="form-group row justify-content-center">					
 					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; margin:10 auto; font-size:40px;">${read.ntitle} </label>
@@ -132,19 +128,23 @@
 				</div>
 				
 				<hr />
-				<br>
-				<br>
+				
 				<br>
 				
 				<div class="form-group row justify-content-center">					
-					<pre class="ncontent"><c:out value="${read.ncontent}" /></pre>
+					<!-- <textarea id="ncontent" name="ncontent" class="form-control" rows="50" readonly="readonly"> -->
+					<!-- c태그 써서 display none으로  -->
+					<c:if test="{ncontent!=null}">				
+					<textarea id="ncontent" name="ncontent" style="width: 1000px; height:30px; margin-bottom:10px; border : solid 1px lightgray;">
+					<c:out value="${read.ncontent}" /></textarea>
+					</c:if>						
 					<img src="${read.gdsImg}" class="oriImg"/>
 				</div>
 				
 				<hr>
 						
 				<!-- 댓글 -->
-				<div id="reply" class="panel panel-default" style="margin-top: 50px;">
+				<div id="reply" class="panel panel-default" style="margin-top: 10px;">
 					<ul class="replyList" style="list-style:none">
 						<c:forEach items="${replyList}" var="replyList">
 							<li>
@@ -201,26 +201,29 @@
 					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="replyWriteBtn btn btn-outline-dark">작성</button>
+							<button type="button" class="replyWriteBtn btn btn-outline-dark">댓글 작성</button>
 						</div>
 					</div>
 					
 					<hr />
 								
 					<%-- <!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
-			<c:if test="${(member !=null) && (member.memAuthor == 1)}">
-			<div>
-					<button type="button" class="update_btn btn">관리자 글 수정</button>
-					<button type="button" class="delete_btn btn">관리자 글 삭제</button>
-					<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
-				</
-			</c:if>	 --%>
-			<!-- 편집 끝나고 아래 코드 삭제 -->
-			<div>
-					<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
-					<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>					
-			</div>								
-			</form>
+					<c:if test="${(member !=null) && (member.memAuthor == 1)}">
+					<div>
+							<button type="button" class="update_btn btn">관리자 글 수정</button>
+							<button type="button" class="delete_btn btn">관리자 글 삭제</button>
+							<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
+						</div>
+					</c:if>	 --%>
+					<!-- 편집 끝나고 아래 코드 삭제 -->
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
+							<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>		
+						</div>				
+					</div>
+					<br /><br /><br /><br />								
+				</form>
 			</section>			
 		</div>
 		

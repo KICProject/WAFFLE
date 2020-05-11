@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="/css/noticeList.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
 	  	<!-- Latest compiled and minified CSS -->
@@ -20,6 +21,7 @@
 
 	 	<!-- <title>게시판 수정하기</title> -->
 	</head>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
@@ -90,6 +92,14 @@
 			  });						 
 	</script>
 	<body>
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
+	
+		<section class="board_main">
+		<!-- service WAFFLE -->
+        <div class="board_head">
+          <p class="title_big">Notice</p>
+          <p class="title_small">WAFFLE</p>
+        </div>       
 	
 		<div id="root">
 			<header>
@@ -155,5 +165,6 @@
 			</section>
 			<hr />
 	 </div>
+	 </section>
 	</body>
 </html>
