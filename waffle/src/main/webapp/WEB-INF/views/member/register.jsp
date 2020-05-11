@@ -6,7 +6,7 @@
 	<title>WAFFLE</title>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/register2.css" />
+	<link rel="stylesheet" type="text/css" href="/css/register.css" />
 	<script src="/js/register.js"></script>
 	
 </head>

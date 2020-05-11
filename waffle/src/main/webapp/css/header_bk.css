@@ -45,13 +45,13 @@ header .gnp li.login #login_btn {
   width:40px; height:40px;
   display:block;
   border-radius: 20px;
-  background: no-repeat url("/img/power_white.png") center center; 
+  background: no-repeat url("/img/power_bk.png") center center; 
   /* box-shadow: 0 0 13px 5px #c3fe5d; */
 }
 header .gnp li.logout #logoutBtn {
   width:40px; height:40px;
   border-radius: 20px;
-  background: no-repeat url("/img/power_white.png") center center #c3fe5d; 
+  background: no-repeat url("/img/power_bk.png") center center #c3fe5d; 
   box-shadow: 0 0 13px 5px #c3fe5d;
 }
 
@@ -63,7 +63,7 @@ header .gnp li.search a {
   background-size: 100%;
 }
 header .gnp li.my_page a {
-  background: no-repeat url("/img/mypage_black.png") center center;
+  background: no-repeat url("../img/profile_bk.png") center center;
   background-size: 100%;
 }
 /*----------------------- nav---------------------------- */

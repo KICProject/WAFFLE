@@ -128,17 +128,44 @@ body{
 	width: 600px;
 	height: 1000px;
 }
-.input .passchkgrp{
+.input .idchkgrp {
 	height:80px;
 }
-.input .passchkgrp #compare_pass{
+.input .idchkgrp #idValidate_message{
 	clear:both;
 	display:block;	
-	width:200px;
+	width:350px;
+	height:20px;
+}
+.input .passchkgrp1{
+	height:80px;
+}
+.input .passchkgrp1 #pwValidate_message{
+	clear:both;
+	display:block;	
+	width:350px;
+	height:20px;
+}
+.input .passchkgrp2{
+	height:80px;
+}
+.input .passchkgrp2 #compare_pass{
+	clear:both;
+	display:block;	
+	width:350px;
+	height:20px;
+}
+.input .emailchkgrp{
+	height:80px;
+}
+.input .emailchkgrp #emailValidate_message{
+	clear:both;
+	display:block;	
+	width:350px;
 	height:20px;
 }
 
-.input .form-group {
+.input .register-group {
 	width: 600px;
 	height: 40px;
 	color: #fff;
@@ -146,7 +173,7 @@ body{
 	margin: 20px 0;
 }
 
-.input .form-group label {
+.input .register-group label {
 	display: block;
 	width: 200px;
 	height: 35px;
@@ -154,7 +181,7 @@ body{
 	line-height: 35px;
 }
 
-.input .form-group input {
+.input .register-group input {
 	width: 290px;
 	height: 33px;
 	float: left;
@@ -171,27 +198,73 @@ body{
 	line-height: 20px;
 }
 
-	.reg_btn{
-		width: 240px;
-		height: 50px;
-		opacity: 0.73;
-		border-radius: 24.5px;
-		background-color: #afde77;
-		clear:both;
-		margin:30px 176px;
-	}
-	.idChk{
-		width: 70px;
-		height: 30px;
-		opacity: 0.73;
-		border-radius: 24.5px;
-		background-color: #f38;
-		float:left;
-		margin-left:5px;
-	}
-	.show{
-		display:block;
-	}
+.Address input{
+	float:left;
+}
+.Address label{
+	width: 200px;
+	height: 35px;
+	float: left;
+	line-height: 35px;
+}
+.zipcode{
+	width:100px;
+	height:30px;
+	margin-left:30px;
+}
+#roadAddress, #detailAddress, #extraAddress {
+	width:290px;
+	height:30px;
+	line-height: 35px;
+	margin-left: 230px;
+	margin-top:5px;
+	clear:both;
+	float:left;
+	
+}
+
+.reg_btn{
+	width: 240px;
+	height: 50px;
+	opacity: 0.73;
+	border-radius: 24.5px;
+	background-color: #afde77;
+	clear:both;
+	margin:30px 176px;
+}
+.idChk{
+	width: 70px;
+	height: 30px;
+	opacity: 0.73;
+	border-radius: 24.5px;
+	background-color: #999;
+	float:left;
+	margin-left:5px;
+	color:#fff;
+}
+.emailChk{
+	width: 70px;
+	height: 30px;
+	opacity: 0.73;
+	border-radius: 24.5px;
+	background-color: #999;
+	float:left;
+	margin-left:5px;
+	color:#fff;
+}
+.zipChk{
+	width: 70px;
+	height: 30px;
+	opacity: 0.73;
+	border-radius: 24.5px;
+	background-color: #999;
+	float:left;
+	margin-left:195px;
+	color:#fff;
+}
+.show{
+	display:block;
+}
 	
 /* -----------------------------반응형 width 1450px------------------------------------- */
 @media screen and (max-width: 1450px) {
