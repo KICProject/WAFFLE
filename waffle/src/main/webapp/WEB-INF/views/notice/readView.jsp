@@ -213,7 +213,7 @@
 					<button type="button" class="update_btn btn">관리자 글 수정</button>
 					<button type="button" class="delete_btn btn">관리자 글 삭제</button>
 					<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
-				</div>
+				</
 			</c:if>	 --%>
 			<!-- 편집 끝나고 아래 코드 삭제 -->
 			<div>
