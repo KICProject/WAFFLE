@@ -48,58 +48,43 @@
 			<hr />			
 			<section id="container">
 				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">
-					
+					<table>
+						<tbody>
 							<%-- <c:if test="${member.memId != null}"> --%>
-							
+								<tr>
+									<td>
+										<label for="ntitle">제목</label><input type="text" id="ntitle" name="ntitle" class="chk" title="제목을 입력하세요."/>
+									</td>
+								</tr>	
+								<tr>
+									<td>
+										<label for="ncontent">내용</label><textarea id="ncontent" name="ncontent" class="chk" title="내용을 입력하세요."></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="nwriter">작성자</label><input type="text" id="nwriter" name="nwriter" class="chk" title="작성자를 입력하세요." />
+									</td>
+								</tr>
+								<tr>
+								<tr>
+									<td id="fileIndex">
+									</td>
+								</tr>
+								<tr>
+									<td>						
+										<button class="write_btn" type="submit">작성</button>										
+									</td>
+								</tr>	
 							<%-- </c:if> 
 								 <c:if test="${member.memId == null}">
 								<p>로그인 후에 작성하실 수 있습니다.</p>
 							</c:if> --%>
-				<div class="container">
-					  <form action="https://app.99inbound.com/e/123" method="POST" target="_blank">
-					    
-					    <h3 style="text-align: center;">공지사항 글쓰기</h3>
+							
+						</tbody>			
+					</table>
 					
-					    <div class="form-group">
-					      <div class="input-group">
-					        <div class="input-group-prepend">
-					          <span class="input-group-text bg-white">
-					            <i class="fa fa-user"></i>&nbsp
-					          </span>
-					        </div>
-					        <input name="nwriter" type="name" placeholder="이름을 입력해주세요." class="form-control border-left-0" required>
-					      </div>
-					    </div>
-					
-					    <div class="form-group">
-					      <div class="input-group">
-					        <div class="input-group-prepend">
-					          <span class="input-group-text bg-white">
-					            <i class="fa fa-envelope"></i>
-					          </span>
-					        </div>
-					        <input name="ntitle" type="email" placeholder="제목을 입력해주세요." class="form-control border-left-0" required>
-					      </div>
-					    </div>
-					    
-					    <div class="form-group">
-					      <div class="input-group">
-					        <div class="input-group-prepend">
-					          <span class="input-group-text bg-white">
-					            <i class="fa fa-envelope"></i>
-					          </span>
-					        </div>
-					        <input name="email" type="email" placeholder="Email" class="form-control border-left-0" required>
-					      </div>
-					    </div>
-					
-					    <div class="form-group">
-					      <textarea class="form-control" id="message" rows="5" placeholder="내용을 입력해주세요." required></textarea>
-					    </div>
-					
-						<div class="form-group">
-						 <div class="input-group">
-					        <div class="input-group-prepend">
+					<div class="inputArea">
 						 <label for="gdsImg">이미지</label>
 						 <input type="file" id="gdsImg" name="file" />
 						 <div class="select_img"><img src="" /></div>
@@ -118,18 +103,7 @@
 						 <%=request.getRealPath("/") %>
 					</div>
 					
-					
-					    <button type="submit" class="btn btn-primary float-right">
-					      <i class="fa fa-paper-plane"></i> 
-					       작성 
-					    </button>
-					  </form>
-					</div>			
-							
-							
-							
-						</form>			
-						
+				</form>				
 			</section>
 			<hr />
 		</div>
