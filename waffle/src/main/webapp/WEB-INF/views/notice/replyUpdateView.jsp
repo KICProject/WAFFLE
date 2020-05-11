@@ -16,35 +16,22 @@
 		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	 	<title>게시판</title>
+	 	<!-- <title>게시판</title> -->
 	</head>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
 			$(".cancel_btn").on("click", function(){
-				location.href = "/notice/readView?nno=${replyUpdate.nno}"
-					   + "&page=${scri.page}"
-					   + "&perPageNum=${scri.perPageNum}"
-					   + "&searchType=${scri.searchType}"
-					   + "&keyword=${scri.keyword}";
-			})
-			
+				opener.document.location.reload();
+				self.close();
+			})		
 		})
 		
 	</script>
 	<body>
 	
 		<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			<hr />
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/notice/replyUpdate">
@@ -58,15 +45,16 @@
 						<tbody>
 							<tr>
 								<td>
-									<label for="nrcontent">댓글 내용</label><input type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}"/>
-								</td>
+									<p align="center" style="color:#380B61;text:bold"><label for="content">*댓글 내용을 수정해주세요</label></p>
+									<input style="text-align:center; width:500px; height:100px;" type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}"/>
+									
 							</tr>	
 							
 						</tbody>			
 					</table>
 					<div>
-						<button type="submit" class="update_btn">저장</button>
-						<button type="button" class="cancel_btn">취소</button>
+						<button type="submit" class="update_btn btn btn-outline-dark">저장</button>
+						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>
 					</div>
 				</form>
 			</section>

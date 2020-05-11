@@ -56,41 +56,47 @@
 			formObj.attr("action", "/notice/replyWrite");
 			formObj.submit();
 		});
-		
-		//댓글 수정 View
-		$(".replyUpdateBtn").on("click", function(){
+				
+		//댓글 수정 View		
+		/* $(".replyUpdateBtn").on("click", function(){
 			location.href = "/notice/replyUpdateView?nno=${read.nno}"
 							+ "&page=${scri.page}"
 							+ "&perPageNum=${scri.perPageNum}"
 							+ "&searchType=${scri.searchType}"
 							+ "&keyword=${scri.keyword}"
 							+ "&nrno="+$(this).attr("data-nrno");
-		});
+		}); */
+		$(".replyUpdateBtn").on("click", function(){
+			window.open("/notice/replyUpdateView?nno=${read.nno}"
+							+ "&page=${scri.page}"
+							+ "&perPageNum=${scri.perPageNum}"
+							+ "&searchType=${scri.searchType}"
+							+ "&keyword=${scri.keyword}"
+							+ "&nrno="+$(this).attr("data-nrno"),
+					'w', 'left=800,top=200,width=550,height=230');
+			})
+		
 		
 		//댓글 삭제 View
-		$(".replyDeleteBtn").on("click", function(){
+		/* $(".replyDeleteBtn").on("click", function(){
 			location.href = "/notice/replyDeleteView?nno=${read.nno}"
 				+ "&page=${scri.page}"
 				+ "&perPageNum=${scri.perPageNum}"
 				+ "&searchType=${scri.searchType}"
 				+ "&keyword=${scri.keyword}"
 				+ "&nrno="+$(this).attr("data-nrno");
-		});
+		});	 */	
 		
-		$(document).ready(function(){
-			var formObj = $("form[name='updateForm']");
-			
-			$(".cancel_btn").on("click", function(){
-				location.href = "/notice/readView?nno=${replyUpdate.nno}"
-					   + "&page=${scri.page}"
-					   + "&perPageNum=${scri.perPageNum}"
-					   + "&searchType=${scri.searchType}"
-					   + "&keyword=${scri.keyword}";
-			})
-			
+		$(".replyDeleteBtn").on("click", function(){
+			window.open("/notice/replyDeleteView?nno=${read.nno}"
+					+ "&page=${scri.page}"
+					+ "&perPageNum=${scri.perPageNum}"
+					+ "&searchType=${scri.searchType}"
+					+ "&keyword=${scri.keyword}"
+					+ "&nrno="+$(this).attr("data-nrno"),
+					'w', 'left=800,top=200,width=300,height=150');
 		})
 	})
-		
 		
 	</script>
 	
@@ -117,8 +123,8 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 										 
 					<!-- <input type="hidden" id="FILE_NO" name="FILE_NO" value="">  -->
-				</form>				
-				
+				</form>	
+								
 				<div class="form-group row justify-content-center">					
 					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; margin:10 auto; font-size:40px;">${read.ntitle} </label>
 				</div>		
@@ -132,11 +138,10 @@
 				<br>
 				
 				<div class="form-group row justify-content-center">					
-					<!-- <textarea id="ncontent" name="ncontent" class="form-control" rows="50" readonly="readonly"> -->
-					<!-- c태그 써서 display none으로  -->
-					<c:if test="{ncontent!=null}">				
-					<textarea id="ncontent" name="ncontent" style="width: 1000px; height:30px; margin-bottom:10px; border : solid 1px lightgray;">
-					<c:out value="${read.ncontent}" /></textarea>
+					<!-- <textarea id="ncontent" name="ncontent" class="form-control" rows="50" readonly="readonly"> -->	
+					<c:if test="${(read.ncontent !=null)}">				
+					<textarea id="ncontent" name="ncontent" style="width: 1000px; height:300px; margin-bottom:10px; border : hidden 1px;">
+					<c:out value="${read.ncontent}" /></textarea>	
 					</c:if>						
 					<img src="${read.gdsImg}" class="oriImg"/>
 				</div>
@@ -160,13 +165,14 @@
 							<li>	  
 								<span class="nrcontent float-left">
 								${replyList.nrcontent}
+								
 								</span>
 							</li>							
 							<br />
 							<br />
 							<li>
-								<div class="form-group row text-center" style="margin-left:1020px;color:yellow;">
-									<button type="button" class="replyUpdateBtn btn btn-sm" data-nrno="${replyList.nrno}">수정 </button>
+								<div class="form-group row text-center" style="margin-left:1020px;">
+									<button type="button" class="replyUpdateBtn btn btn-sm" data-nrno="${replyList.nrno}">수정 </button>									
 									<button type="button" class="replyDeleteBtn btn btn-sm" data-nrno="${replyList.nrno}">삭제</button>
 								</div>
 							</li>							
@@ -184,7 +190,8 @@
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-				
+					
+					
 					<div class="form-group">
 						<label for="nrwriter" class="col-sm-2 control-label" style="margin-left:5px">writer</label>						
 						<div class="col-sm-10">
@@ -206,7 +213,7 @@
 					</div>
 					
 					<hr />
-								
+						
 					<%-- <!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
 					<c:if test="${(member !=null) && (member.memAuthor == 1)}">
 					<div>
@@ -217,13 +224,13 @@
 					</c:if>	 --%>
 					<!-- 편집 끝나고 아래 코드 삭제 -->
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
-							<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>		
-						</div>				
-					</div>
-					<br /><br /><br /><br />								
-				</form>
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
+								<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>		
+							</div>				
+						</div>
+						<br /><br /><br /><br />								
+					</form>
 			</section>			
 		</div>
 		
