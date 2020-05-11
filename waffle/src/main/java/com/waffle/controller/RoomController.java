@@ -31,11 +31,6 @@ public class RoomController {
 		 * 4. 반환은 json 형태로
 		 * 
 		 */
-		System.out.println(rvo.getMemId()); 
-		System.out.println(rvo.getRoomNumber());
-		System.out.println(rvo);
-		
-		
 		RoomVO getroom = rservice.getRoominfo(rvo);
 		
 		

@@ -17,134 +17,50 @@
   font-weight: normal;
 }
 
-body{
-		background-image:url("/img/join_background_copy.jpg");
-		font-family: S-CoreDream-3;
-		color:#000;	
-	}
-	
-.container{
-		overflow:hidden;
-		margin-bottom:100px;
+body {
+	font-family: S-CoreDream-3;
+	color: #000;
 }
 
-
-/*---------------- signup_container ----------------*/
 .container>.frame {
 	margin: 0 auto;
-	margin-top: 150px;
+	margin-top: 20px;
 	width: 800px;
-	height: 1000px;
-	/* opacity: 0.5; */
-	border-radius: 50px;
-	box-shadow: 0px 30px 21px 0 rgba(64, 64, 64, 0.67);
-	background-image: linear-gradient(to bottom, #051c29 14%, #051c29 14%, #405590 42%,
-		#7283b3 63%, #576d95 68%, #425b7c 72%, #113245 86%);
+	height: 800px;
 	overflow: hidden;
 }
 
-.container>.frame>h2 {
-	padding-top: 65px;
-	padding-left: 92px;
-	width: 245px;
-	height: 94px;
-	font-family: "s-core-dream-extrabold";
-	font-size: 67.5px;
-	font-weight: 800;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 0.27;
-	letter-spacing: normal;
-	float: left;
-}
-
-.container>.frame .logo {
-	padding-top: 50px;
-	margin-right: 96px;
-	width: 165px;
-	height: 61px;
-	font-family: "s-core-dream-thin";
-	font-size: 43.9px;
-	font-weight: 100;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 0.27;
-	letter-spacing: normal;
-	float: right;
-}
-
-.container>.frame .intro {
-	margin-right: 96px;
-	clear: right;
-	float: right;
-	width: 100px;
-	height: 25px;
-	font-family: "s-core-dream-thin";
-	font-size: 18px;
-	font-weight: 100;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 0.65;
-	letter-spacing: normal;
-	text-align: left;
-	color: #ffffff;
-}
-
-.container>.frame .box1 {
-	clear: both;
-	display: block;
-	width: 280px;
-	height: 6px;
-	background-color: #fff;
-	margin-left: 66px;
-	float: left;
-}
-
-.container>.frame .box2 {
-	display: block;
-	width: 388px;
-	height: 3px;
-	margin-top: 3px;
-	background-color: #fff;
-	float: left;
-}
 /* inner things */
 .container>.frame>.input {
 	overflow: hidden;
-	clear: both;
 	padding-top: 20px;
 	position: relative;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 600px;
-	height: 1000px;
+	height: 800px;
 	float: left;
+	overflow: hidden;
 }
 
 .input form {
 	width: 600px;
-	height: 1000px;
+	height: 600px;
+	overflow: hidden;
 }
-.input .passchkgrp{
-	height:80px;
-}
-.input .passchkgrp #compare_pass{
-	clear:both;
-	display:block;	
-	width:200px;
-	height:20px;
-	
+
 .input .updategrp {
 	width: 600px;
 	height: 40px;
-	color: #fff;
+	color: #000;
 	font-size: 14px;
-	margin: 20px 0;
+	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 .input .updategrp label {
 	display: block;
-	width: 200px;
+	width: 180px;
 	height: 35px;
 	float: left;
 	line-height: 35px;
@@ -153,7 +69,31 @@ body{
 .input .updategrp input {
 	width: 290px;
 	height: 33px;
+	float: right;
+	line-height: 35px;
+	margin-left: 30px;
+}
+
+.input .passchkgrp1, .input .passchkgrp2 {
+	width: 600px;
+	height: 60px;
+	color: #000;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.input .passchkgrp1 label, .input .passchkgrp2 label {
+	display: block;
+	width: 180px;
+	height: 35px;
 	float: left;
+	line-height: 35px;
+}
+
+.input .passchkgrp1 input, .input .passchkgrp2 input {
+	width: 290px;
+	height: 33px;
+	float: right;
 	line-height: 35px;
 	margin-left: 30px;
 }
@@ -167,16 +107,31 @@ body{
 	line-height: 20px;
 }
 
-.update_btn {
-	width: 240px;
-	height: 50px;
-	opacity: 0.73;
-	border-radius: 24.5px;
-	background-color: #afde77;
-	clear: both;
-	margin: 30px 176px;
+.btngrp {
+	width: 420px;
+	height: 30px;
+	margin: 30px auto;
 }
 
+button {
+	width: 120px;
+	height: 30px;
+	opacity: 0.73;
+	border-radius: 24.5px;
+	background-color: #888;
+	margin-right: 30px;
+	color: #fff;
+	display: block;
+	float: left;
+}
+
+.update_btn {
+	background-color: #afde77;
+}
+
+.cancle {
+	margin-right: 0;
+}
 
 
 /* -----------------------------반응형 width 1450px------------------------------------- */
