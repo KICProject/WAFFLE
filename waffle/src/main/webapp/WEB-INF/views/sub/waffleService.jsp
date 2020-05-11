@@ -5,111 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>WAFFLE</title>
-<link rel="stylesheet" type="text/css" href="/css/waffleService.css" />
+<link rel="stylesheet" type="text/css" href="/css/service.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style type="text/css">
-	input, label {margin:0; padding:0;}
-	#cover{
-		width:100%;
-		height:100%;
-		position:fixed;
-		top:0;
-		left:0;
-		background-color:rgba(0,0,0,0.7);		
-		z-index:98;
-		display:none;
-	}
-
-	.cover{
-		display:!important block;		
-	}
-	.show{
-		display:block;
-	}
-	#prePayForm {
-		display:none;
-		width:300px;
-		height:300px;
-		background-color:#444;
-		position:fixed;
-		z-index:99;
-		top:50%;
-		left:50%;
-		transform:translate(-50%,-50%);
-		color:#000;
-	}
-	#prePayForm label {
-		float:left;
-		color:#fff;
-		font-size:16px;
-		width:120px;
-		height:30px;
-		line-height:30px;
-		margin-top:20px;
-		
-	}
-	#prePayForm input {
-		width:120px;
-		height: 30px;
-		line-height:30px;
-		float:right;
-		margin-top:20px;
-	}
-</style>
+<script src="/js/servicepage.js"></script>
 </head>
-<script type="text/javascript">
-$(function(){
-	$('button').click(function(){
-		if("${member}" == ""){
-			alert('로그인을 먼저 해주세요');
-			location.href="/member/loginControl";
-		}
-		
-		var btn = $(this).attr('id');
-		$('#serviceName').val(btn);
-		
-		$('#cover').show();
-		$('#prePayForm').show();		
-		
-		if(btn == 'basic'){
-			$('#price').val(100);
-		}else if(btn == 'pro'){
-			$('#price').val(300);
-		}else
-			$('#price').val(500);
-		
-	})	
-	$('#cover').click(function(){
-		$('#prePayForm').hide();
-		$('#cover').hide();
-	})
-
-	$('#pay').click(function(){
-		var paydata_str = $('#payForm').serialize();
-		console.log(paydata_str)
-		$.ajax({
-			url : "/payment/payReady",
-			type:"post",
-			data : paydata_str,
-			dataType : "json",
-			success : function(data){
-				if(data==1){
-					location.href="/payment/pay"				
-				}else{
-					alert('결제 정보 저장이 되지 않았습니다.')
-				}
-				
-			},error : function(e){
-				alert('결제에 실패하였습니다.');
-				//location.reload();
-			}
-		})		
-	})
-})
-
-</script>
 <body>
-	<div id="prePayForm">
+	<div id="prePayForm" >
     	<form action="/payment/pay" method="post" id="payForm">
     		<label for="memId">주문자 ID</label>
     		<input type="text" id="memId" name="memId" value="${member.memId }" readonly>
@@ -174,6 +75,5 @@ $(function(){
     
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 	<script src="/js/app.js"></script>
-
 </body>
 </html>

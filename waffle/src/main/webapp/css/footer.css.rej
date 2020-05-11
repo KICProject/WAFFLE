@@ -1,9 +1,0 @@
-diff a/waffle/src/main/webapp/css/footer.css b/waffle/src/main/webapp/css/footer.css	(rejected hunks)
-@@ -40,6 +40,7 @@
- }
- footer .footer_bottom ul {
-   display: flex;
-+  width: 1300px;
-   margin: 0 auto;
- }
- footer .footer_bottom ul li {

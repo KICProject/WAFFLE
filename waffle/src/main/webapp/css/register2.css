@@ -134,7 +134,7 @@ body{
 .input .idchkgrp #idValidate_message{
 	clear:both;
 	display:block;	
-	width:200px;
+	width:350px;
 	height:20px;
 }
 .input .passchkgrp1{
@@ -143,7 +143,7 @@ body{
 .input .passchkgrp1 #pwValidate_message{
 	clear:both;
 	display:block;	
-	width:200px;
+	width:350px;
 	height:20px;
 }
 .input .passchkgrp2{
@@ -152,7 +152,7 @@ body{
 .input .passchkgrp2 #compare_pass{
 	clear:both;
 	display:block;	
-	width:200px;
+	width:350px;
 	height:20px;
 }
 .input .emailchkgrp{
@@ -161,7 +161,7 @@ body{
 .input .emailchkgrp #emailValidate_message{
 	clear:both;
 	display:block;	
-	width:200px;
+	width:350px;
 	height:20px;
 }
 

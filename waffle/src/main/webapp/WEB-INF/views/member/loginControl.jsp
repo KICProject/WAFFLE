@@ -35,6 +35,15 @@
 				<c:if test="${msg == false}">
 					<p style="color: red;">로그인 실패! 아이디와 비밀번호 확인해주세요.</p>
 				</c:if>
+				<c:if test="${member !=null }">
+					<script>
+						$(function(){
+							alert('이미 로그인 되어 있습니다')
+							location.href="/"
+						})
+						
+					</script>			
+				</c:if>
 				</form>				
 				<ul class="find_account">
 					<li><a href="#">아이디 찾기</a><span>&nbsp;&nbsp;&nbsp;|</span></li>					
@@ -44,8 +53,7 @@
 				<ul class="api_login">
 					<li><a href="#" id="nvr_btn"><img src="/img/naver_btn.png"></a></li>
 					<li><a href="https://kauth.kakao.com/oauth/authorize?client_id=e1d6e555ab653c2367b93a83450e0e0e&redirect_uri=http://localhost:8090/member/kakaologin&response_type=code" id="kko_btn"><img src="/img/kakao_btn.png"></a></li>
-				</ul> --> 	
-							
+				</ul> --> 								
 			</div>
 			<span class="middle_line"></span>
 			<div class="singin_box">

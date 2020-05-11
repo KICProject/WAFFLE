@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>WAFFLE</title>
-<link rel="stylesheet" type="text/css" href="/css/mypage5.css?after" />
+<link rel="stylesheet" type="text/css" href="/css/mypage.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/mypage.js"></script>
 </head>
@@ -125,7 +125,7 @@ $(function(){
         		$('#regDate').text(usvd);
         		$('#expDate').text(usved);
         		
-        		$('#passEnter').click(function(){
+        		$('#passEnter').click(function(){  // 회원정보 수정 Enter
         			if($('#memUpdatePass').val()==""){
         				alert('비밀번호를 입력해주세요.');
         				return false;
@@ -136,7 +136,7 @@ $(function(){
         				dataType:"json",
         				data: $("#updateConfim").serializeArray(),
         				success : function(data){
-        					if(data==true){
+        					if(data==true){ // 회원정보 수정 submit
         						$('.user_info_update>.content').load('/member/updateView')
         						console.log('성공')
         					}else{
@@ -153,42 +153,47 @@ $(function(){
         			
         			})
         		})
-        		$('#passEnter2').click(function(){
+        		$('#passEnter2').click(function(){//회원삭제 Enter
         			if($('#memDeletePass').val()==""){
         				alert('비밀번호를 입력해주세요.');
         				return false;
         			}
-        			$.ajax({
-        				url:"/member/passDbChk",
-        				type:"POST",
-        				dataType:"json",
-        				data: $("#deleteConfim").serializeArray(),
-        				success : function(data){
-        					if(data==true){
-        						console.log('비밀번호 ok')
-        						$.ajax({
-        							url:"/member/memberDelete",
-        							type:"POST",
-        							data: $("#deleteConfim").serializeArray(),
-        							success:function(process){
-        								if(process == true)
-        								alert('탈퇴가 완료되었습니다.')
-        								location.href="/"        								
-        							}
-        						})
-	       					}else{
-        						alert('비밀번호가 틀립니다')
+        			var cf = confirm('정말 삭제하시겠습니까?');
+        			if(cf){
+        				$.ajax({
+        					url:"/member/passDbChk",
+        					type:"POST",
+        					dataType:"json",
+	        				data: $("#deleteConfim").serializeArray(),
+    	    				success : function(data){
+        						if(data==true){
+        							console.log('비밀번호 ok')
+        							$.ajax({ // 회원삭제 submit
+        								url:"/member/memberDelete",
+        								type:"POST",
+        								data: $("#deleteConfim").serializeArray(),
+        								success:function(process){
+        									if(process == true)
+        									alert('탈퇴가 완료되었습니다.')
+	        								location.href="/"        								
+    	    							}
+        							})
+	       						}else{
+        							alert('비밀번호가 틀립니다')
+        							return;
+        						}
+        				
+	        				},
+    	    				error:function(e){
+        						console.log(e)
+								alert('오류발생');
         						return;
         					}
-        				
-        				},
-        				error:function(e){
-        					console.log(e)
-							alert('오류발생');
-        					return;
-        				}
         			
-        			})
+	        			})
+    	    		}else{
+    	    			return;
+    	    		}
         		})
         		
         	})

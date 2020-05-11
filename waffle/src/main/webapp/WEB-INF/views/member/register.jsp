@@ -6,7 +6,7 @@
 	<title>WAFFLE</title>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/register2.css" />
+	<link rel="stylesheet" type="text/css" href="/css/register.css" />
 	<script src="/js/register.js"></script>
 	
 </head>
@@ -111,16 +111,18 @@
 				        <label for="memEmail">이메일</label>
 				        <input type="text" name="memEmail" id="memEmail" placeholder="이메일" required>
 				        <button class="emailChk" type="button" id="emailChk" onclick="fn_emailChk()" value="N">중복확인</button>
-				        <p id="emailValidate_message"></p>				 	        
+				        <p id="emailValidate_message"></p>		 	        
 				    </div>
 				    <!-- 휴대전화 -->
 				    <div class="register-group memPhone">
 				        <label for="memPhone">휴대전화<br>('-' 없이 번호만 입력해주세요)</label>
 				        <input type="text" id="memPhone" name="memPhone" placeholder="Phone Number1" required>
+				        <p id="phoneValidate_message"></p>
 				    </div>
 				    <div class="register-group memPhone2">
 				        <label for="memPhone2">비상시연락처<br>('-' 없이 번호만 입력해주세요)</label>
 				        <input type="text" id="memPhone2" name="memPhone2" placeholder="Phone Number2" required>
+				        <p id="phone2Validate_message"></p>
 				    </div>
 				    <div class="Address">
 				    	<label for="zipcode">우편번호를 검색해주세요</label>

@@ -2,15 +2,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>WAFFLE</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
-<link rel="stylesheet" type="text/css" href="/css/header_bk_.css" />
-</head>
-<body>	
+<link rel="stylesheet" type="text/css" href="/css/header_bk.css" />
+
+
 	<!-- header -->
 	<header>
 		<a href="/"><span class="logo">AFFLE</span></a>
@@ -73,4 +68,3 @@
 				})	
 			})
 		</script>
-</body>
