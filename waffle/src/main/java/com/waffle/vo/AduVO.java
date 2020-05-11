@@ -6,14 +6,42 @@ import org.springframework.stereotype.Component;
 public class AduVO {
 	private String temp;
 	private String wet;
-	private String room_number;
+	private String roomnumber;
 	private String memid;
-	private String TV;
+	private String tv;
 	private String light;
 	private String aircon;
 	private String window;
-	
-	
+	public String getRoom_number() {
+		return roomnumber;
+	}
+	public void setRoomnumber(String room_number) {
+		this.roomnumber = room_number;
+	}
+	public String getMemid() {
+		return memid;
+	}
+	public void setMemid(String memid) {
+		this.memid = memid;
+	}
+	public String getTv() {
+		return tv;
+	}
+	public void setTv(String tv) {
+		this.tv = tv;
+	}
+	public String getLight() {
+		return light;
+	}
+	public void setLight(String light) {
+		this.light = light;
+	}
+	public String getAircon() {
+		return aircon;
+	}
+	public void setAircon(String aircon) {
+		this.aircon = aircon;
+	}	
 	
 	public String getWindow() {
 		return window;

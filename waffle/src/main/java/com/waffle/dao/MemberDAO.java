@@ -24,4 +24,15 @@ public interface MemberDAO {
 	public int idChk(MemberVO vo) throws Exception;
 	//이메일중복체크
 	public int emailChk(MemberVO vo) throws Exception;
+	//회원목록 조회
+	public List<MemberVO> adminlist(MemberVO vo) throws Exception;
+	//회원 상세 조화
+	public MemberVO readMember(String memId) throws Exception;
+	//회원 정보 수정
+	public void updateInfo(MemberVO vo) throws Exception;
+	//회원 비밀번호 초기화
+	public void pwdClear(MemberVO vo) throws Exception;
+	//관리자 계정 조회
+	public MemberVO admincheck(MemberVO vo) throws Exception;
+	
 }

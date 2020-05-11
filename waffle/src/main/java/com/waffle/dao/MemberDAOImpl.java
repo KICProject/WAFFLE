@@ -63,6 +63,37 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = sql.selectOne("memberMapper.emailChk",vo);
 		return result;
 	}
+	//회원목록조회
+	@Override
+	public List<MemberVO> adminlist(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectList("memberMapper.selectmember",vo);
+	}
+	//회원 상세보기
+	@Override
+	public MemberVO readMember(String memId) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne("memberMapper.readmember",memId);
+	}
+	//회원 비밀번호 초기화
+	@Override
+	public void pwdClear(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		sql.update("memberMapper.pwdclear",vo);	
+	}
+	//회원정보 수정
+	@Override
+	public void updateInfo(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("dao 메소드에서의 memAuthor" + vo.getMemAuthor());
+		sql.update("memberMapper.updateinfo",vo);
+	}
+	@Override
+	public MemberVO admincheck(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne("memberMapper.",vo);
+	}
+
 	
 	
 	

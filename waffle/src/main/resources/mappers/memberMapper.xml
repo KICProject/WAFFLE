@@ -75,5 +75,59 @@
 		SELECT COUNT(*) FROM WF_MEMBER
 		WHERE MEMEMAIL = #{memEmail,jdbcType=VARCHAR}
 	</select>
+	<!--  관리자 페이지 -->
+		<!-- 리스트에서 회원정보 보기 -->
+    <select id="selectmember" resultType="com.waffle.vo.MemberVO" parameterType="com.waffle.vo.MemberVO">
+		SELECT MEMID, MEMNAME , REGDATE, MEMAUTHOR 
+		FROM WF_MEMBER
+	</select>
 	
+	<!-- 회원 상세보기 -->
+	<select id="readmember" parameterType="com.waffle.vo.MemberVO" resultType="com.waffle.vo.MemberVO">
+		SELECT   MEMID
+			   , MEMNAME
+			   , MEMBIRTH
+			   , MEMPHONE
+			   , MEMPHONE2
+			   , MEMADDR
+			   , MEMEMAIL
+			   , MEMAUTHOR
+			   , REGDATE
+		  FROM WF_MEMBER
+		 WHERE memId = #{memId,jdbcType=VARCHAR}
+	</select>
+	<!-- 회원 삭제 -->
+	<delete id="deleteInfo" parameterType="String">
+		DELETE 
+		  FROM WF_MEMBER
+		 WHERE MEMID = #{memId}
+	</delete>
+		
+	
+	<!-- 회원 정보 수정 -->
+ 	<update id="updateinfo" parameterType="com.waffle.vo.MemberVO">
+		UPDATE WF_MEMBER
+		   SET   MEMNAME =  #{memName}
+			   , MEMBIRTH =  #{memBirth}
+			   , MEMPHONE =  #{memPhone}
+			   , MEMPHONE2 =  #{memPhone2}
+			   , MEMADDR =  #{memAddr}
+			   , MEMEMAIL =  #{memEmail}
+			   , MEMAUTHOR =  #{memAuthor,jdbcType=VARCHAR}
+		 WHERE MEMID = #{memId} 
+	</update>
+	
+	<!-- 비밀번호 초기화 -->
+	<update id="pwdclear" parameterType="com.waffle.vo.MemberVO">
+		UPDATE WF_MEMBER
+		   SET MEMPASS = 1111
+		   WHERE MEMID = #{memId}
+	</update>
+	
+	<select id ="adminCheck" resultType="com.waffle.vo.MemberVO" parameterType="com.waffle.vo.MemberVO">
+		SELECT MEMID
+			 , MEMPASS
+			 FROM WF_MEMBER
+			 WHERE MEMAUTHOR = "1"
+	</select>
 </mapper>

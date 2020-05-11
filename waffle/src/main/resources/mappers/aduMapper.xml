@@ -9,4 +9,34 @@
 		   SET temp  =   #{temp,jdbcType=VARCHAR}
 		   , 	wet  =   #{wet,jdbcType=VARCHAR}
 	</update>
+	
+	<select id="lightview" resultType="String" parameterType="com.waffle.vo.AduVO">
+		SELECT LIGHT FROM ADU
+	</select> 
+	
+	<update id="updatelight" parameterType="com.waffle.vo.AduVO">
+		UPDATE ADU 
+			SET LIGHT = #{light,jdbcType=VARCHAR}
+	</update>
+	<select id="tvview" resultType="String" parameterType="com.waffle.vo.AduVO">
+		SELECT TV FROM ADU
+	</select> 
+	<update id="updatetv" parameterType="com.waffle.vo.AduVO">
+		UPDATE ADU 
+			SET TV = #{tv,jdbcType=VARCHAR}
+	</update>
+	<select id="airview" resultType="String" parameterType="com.waffle.vo.AduVO">
+		SELECT AIRCON FROM ADU
+	</select> 
+	<update id="updateair" parameterType="com.waffle.vo.AduVO">
+		UPDATE ADU 
+			SET AIRCON = #{aircon,jdbcType=VARCHAR}
+	</update>
+	<select id="windowview" resultType="String" parameterType="com.waffle.vo.AduVO">
+		SELECT WINDOW FROM ADU
+	</select>
+	<update id="updatewindow" parameterType="com.waffle.vo.AduVO">
+		UPDATE ADU 
+			SET WINDOW = #{window,jdbcType=VARCHAR}
+	</update>
 </mapper>

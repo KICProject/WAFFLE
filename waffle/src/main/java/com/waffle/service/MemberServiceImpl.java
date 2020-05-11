@@ -50,10 +50,35 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.emailChk(vo);
 		return result;
 	}
-	
-	
-	
-	
-	
+	//회원 목록
+	@Override
+	public List<MemberVO> adminlist(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.adminlist(vo);		
+	}
+	//회원 상세보기
+	@Override
+	public MemberVO readMember(String memId) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.readMember(memId);
+	}
+	//비밀번호 초기화
+	@Override
+	public void pwdClear(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.pwdClear(vo);
+	}
+	//회원정보 수정
+	@Override
+	public void updateInfo(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("서비스 메소드에서의 memAuthor" + vo.getMemAuthor());
+		dao.updateInfo(vo);
+	}
+	@Override
+	public MemberVO admincheck(MemberVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.admincheck(vo);
+	}
 
 }
