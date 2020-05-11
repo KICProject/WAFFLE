@@ -22,7 +22,6 @@
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<div class="container">		
 		<div class="welcom_msg">
-			<a href="/board/list">게시판</a><br />
 			<img src="/img/welLogo.png">
 			<p>
 				고객님<br>

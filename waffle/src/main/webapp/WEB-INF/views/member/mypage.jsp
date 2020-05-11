@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>WAFFLE</title>
-<link rel="stylesheet" type="text/css" href="/css/mypage5.css?after" />
+<link rel="stylesheet" type="text/css" href="/css/mypage.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/mypage.js"></script>
 </head>
