@@ -29,10 +29,14 @@
 					   + "&keyword=${scri.keyword}";
 			}) */
 			
+			$(".delete_btn").on("click", function(){
+				opener.document.location.reload();
+				self.close();
+			})	
 			$(".cancel_btn").on("click", function(){
 				opener.document.location.reload();
 				self.close();
-			})		
+			})	
 		})
 		
 	</script>
