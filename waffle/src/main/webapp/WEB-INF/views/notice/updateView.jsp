@@ -125,23 +125,19 @@
 							</tr>	
 							<tr>
 								<td>
-									<label for="ncontent">내용</label><textarea id="ncontent" name="ncontent" class="chk" title="내용을 입력하세요."><c:out value="${update.ncontent}" /></textarea>									
-								</td>
-							</tr>
-							
-							<tr>		
-								<td>						
-									<label for="gdsImg">이미지</label>
-									<input type="file"  id="gdsImg" name="file" class="chk" title="이미지 파일을 선택하세요." value="${read.gdsImg}" />
-								</td>
-							</tr>						
-							
-							<tr>
-								<td>
-									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
+									<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" title="내용을 입력하세요." >내용</label>
+									<textarea id="ncontent" name="ncontent" style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;" class="chk" title="내용을 입력하세요." >
+									<c:out value="${update.ncontent}" /></textarea>									
 								</td>
 							</tr>							
+							
+							<tr >		
+								<td >						
+									<label for="gdsImg">이미지</label>
+									<input type="file"  id="gdsImg" name="file" class="chk" title="이미지 파일을 선택하세요." value="${read.gdsImg}" style="width : 100%;margin-top:10px;margin-bottom:10px;"/>
+								</td>
+							</tr>		
+																				
 						</tbody>			
 					</table>
 					
@@ -153,13 +149,13 @@
 					<input type="hidden" name="gdsImg" value="${goods.gdsImg}" />
 					<input type="hidden" name="gdsThumbImg" value="${goods.gdsThumbImg}" />
 					
-					
-					<div>
-						<button type="button" class="update_btn btn">저장</button>
-						<button type="button" class="cancel_btn btn">취소</button>
+					<br />
+					<div >
+						<button type="button" class="update_btn btn btn-outline-dark">저장</button>
+						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>
 						<!-- <button type="button" class="fileAdd_btn">파일추가</button> -->
 					</div>
-					
+					<br /><br /><br /><br />
 				</form>
 				</div>
 			</section>
