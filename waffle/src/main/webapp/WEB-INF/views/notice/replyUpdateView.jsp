@@ -22,10 +22,15 @@
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
-			$(".cancel_btn").on("click", function(){
+			$(".update_btn").on("click", function(){
 				opener.document.location.reload();
 				self.close();
 			})		
+			
+			$(".cancel_btn").on("click", function(){
+				opener.document.location.reload();
+				self.close();
+			})	
 		})
 		
 	</script>
@@ -46,8 +51,7 @@
 							<tr>
 								<td>
 									<p align="center" style="color:#380B61;text:bold"><label for="content">*댓글 내용을 수정해주세요</label></p>
-									<input style="text-align:center; width:500px; height:100px;" type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}"/>
-									
+									<input style="text-align:center; width:530px; height:100px;" type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}"  />									
 							</tr>	
 							
 						</tbody>			

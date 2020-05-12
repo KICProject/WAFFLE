@@ -137,7 +137,7 @@
 				
 				<br>
 				
-				<div class="form-group row justify-content-center">					
+				<div class="form-group row">					
 					<!-- <textarea id="ncontent" name="ncontent" class="form-control" rows="50" readonly="readonly"> -->	
 					<c:if test="${(read.ncontent !=null)}">				
 					<textarea id="ncontent" name="ncontent" style="width: 1000px; height:300px; margin-bottom:10px; border : hidden 1px;">
@@ -195,7 +195,8 @@
 					<div class="form-group">
 						<label for="nrwriter" class="col-sm-2 control-label" style="margin-left:5px">writer</label>						
 						<div class="col-sm-10">
-							<input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;"/>
+							<%-- <input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;border : hidden" readonly /> --%>
+						<label for="nrwriter" class="col-sm-2 control-label" style="margin-left:5px">${member.memId}</label>	
 						</div>
 					</div>
 					
@@ -214,21 +215,15 @@
 					
 					<hr />
 						
-					<%-- <!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
+					<!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
 					<c:if test="${(member !=null) && (member.memAuthor == 1)}">
-					<div>
+					<div class="form-group">
 							<button type="button" class="update_btn btn">관리자 글 수정</button>
 							<button type="button" class="delete_btn btn">관리자 글 삭제</button>
 							<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
 						</div>
-					</c:if>	 --%>
-					<!-- 편집 끝나고 아래 코드 삭제 -->
-					<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
-								<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>		
-							</div>				
-						</div>
+					</c:if>
+				
 						<br /><br /><br /><br />								
 					</form>
 			</section>			

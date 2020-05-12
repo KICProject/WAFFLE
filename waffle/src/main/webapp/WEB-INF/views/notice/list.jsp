@@ -41,11 +41,7 @@
 			</header>				
 			<div>
 				<%@include file="nav.jsp" %>
-			</div>	
-			
-			<c:if test="${member != null}">
-			<p>${member.memId}님 안녕하세요.</p>
-			</c:if>
+			</div>				
 			<br /><br /><br />
 			
 			<div class="search row justify-content-center">
