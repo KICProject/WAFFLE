@@ -63,7 +63,8 @@
 		</c:if>
 		
 		<!-- 일반회원 로그인 후 메인 페이지 -->	
-		<c:if test="${(member !=null) && (member.memAuthor == 0)}"> 		
+		<c:if test="${(member !=null)}">
+		<%-- <c:if test="${(member !=null) && (member.memAuthor == 0)}"> --%> 		
 		<script src="/js/index.js"></script>
 		<div class="loader"></div>
 		<div class="container"> <!-- 회원에게 보여지는 컨테이너 -->
@@ -144,11 +145,11 @@
 		</div>
 	</div>
 	</c:if>
-	<c:if test="${(member !=null) && (member.memAuthor == 1)}"><!-- 관리자로 로그인 했을 경우입니다. redirect로 관리자 페이지로 바로 넘어갑니니다. -->
+	<%-- <c:if test="${(member !=null) && (member.memAuthor == 1)}"><!-- 관리자로 로그인 했을 경우입니다. redirect로 관리자 페이지로 바로 넘어갑니니다. -->
 		<div class="container">
 			<p>관리자로 로그인하셨습니다. redirect 할 예정입니다.</p>
 		</div>
-	</c:if>
+	</c:if> --%>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="/js/app.js"></script>
 	<script src="/js/getApi.js"></script>
