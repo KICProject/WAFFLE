@@ -18,20 +18,29 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	 	<!-- <title>게시판</title> -->
 	</head>
+	
 	<script type="text/javascript">
-		$(document).ready(function(){
-			var formObj = $("form[name='updateForm']");
-			
-			$(".update_btn").on("click", function(){
-				opener.document.location.reload();
-				self.close();
-			})		
-			
-			$(".cancel_btn").on("click", function(){
-				opener.document.location.reload();
-				self.close();
-			})	
-		})
+	   $(document).ready(function(){
+	         var formObj = $("form[name='updateForm']");
+	      
+	         $(".cancel_btn").on("click", function(){
+	            location.href = "/notice/readView?nno=${replyUpdate.nno}"
+	                  + "&page=${scri.page}"
+	                  + "&perPageNum=${scri.perPageNum}"
+	                  + "&searchType=${scri.searchType}"
+	                  + "&keyword=${scri.keyword}";
+	         })
+	      
+	         $(".update_btn").on("click", function(){
+	               opener.document.location.reload();
+	               self.close();
+	            })  
+	            
+	            $(".cancel_btn").on("click", function(){
+	                  opener.document.location.reload();
+	                  self.close();
+	            })  	                     
+	      }) 
 		
 	</script>
 	<body>
@@ -50,15 +59,15 @@
 						<tbody>
 							<tr>
 								<td>
-									<p align="center" style="color:#380B61;text:bold"><label for="content">*댓글 내용을 수정해주세요</label></p>
-									<input style="text-align:center; width:530px; height:100px;" type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}"  />									
-							</tr>	
-							
+									<label for="nrcontent">*댓글 내용을 수정해주세요</label>
+									<input type="text" id="nrcontent" name="nrcontent"  placeholder="내용을 입력하세요." style=" width:530px; height:100px;border : solid 1px lightgray;" value="${replyUpdate.content}"  />
+								</td>
+							</tr>							
 						</tbody>			
 					</table>
 					<div>
-						<button type="submit" class="update_btn btn btn-outline-dark">저장</button>
-						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>
+						<button type="submit" class="update_btn">저장</button>
+						<button type="button" class="cancel_btn">취소</button>
 					</div>
 				</form>
 			</section>

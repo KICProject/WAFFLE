@@ -55,7 +55,7 @@
 			var updateForm = $("form[name='updateForm'] .chk").length;
 			for(var i = 0; i<updateForm; i++){
 				if($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null){
-					alert($(".chk").eq(i).attr("ntitle"));
+					alert($(".chk").eq(i).attr("title"));
 					return true;
 				}
 			}
@@ -101,16 +101,18 @@
           <p class="title_small">WAFFLE</p>
         </div>       
 	
+	   <!-- tab -->
+       <ul class="board_tab">
+	        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
+	        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
+	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
+   	   </ul>
+   	   
 		<div id="root">
-			<header>
-				<!-- <h1> 게시판 수정</h1> -->
-			</header>
-			<hr />
-			 
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			<hr />
+		<!-- 	<header>
+				<h1> 게시판 수정</h1>
+			</header> -->
+			<hr />		
 			
 			<section id="container">
 			 <div class="form-group row justify-content-center">
@@ -119,22 +121,22 @@
 						<tbody>
 							<tr>
 								<td>
-									<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">제목</label>
-									<input type="text" id="ntitle" name="ntitle" value="${update.ntitle}" title="제목을 입력하세요." style="width: 1000px; height:40px; margin-bottom:10px; border : solid 1px lightgray;" />
+									<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">공지 제목</label>
+									<input type="text" id="ntitle" name="ntitle" value="${update.ntitle}"  class="chk" title="제목을 입력하세요." style="width: 1000px; height:40px; margin-bottom:10px; border : solid 1px lightgray;" />
 								</td>
 							</tr>	
 							<tr>
 								<td>
-									<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" title="내용을 입력하세요." >내용</label>
-									<textarea id="ncontent" name="ncontent" style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;" class="chk" title="내용을 입력하세요." >
-									<c:out value="${update.ncontent}" /></textarea>									
-								</td>
+										<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" >공지 내용</label>
+										<textarea id="ncontent" name="ncontent" placeholder="수정할 내용을 입력하세요." style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;"></textarea>
+										
+									</td>
 							</tr>							
 							
 							<tr >		
 								<td >						
 									<label for="gdsImg">이미지</label>
-									<input type="file"  id="gdsImg" name="file" class="chk" title="이미지 파일을 선택하세요." value="${read.gdsImg}" style="width : 100%;margin-top:10px;margin-bottom:10px;"/>
+									<input type="file"  id="gdsImg" name="file"  title="이미지 파일을 선택하세요." value="${read.gdsImg}" style="width : 100%;margin-top:10px;margin-bottom:10px;"/>
 								</td>
 							</tr>		
 																				
@@ -158,9 +160,12 @@
 					<br /><br /><br /><br />
 				</form>
 				</div>
-			</section>
+				</section>
 			<hr />
-	 </div>
+		 </div>	 
 	 </section>
+	 <!-- footer -->
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>	
 	</body>
 </html>

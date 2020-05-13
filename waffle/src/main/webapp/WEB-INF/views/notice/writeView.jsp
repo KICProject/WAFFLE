@@ -65,7 +65,7 @@
 				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">										
 					<table style="width : 1000px;">
 						<tbody>
-							<%-- <c:if test="${member.memId != null}"> --%>
+							<c:if test="${member.memId != null}">
 								<tr>
 									<td>
 										<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">공지 제목</label>
@@ -121,10 +121,10 @@
 										<br /><br /><br /><br /><br /><br /><br />									
 									</td>
 								</tr> -->	
-							<%-- </c:if> 
+							</c:if> 
 								 <c:if test="${member.memId == null}">
 								<p>로그인 후에 작성하실 수 있습니다.</p>
-							</c:if> --%>
+							</c:if>
 							
 						</tbody>			
 					</table>									
@@ -132,6 +132,9 @@
 			</div>				
 			</section>			
 			<hr />			
-		</div>		
+		</div>	
+		<!-- footer -->
+		<jsp:include page="/WEB-INF/views/include/noticefooter.jsp"></jsp:include>
+		<script src="/js/app.js"></script>	
 	</body>
 </html>

@@ -20,35 +20,37 @@
 	 	<!-- <title>공지 게시판</title> -->
 	</head>
 	<body>	
+		
 		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
 	
 	<section class="board_main">
-   		<!-- service WAFFLE -->
+		<!-- service WAFFLE -->
         <div class="board_head">
           <p class="title_big">Notice</p>
           <p class="title_small">WAFFLE</p>
-        </div>
-        
+        </div>       
+	
+	   <!-- tab -->
        <ul class="board_tab">
-        <li id="moveFaq">FAQ</li>
-        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
-        <li id="moveQna">QNA</li>
+	        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
+	        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
+	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
    	   </ul>
     
-		<div class="container">
-			<header>
-				<!-- <h1>공지 게시판</h1> -->
-			</header>				
+	   	<div id="root">
+			<!-- <header>
+				<h1>공지 게시판</h1>
+			</header>		 -->		
 			<div>
 				<%@include file="nav.jsp" %>
 			</div>				
-			<br /><br /><br />
+			<br />
 			
 			<div class="search row justify-content-center">
 				<div class="col-xs-2 col-sm-2">
 					<div class="border-bottom" >
 					<select name="searchType" class="form-control border-0">
-						<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>---------</option>
+						<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>------------</option>
 						<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 						<option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 						<option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
@@ -69,15 +71,14 @@
 					        }
 					}
 				</script>
+				
 				<div class="col-xs-5 col-sm-5">
 					<div class="input-group border-bottom">
 						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control border-0" onkeyup="enterkey();" placeholder="검색어를 입력하세요."/>
 						&nbsp; &nbsp;<i class="fas fa-search fa-2x" id="searchBtn"></i>						
 					</div>
 				</div>				
-			</div>				 			
-			
-			
+			</div>			
 							
 			<section id="container" style="margin-top:10px;">
 				<form role="form" method="get">			
@@ -99,8 +100,7 @@
 								<td class="align-middle"><c:out value="${list.nno}" /></td>
 								<td class="align-middle">
 									<a href="/notice/readView?nno=${list.nno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}" class="text-secondary"><c:out value="${list.ntitle}" /></a>
-								</td>
-								<%-- <td><c:out value="${list.nwriter}" /></td> --%>
+								</td>								
 								<td class="align-middle"><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
 								<td class="align-middle"><c:out value="${list.nhit}" /></td>
 							</tr>
@@ -130,14 +130,13 @@
         					</c:if>
 						</ul>						
 					</div>
-				</form>
-			</section>								
-		</div>	
-		
+				</form>				
+			</section>	
+			</div>
+		</section>	
+				
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script>
-		
-		</section>
+		<script src="/js/app.js"></script>			
 	</body>
 </html>

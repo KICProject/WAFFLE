@@ -5,6 +5,7 @@
 <!-- <style type="text/css">
 	li {list-style: none; display:inline; padding: 6px;}
 </style> -->
+<br /><br /><br /><br />
 <ul>
 	<c:if test="${(member !=null) && (member.memAuthor == 1)}">
 	<li><button type="button" class="btn btn-outline-dark" onclick="location.href='/notice/writeView'" >관리자 글 작성</button></li>

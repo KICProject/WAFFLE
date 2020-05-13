@@ -21,14 +21,6 @@
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
 			
-			/* $(".cancel_btn").on("click", function(){
-				location.href = "/notice/readView?nno=${replyDelete.nno}"
-					   + "&page=${scri.page}"
-					   + "&perPageNum=${scri.perPageNum}"
-					   + "&searchType=${scri.searchType}"
-					   + "&keyword=${scri.keyword}";
-			}) */
-			
 			$(".delete_btn").on("click", function(){
 				opener.document.location.reload();
 				self.close();
@@ -43,16 +35,7 @@
 	<body>
 	
 		<div id="root">
-			<%-- <header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			<hr />
-			 --%>
+			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/notice/replyDelete">
 					<input type="hidden" name="nno" value="${replyDelete.nno}" readonly="readonly"/>

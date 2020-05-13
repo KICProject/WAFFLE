@@ -50,7 +50,7 @@
 					      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
 		})
 		
-		//글 작성
+		//댓글 작성
 		$(".replyWriteBtn").on("click", function(){
 			var formObj = $("form[name='replyForm']");
 			formObj.attr("action", "/notice/replyWrite");
@@ -58,15 +58,7 @@
 		});
 				
 		//댓글 수정 View		
-		/* $(".replyUpdateBtn").on("click", function(){
-			location.href = "/notice/replyUpdateView?nno=${read.nno}"
-							+ "&page=${scri.page}"
-							+ "&perPageNum=${scri.perPageNum}"
-							+ "&searchType=${scri.searchType}"
-							+ "&keyword=${scri.keyword}"
-							+ "&nrno="+$(this).attr("data-nrno");
-		}); */
-		$(".replyUpdateBtn").on("click", function(){
+		$(".replyUpdateBtn").on("click", function(){			
 			window.open("/notice/replyUpdateView?nno=${read.nno}"
 							+ "&page=${scri.page}"
 							+ "&perPageNum=${scri.perPageNum}"
@@ -74,20 +66,10 @@
 							+ "&keyword=${scri.keyword}"
 							+ "&nrno="+$(this).attr("data-nrno"),
 					'w', 'left=800,top=200,width=550,height=230');
-			})
+			});
 		
-		
-		//댓글 삭제 View
-		/* $(".replyDeleteBtn").on("click", function(){
-			location.href = "/notice/replyDeleteView?nno=${read.nno}"
-				+ "&page=${scri.page}"
-				+ "&perPageNum=${scri.perPageNum}"
-				+ "&searchType=${scri.searchType}"
-				+ "&keyword=${scri.keyword}"
-				+ "&nrno="+$(this).attr("data-nrno");
-		});	 */	
-		
-		$(".replyDeleteBtn").on("click", function(){
+		//댓글 삭제 View		
+		$(".replyDeleteBtn").on("click", function(){			
 			window.open("/notice/replyDeleteView?nno=${read.nno}"
 					+ "&page=${scri.page}"
 					+ "&perPageNum=${scri.perPageNum}"
@@ -95,7 +77,7 @@
 					+ "&keyword=${scri.keyword}"
 					+ "&nrno="+$(this).attr("data-nrno"),
 					'w', 'left=800,top=200,width=300,height=150');
-		})
+		});
 	})
 		
 	</script>
@@ -110,6 +92,13 @@
           <p class="title_small">WAFFLE</p>
         </div>
         
+         <!-- tab -->
+       <ul class="board_tab">
+	        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
+	        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
+	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
+   	   </ul>
+   	   
       	<div class="container">
 			<header>
 				<!-- <h1> 게시판</h1> -->
@@ -123,10 +112,11 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 										 
 					<!-- <input type="hidden" id="FILE_NO" name="FILE_NO" value="">  -->
+					
 				</form>	
 								
-				<div class="form-group row justify-content-center">					
-					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; margin:10 auto; font-size:40px;">${read.ntitle} </label>
+				<div class="form-group row">					
+					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; font-size:40px;text-align:center;">${read.ntitle} </label>
 				</div>		
 				<div class="form-group row justify-content-center">	
 					<label for="regdate" class="col-sm-3 control-label" style="width: 100%; float:40; margin:10 auto;font-size:20px;">
@@ -137,13 +127,15 @@
 				
 				<br>
 				
-				<div class="form-group row">					
+				<div class="form-group row justify-content-center">					
 					<!-- <textarea id="ncontent" name="ncontent" class="form-control" rows="50" readonly="readonly"> -->	
 					<c:if test="${(read.ncontent !=null)}">				
 					<textarea id="ncontent" name="ncontent" style="width: 1000px; height:300px; margin-bottom:10px; border : hidden 1px;">
 					<c:out value="${read.ncontent}" /></textarea>	
-					</c:if>						
+					</c:if>		
+					<c:if test="${(read.gdsImg !=null)}">				
 					<img src="${read.gdsImg}" class="oriImg"/>
+					</c:if>
 				</div>
 				
 				<hr>
@@ -170,12 +162,14 @@
 							</li>							
 							<br />
 							<br />
+							<c:if test="${(replyList.nrwriter==member.memId)}">
 							<li>
 								<div class="form-group row text-center" style="margin-left:1020px;">
-									<button type="button" class="replyUpdateBtn btn btn-sm" data-nrno="${replyList.nrno}">수정 </button>									
-									<button type="button" class="replyDeleteBtn btn btn-sm" data-nrno="${replyList.nrno}">삭제</button>
+									<button type="button" class="replyUpdateBtn btn btn-outline-dark btn-sm" data-nrno="${replyList.nrno}">수정 </button>									
+									<button type="button" class="replyDeleteBtn btn btn-outline-dark btn-sm" data-nrno="${replyList.nrno}">삭제</button>
 								</div>
-							</li>							
+							</li>		
+							</c:if>					
 							<hr style="border-color:black;">
 							<br />
 						</c:forEach>   
@@ -191,12 +185,11 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 					
-					
+					<c:if test="${(member !=null)}">
 					<div class="form-group">
 						<label for="nrwriter" class="col-sm-2 control-label" style="margin-left:5px">writer</label>						
-						<div class="col-sm-10">
-							<%-- <input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;border : hidden" readonly /> --%>
-						<label for="nrwriter" class="col-sm-2 control-label" style="margin-left:5px">${member.memId}</label>	
+						<div class="col-sm-10">						
+						<input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;border : hidden;width: 180px;" readonly />	
 						</div>
 					</div>
 					
@@ -212,26 +205,27 @@
 							<button type="button" class="replyWriteBtn btn btn-outline-dark">댓글 작성</button>
 						</div>
 					</div>
-					
+					</c:if>
 					<hr />
 						
 					<!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
 					<c:if test="${(member !=null) && (member.memAuthor == 1)}">
 					<div class="form-group">
-							<button type="button" class="update_btn btn">관리자 글 수정</button>
-							<button type="button" class="delete_btn btn">관리자 글 삭제</button>
-							<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="update_btn btn btn-outline-dark ">관리자 글 수정</button>
+							<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>
+							<button type="button" class="list_btn btn btn-outline-dark">공지사항 목록</button>
 						</div>
-					</c:if>
-				
-						<br /><br /><br /><br />								
+					</div>	
+					</c:if>				
+					<br /><br /><br /><br />								
 					</form>
 			</section>			
 		</div>
-		
+			</section>
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<script src="/js/app.js"></script>
-		</section>
+		
 	</body>
 </html>
