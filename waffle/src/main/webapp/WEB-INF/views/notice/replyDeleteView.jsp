@@ -40,10 +40,10 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 						
-					<div>
-						<p align="center">댓글을 삭제하시겠습니까?</p>
-						<button type="submit" class="delete_btn">삭제</button>
-						<button type="button" class="cancel_btn">취소</button>
+					<div style="text-align:center;">
+						<p style="margin-top:10px;">댓글을 삭제하시겠습니까?</p>
+						<button type="submit" class="delete_btn btn btn-outline-dark">삭제</button>
+						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>
 					</div>
 				</form>
 			</section>		

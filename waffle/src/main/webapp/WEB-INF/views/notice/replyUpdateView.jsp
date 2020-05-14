@@ -42,12 +42,13 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 					
+					<div style="text-align:center;">
 					<table>
 						<tbody>
 							<tr>
-								<td>
+								<td style="text-align:center;">
 									<label for="nrcontent">* 댓글 내용을 입력해주세요.</label><br />
-									<input type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}" style="width: 400px; height:100px; margin-bottom:10px; border : solid 1px lightgray;"/>
+									<input type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}" style="width: 400px; height:50px; margin-bottom:10px; border : solid 1px lightgray;"/>
 								</td>
 							</tr>							
 						</tbody>			
@@ -55,6 +56,7 @@
 					<div>
 						<button type="submit" class="update_btn btn btn-outline-dark">저장</button>
 						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>
+					</div>
 					</div>
 				</form>
 			</section>			

@@ -16,26 +16,13 @@
 		<script src="https://kit.fontawesome.com/44f00f680d.js" crossorigin="anonymous"></script>		
 	 	<!-- <title>공지 게시판</title> -->
 	</head>
-	<body>	
-		
-		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
-	
+	<body>		
+		<%-- <jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> --%>
+		<%-- <div><%@include file="nav.jsp" %></div>				 --%>
 	<section class="board_main">
-		<!-- service WAFFLE -->
-        <div class="board_head">
-          <p class="title_big">Notice</p>
-          <p class="title_small">WAFFLE</p>
-        </div>       
-	
-	   <!-- tab -->
-       <ul class="board_tab">
-	        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
-	        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
-	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
-   	   </ul>
-    
-	   	<div id="root" style="margin-top:20px;">			
-			<div>
+			
+	   	<div id="root">			
+			<div style="margin-top:15px;">
 				<ul>
 				<c:if test="${(member !=null) && (member.memAuthor == 1)}">
 				<li><button type="button" class="btn btn-outline-dark" onclick="location.href='/notice/writeView'" >관리자 글 작성</button></li>
@@ -70,7 +57,7 @@
 					}
 				</script>
 				
-				
+				<!-- keydown ->타이핑하기위해서 키를 눌렀을때 발생 keyup ->누른키를 손을 놓을때 발생 -->
 				<div class="col-xs-5 col-sm-5">
 					<div class="input-group border-bottom">
 						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control border-0" onkeyup="enterkey();" placeholder="검색어를 입력하세요."/>
@@ -135,7 +122,7 @@
 		</section>	
 				
 		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script>			
+		<%-- <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>		 --%>	
 	</body>
 </html>

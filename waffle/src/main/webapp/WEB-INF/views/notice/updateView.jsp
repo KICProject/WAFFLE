@@ -87,31 +87,18 @@
 			  });						 
 	</script>
 	<body>
-		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
-	
+		<%-- <jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>	 --%>
 		<section class="board_main">
-		<!-- service WAFFLE -->
-        <div class="board_head">
-          <p class="title_big">Notice</p>
-          <p class="title_small">WAFFLE</p>
-        </div>       
-	
-	   <!-- tab -->
-       <ul class="board_tab">
-	        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
-	        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
-	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
-   	   </ul>
-   	   <hr />
+		<%-- <div><%@include file="nav.jsp" %></div>    --%>	   
 		<div id="root">			
 		<section id="container">
-			 <div class="form-group row justify-content-center">
-				<form name="updateForm" role="form" method="post" action="/notice/update" enctype="multipart/form-data">				
+			 <div class="form-group row justify-content-center" style="margin-top:20px;">
+				<form name="updateForm" role="form" method="post" action="/notice/update" enctype="multipart/form-data">
 					<table style="width : 1000px;">
 						<tbody>
 							<tr>
 								<td>
-									<label style="width : 100%; margin-bottom:10px;" class="col-sm-2 control-label" for="ntitle">공지 제목</label>
+									<label style="width : 100%; margin-bottom:10px;margin-top:30px;" class="col-sm-2 control-label" for="ntitle">공지 제목</label>
 									<input type="text" id="ntitle" name="ntitle" value="${update.ntitle}"  class="chk" title="제목을 입력하세요." style="width: 1000px; height:40px; margin-bottom:10px; border : solid 1px lightgray;" />
 								</td>
 							</tr>	
@@ -144,13 +131,15 @@
 					</div>
 					<br /><br /><br /><br />
 				</form>
+				
+				
 				</div>
 			 </section>
 			<hr />
 		 </div>	 
 	 </section>
 	 <!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script>	
+		<%-- <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script> --%>	
 	</body>
 </html>
