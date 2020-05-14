@@ -25,17 +25,13 @@
           <!-- story -->
           <li class="waffle_story active">
             <div>
-              <p>대한민국을 넘어 세계로 향합니다.</p>
-              <p>
-                WAFFLE은<br />
-                친환경 친휴먼 짱짱맨 IoT 서비스 입니다.
-              </p>
-              <div class="story_img">
-                <p>
-                  WAFFLE is<br />
-                  IoT<br />
-                  Web Service
-                </p>
+              <div class="story_content">
+                <img id="story_img" src="/img/about_img_0.jpg" alt="IoT">
+                <pre id="story_text">WAFFLE is
+IoT
+Web Service</pre>
+                <button class="btn prevBtn">prev</button>
+                <button class="btn nextBtn">next</button>
               </div>
             </div>
           </li>
@@ -45,28 +41,39 @@
             <ul>
               <li>
                 <img src="/img/5.png" />
+                <p class="name">DEVTACO</p>
+                <strong>BackEnd/FrontEnd/webDesign</strong>
               </li>
               <li>
                 <img src="/img/6.png" />
+                <p class="name">YEONY</p>
+                <strong>BackEnd</strong>
               </li>
               <li>
                 <img src="/img/7.png" />
+                <p class="name">MSKIM</p>
+                <strong>BackEnd</strong>
               </li>
               <li>
                 <img src="/img/8.png" />
+                <p class="name">DAEKI</p>
+                <strong>BackEnd/FrontEnd</strong>
               </li>
               <li>
                 <img src="/img/9.png" />
+                <p class="name">MiNJU</p>
+                <strong>BackEnd/FrontEnd</strong>
               </li>
               <li>
                 <img src="/img/10.png" />
+                <p class="name">AIN</p>
+                <strong>FrontEnd</strong>
               </li>
             </ul>
             <p>6명으로 이루어진 웹개발 팀입니다.</p>
           </li>
         </ul>
       </div>
-    </section>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="/js/app.js"></script>
 </body>
