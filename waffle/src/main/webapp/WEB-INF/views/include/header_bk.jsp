@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="/css/header_bk.css" />
 
+
 	<!-- header -->
 	<header>
 		<a href="/"><span class="logo">AFFLE</span></a>
