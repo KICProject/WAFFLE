@@ -31,7 +31,7 @@ header .logo::before {
   background: no-repeat url("../img/logo_bk.png") center center;
   background-size: cover;
 }
-/* --------�α��� & �˻� & ���������� ----------- */
+/* --------로그인 & 검색 & 마이페이지 ----------- */
 
 header .gnp li.login a {
   width: 40px;
@@ -49,7 +49,7 @@ header .gnp li.my_page a {
 }
 /*----------------------- nav---------------------------- */
 
-/* ���ʻ�� �ܹ����±� */
+/* 왼쪽상단 햄버거태그 */
 nav .hamburg_box .hamburg {
   border-top: 2px solid #000;
 }
