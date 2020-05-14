@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="qnaMapper">
+  <select id="listPage" resultType="com.waffle.vo.QnaVO" parameterType="com.waffle.vo.QSearchCriteria">
+  	SELECT      QBNO, 
+		        QTITLE, 
+		        QCONTENT,
+		        QWRITER, 
+		        REGDATE
+		 FROM ( 
+		        SELECT QBNO, 
+		               QTITLE, 
+		               QCONTENT, 
+		               QWRITER, 
+		               REGDATE, 
+		               ROW_NUMBER() OVER(ORDER BY QBNO DESC) AS RNUM
+		         FROM Q_BOARD 
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		                       ) QNA
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY QBNO DESC
+ 	
+  </select>
+  
+  <select id="listCount" parameterType="com.waffle.vo.QSearchCriteria" resultType="int">
+	SELECT COUNT(QBNO)
+		   FROM Q_BOARD
+		   WHERE 1=1
+		<include refid="search"></include>	
+		   AND QBNO > 0
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND QTITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND QCONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND QWRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (QTITLE LIKE '%' || #{keyword} || '%') or (QCONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+  
+  <select id="qnaRead" resultType="com.waffle.vo.QnaVO" parameterType="int"> 
+  SELECT   QBNO
+  		   ,QTITLE
+  		   ,QCONTENT
+  		   ,QWRITER
+  		   ,REGDATE
+  		   ,REVIEW_PASSWORD
+  		   FROM Q_BOARD
+ 	WHERE QBNO = #{qbno}
+  </select>
+  
+   <!-- 게시판 글 작성 -->
+   <insert id="insert" parameterType="com.waffle.vo.QnaVO" useGeneratedKeys="true" keyProperty="qbno">
+   <selectKey keyProperty="qbno" resultType="int" order="BEFORE">
+	    	SELECT Q_BOARD_SEQ.NEXTVAL FROM DUAL
+   </selectKey>
+	   INSERT INTO Q_BOARD(     QBNO 
+	   					      , QTITLE 
+	   					      , QCONTENT 
+	   					      , QWRITER
+	   					      , REVIEW_PASSWORD  )
+	                 VALUES(    #{qbno}
+	                 		  , #{qtitle}
+	                 		  , #{qcontent}
+	                 		  , #{qwriter}
+	                 		  , #{review_password}  )
+   
+   </insert>
+   
+    <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO Q_FILE(
+			FILE_NO,
+			QBNO,
+			ORG_FILE_NAME,
+			STORED_FILE_NAME,
+			FILE_SIZE
+		)VALUES(
+			SEQ_Q_FILE_NO.NEXTVAL,
+			#{qbno},
+			#{ORG_FILE_NAME},
+			#{STORED_FILE_NAME},
+			#{FILE_SIZE}
+		)
+    </insert>
+    
+    <!-- 첨부파일 조회 -->
+<select id="selectFileList" parameterType="int" resultType="hashMap">
+	SELECT FILE_NO,
+		   ORG_FILE_NAME,
+		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+		   FROM Q_FILE
+		   WHERE QBNO = #{qbno}
+	   AND DEL_GB = 'N'
+	   ORDER BY FILE_NO ASC
+</select>
+
+<!-- 첨부파일 다운 -->
+<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+	SELECT 
+		STORED_FILE_NAME,
+		ORG_FILE_NAME
+	FROM Q_FILE
+	WHERE FILE_NO = #{FILE_NO}
+</select>
+
+ <update id="updateFile" parameterType="hashMap">
+    	UPDATE Q_FILE SET
+    	DEL_GB = 'Y'
+    	WHERE FILE_NO = #{FILE_NO}
+    </update>
+   
+    <update id="update" parameterType="com.waffle.vo.QnaVO">
+		UPDATE Q_BOARD
+		   SET QTITLE    =   #{qtitle},
+		   	   QCONTENT  =   #{qcontent}
+		 WHERE QBNO = #{qbno} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM Q_BOARD
+		 WHERE QBNO = #{qbno}
+	</delete>
+	
+
+  
+</mapper>
