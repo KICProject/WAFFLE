@@ -6,14 +6,11 @@
 		<link rel="stylesheet" type="text/css" href="/css/noticeList.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">		
 		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
 		<!-- Popper JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="https://kit.fontawesome.com/44f00f680d.js" crossorigin="anonymous"></script>		
@@ -37,16 +34,17 @@
 	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
    	   </ul>
     
-	   	<div id="root">
-			<!-- <header>
-				<h1>공지 게시판</h1>
-			</header>		 -->		
+	   	<div id="root" style="margin-top:20px;">			
 			<div>
-				<%@include file="nav.jsp" %>
+				<ul>
+				<c:if test="${(member !=null) && (member.memAuthor == 1)}">
+				<li><button type="button" class="btn btn-outline-dark" onclick="location.href='/notice/writeView'" >관리자 글 작성</button></li>
+				</c:if>	
+			</ul>
 			</div>				
 			<br />
 			
-			<div class="search row justify-content-center">
+			<div class="search row justify-content-center" style="margin-top:20px;">
 				<div class="col-xs-2 col-sm-2">
 					<div class="border-bottom" >
 					<select name="searchType" class="form-control border-0">
@@ -71,6 +69,7 @@
 					        }
 					}
 				</script>
+				
 				
 				<div class="col-xs-5 col-sm-5">
 					<div class="input-group border-bottom">

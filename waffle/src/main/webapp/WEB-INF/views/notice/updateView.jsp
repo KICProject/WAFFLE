@@ -7,18 +7,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
 	  	<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">		
 		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
 		<!-- Popper JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	 	
-
 	 	<!-- <title>게시판 수정하기</title> -->
 	</head>
 	
@@ -107,14 +102,9 @@
 	        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
 	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
    	   </ul>
-   	   
-		<div id="root">
-		<!-- 	<header>
-				<h1> 게시판 수정</h1>
-			</header> -->
-			<hr />		
-			
-			<section id="container">
+   	   <hr />
+		<div id="root">			
+		<section id="container">
 			 <div class="form-group row justify-content-center">
 				<form name="updateForm" role="form" method="post" action="/notice/update" enctype="multipart/form-data">				
 					<table style="width : 1000px;">
@@ -129,17 +119,14 @@
 								<td>
 										<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" >공지 내용</label>
 										<textarea id="ncontent" name="ncontent" placeholder="수정할 내용을 입력하세요." style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;"></textarea>
-										
-									</td>
-							</tr>							
-							
+								</td>
+							</tr>
 							<tr >		
 								<td >						
 									<label for="gdsImg">이미지</label>
 									<input type="file"  id="gdsImg" name="file"  title="이미지 파일을 선택하세요." value="${read.gdsImg}" style="width : 100%;margin-top:10px;margin-bottom:10px;"/>
 								</td>
-							</tr>		
-																				
+							</tr>											
 						</tbody>			
 					</table>
 					
@@ -149,18 +136,16 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 					<input type="hidden" name="gdsImg" value="${goods.gdsImg}" />
-					<input type="hidden" name="gdsThumbImg" value="${goods.gdsThumbImg}" />
-					
+					<input type="hidden" name="gdsThumbImg" value="${goods.gdsThumbImg}" />					
 					<br />
 					<div >
 						<button type="button" class="update_btn btn btn-outline-dark">저장</button>
-						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>
-						<!-- <button type="button" class="fileAdd_btn">파일추가</button> -->
+						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>						
 					</div>
 					<br /><br /><br /><br />
 				</form>
 				</div>
-				</section>
+			 </section>
 			<hr />
 		 </div>	 
 	 </section>

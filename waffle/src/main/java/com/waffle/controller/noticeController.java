@@ -198,33 +198,32 @@ public class noticeController {
 	}
 
 
-	  //댓글 수정 GET - 댓글 수정 페이지에 접근하기 위한 컨트롤러	  
-	  @RequestMapping(value="/replyUpdateView", method = RequestMethod.GET) public
-	  String replyUpdateView(NoticeReVO vo, NoticeSearchCri scri, Model model)
-	  throws Exception { 
-		  logger.info("reply Write");
-	  
-	  model.addAttribute("replyUpdate", replyService.selectReply(vo.getNno()));
-	  model.addAttribute("scri", scri);
-	  
-	  return "notice/replyUpdateView"; }
-	 
-
-	// 댓글 수정 POST - 수정한 값을 전송할 수 있는 컨트롤러
-	@RequestMapping(value = "/replyUpdate", method = RequestMethod.POST)
-	public String replyUpdate(NoticeReVO vo, NoticeSearchCri scri, RedirectAttributes rttr) throws Exception {
-		logger.info("reply Write");
-
-		replyService.updateReply(vo);
-
-		rttr.addAttribute("nno", vo.getNno());
-		rttr.addAttribute("page", scri.getPage());
-		rttr.addAttribute("perPageNum", scri.getPerPageNum());
-		rttr.addAttribute("searchType", scri.getSearchType());
-		rttr.addAttribute("keyword", scri.getKeyword());
-
-		return "redirect:/notice/readView";
-	}
+	//댓글 수정 GET
+		@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
+		public String replyUpdateView(NoticeReVO vo, NoticeSearchCri scri, Model model) throws Exception {
+			logger.info("reply Write");
+			
+			model.addAttribute("replyUpdate", replyService.selectReply(vo.getNrno()));
+			model.addAttribute("scri", scri);
+			
+			return "notice/replyUpdateView";
+		}
+		
+		//댓글 수정 POST
+		@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
+		public String replyUpdate(NoticeReVO vo, NoticeSearchCri scri, RedirectAttributes rttr) throws Exception {
+			logger.info("reply Write");
+			
+			replyService.updateReply(vo);
+			
+			rttr.addAttribute("nno", vo.getNno());
+			rttr.addAttribute("page", scri.getPage());
+			rttr.addAttribute("perPageNum", scri.getPerPageNum());
+			rttr.addAttribute("searchType", scri.getSearchType());
+			rttr.addAttribute("keyword", scri.getKeyword());
+			
+			return "redirect:/notice/readView";
+		}
 	
 	  // 댓글 삭제 GET - 댓글 삭제 페이지에 들어가기 위한 컨트롤러
 	  

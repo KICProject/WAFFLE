@@ -57,16 +57,16 @@
 			formObj.submit();
 		});
 				
-		//댓글 수정 View		
-		$(".replyUpdateBtn").on("click", function(){			
+		//댓글 수정 View
+		$(".replyUpdateBtn").on("click", function(){
 			window.open("/notice/replyUpdateView?nno=${read.nno}"
 							+ "&page=${scri.page}"
 							+ "&perPageNum=${scri.perPageNum}"
 							+ "&searchType=${scri.searchType}"
 							+ "&keyword=${scri.keyword}"
 							+ "&nrno="+$(this).attr("data-nrno"),
-					'w', 'left=800,top=200,width=550,height=230');
-			});
+							'w', 'left=800,top=200,width=400,height=200');
+		});
 		
 		//댓글 삭제 View		
 		$(".replyDeleteBtn").on("click", function(){			
@@ -99,23 +99,17 @@
 	        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
    	   </ul>
    	   
-      	<div class="container">
-			<header>
-				<!-- <h1> 게시판</h1> -->
-			</header>			
-			
+      	<div class="container">			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 										 
-					<!-- <input type="hidden" id="FILE_NO" name="FILE_NO" value="">  -->
-					
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
 				</form>	
 								
-				<div class="form-group row">					
+				<div class="form-group row" style="margin-top:100px;">					
 					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; font-size:40px;text-align:center;">${read.ntitle} </label>
 				</div>		
 				<div class="form-group row justify-content-center">	
@@ -123,12 +117,10 @@
 					작성일 : <fmt:formatDate value="${read.regdate}" pattern="yyyy.MM.dd"  /></label>			
 				</div>
 				
-				<hr />
-				
+				<hr />				
 				<br>
 				
-				<div class="form-group row justify-content-center">					
-					<!-- <textarea id="ncontent" name="ncontent" class="form-control" rows="50" readonly="readonly"> -->	
+				<div class="form-group row justify-content-center">	
 					<c:if test="${(read.ncontent !=null)}">				
 					<textarea id="ncontent" name="ncontent" style="width: 1000px; height:300px; margin-bottom:10px; border : hidden 1px;">
 					<c:out value="${read.ncontent}" /></textarea>	
@@ -138,10 +130,11 @@
 					</c:if>
 				</div>
 				
-				<hr>
-						
+				<br /><br /><hr /><br /><br />
+					
 				<!-- 댓글 -->
 				<div id="reply" class="panel panel-default" style="margin-top: 10px;">
+				<p style="font-weight:bold;">댓글<p><br /><br />
 					<ul class="replyList" style="list-style:none">
 						<c:forEach items="${replyList}" var="replyList">
 							<li>
@@ -152,16 +145,13 @@
 								<fmt:formatDate value="${replyList.regdate}" pattern="yyyy/MM/dd" />
 								</p>
 							</li>
-							<br />
-							<br />
+							<br /><br />
 							<li>	  
 								<span class="nrcontent float-left">
-								${replyList.nrcontent}
-								
+								${replyList.nrcontent}								
 								</span>
 							</li>							
-							<br />
-							<br />
+							<br /><br />
 							<c:if test="${(replyList.nrwriter==member.memId)}">
 							<li>
 								<div class="form-group row text-center" style="margin-left:1020px;">
@@ -175,8 +165,7 @@
 						</c:forEach>   
 					</ul>
 				</div>
-				<br /><br /><br />
-				
+				<br /><br /><br />				
 				
 				<form name="replyForm" method="post" class="form-horizontal">
 					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
@@ -191,15 +180,13 @@
 						<div class="col-sm-10">						
 						<input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;border : hidden;width: 180px;" readonly />	
 						</div>
-					</div>
-					
+					</div>					
 					<div class="form-group" style="margin-top:10px;">
 						<label for="nrcontent" class="col-sm-2 control-label" style="margin-left:5px">content</label>
 						<div class="col-sm-10">
 							<input type="text" id="nrcontent" name="nrcontent" class="form-control" style="margin-top:10px;"/>
 						</div>
-					</div>
-					
+					</div>					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="button" class="replyWriteBtn btn btn-outline-dark">댓글 작성</button>
@@ -217,12 +204,20 @@
 							<button type="button" class="list_btn btn btn-outline-dark">공지사항 목록</button>
 						</div>
 					</div>	
-					</c:if>				
+					</c:if>
+					<!-- 사용자 로그인시 목록 버튼 -->	
+					<c:if test="${(member ==null) &&(member.memAuthor == 0)}">
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="medium_btn">목 록</button>
+						</div>
+					</div>	
+					</c:if>			
 					<br /><br /><br /><br />								
-					</form>
+				</form>
 			</section>			
 		</div>
-			</section>
+		</section>
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<script src="/js/app.js"></script>
