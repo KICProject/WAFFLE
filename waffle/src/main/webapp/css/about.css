@@ -28,28 +28,28 @@ body {
 }
 /*----------------------- header---------------------------- */
 header .logo::before {
-  background: no-repeat url("../img/logo_bk.png") center center;
+  background: no-repeat url("/img/logo_bk.png") center center;
   background-size: cover;
 }
-/* --------·Î±×ÀÎ & °Ë»ö & ¸¶ÀÌÆäÀÌÁö ----------- */
+/* --------ë¡œê·¸ì¸ & ê²€ìƒ‰ & ë§ˆì´íŽ˜ì´ì§€ ----------- */
 
 header .gnp li.login a {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background: no-repeat url("../img/power_white.png") center center #000; 
+  background: no-repeat url("/img/power_white.png") center center #000; 
   box-shadow: none;
 }
 header .gnp li.search a {
-  background: no-repeat url("../img/search_black.png") center center;
+  background: no-repeat url("/img/search_black.png") center center;
   background-size: 100%;
 }
 header .gnp li.my_page a {
-  background: no-repeat url("../img/mypage_black.png") center center;
+  background: no-repeat url("/img/mypage_black.png") center center;
 }
 /*----------------------- nav---------------------------- */
 
-/* ¿ÞÂÊ»ó´Ü ÇÜ¹ö°ÅÅÂ±× */
+/* ì™¼ìª½ìƒë‹¨ í–„ë²„ê±°íƒœê·¸ */
 nav .hamburg_box .hamburg {
   border-top: 2px solid #000;
 }
@@ -65,7 +65,7 @@ nav .hamburg:after {
 .about_main {
   width: 1410px;
   margin: 0 auto;
-  padding-top: 250px;
+  padding-top: 100px;
 }
 /*---------------about main -> header-------------------*/
 .about_main .about_head {
@@ -127,68 +127,28 @@ nav .hamburg:after {
   text-align: center;
 }
 /*---------------about main -> center -> content -> waffle story-------------------*/
-.about_main .about_center .about_content .waffle_story .story_content {
-  position: relative;
-  width: 1410px;
-  height: 745px;
+.about_main .about_center .about_content .waffle_story > div {
   border-bottom: 1px solid #444;
   padding-bottom: 150px;
 }
-.about_main .about_center .about_content .waffle_story div .story_content #story_img {
-  width: 100%;
-  height: 100%;
+.about_main .about_center .about_content .waffle_story div p:nth-child(2) {
+  margin-top: 150px;
+  line-height: 180%;
 }
-.about_main .about_center .about_content .waffle_story div .story_content #story_text {
-  position: absolute;
-  top: 50%;
-  right: 150px;
-  transform: translateY(-70%);
+.about_main .about_center .about_content .waffle_story div .story_img {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 1410px;
+  height: 745px;
+  margin-top: 110px;
+  background: no-repeat url(/img/login_img.jpeg) center center;
+}
+.about_main .about_center .about_content .waffle_story div .story_img > p {
+  padding-right: 180px; 
   line-height: 150%;
   font-family: S-CoreDream-6;
   font-size: 47px;
-  color: #f1faee;
-}
-.about_main .about_center .about_content .waffle_story div .story_content .btn {
-  width: 100px;
-  height: 100px;
-  border: none;
-  background: none;
-  text-indent:-9999px;
-  cursor: pointer;
-}
-.about_main .about_center .about_content .waffle_story div .story_content .prevBtn {
-  position: absolute;
-  top: 50%;
-  left: 20px;
-  transform: translateY(-100%)
-}
-.about_main .about_center .about_content .waffle_story div .story_content .prevBtn::before {
-  content: '';
-  position: absolute;
-  top: 21px;
-  left: 30px;
-  width: 50px;
-  height: 50px;
-  border-bottom: 5px solid #edece8;
-  border-left: 5px solid #edece8;
-  transform: rotate(45deg);
-}
-.about_main .about_center .about_content .waffle_story div .story_content .nextBtn {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-100%)
-}
-.about_main .about_center .about_content .waffle_story div .story_content .nextBtn::before {
-  content: '';
-  position: absolute;
-  top: 21px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  border-top: 5px solid #edece8;
-  border-right: 5px solid #edece8;
-  transform: rotate(45deg);
 }
 
 /*---------------about main -> center -> content -> member-------------------*/
@@ -206,19 +166,10 @@ nav .hamburg:after {
   width: 33.33%;
   /* padding:30px 50px; */
 }
-.about_main .about_center .about_content .member ul li>img {
+.about_main .about_center .about_content .member ul li img {
   border: 1px solid #444;
   border-radius: 60px;
   padding: 20px 20px;
-}
-.about_main .about_center .about_content .member ul li .name {
-	padding-top: 20px;
-	font-weight: bold;
-	font-size: 20px;
-}
-.about_main .about_center .about_content .member ul li>strong {
-  display: block;
-  padding-top: 20px; 
 }
 .about_main .about_center .about_content > li {
   display: none;
