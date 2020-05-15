@@ -18,10 +18,21 @@
 	</head>
 	<body>		
 		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> 
-		<div><%@include file="nav.jsp" %></div>			
+		<section class="board_main">
+				<!-- service WAFFLE -->
+		        <div class="board_head">
+		          <p class="title_big">Customer</p>
+		          <p class="title_small">WAFFLE</p>
+		        </div>
+		        <!-- tab -->
+		       <ul class="board_tab">
+			        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
+			        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
+			        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
+		   	   </ul>			
 	<section class="board_main">			
 	   	<div id="root">			
-			<div style="margin-top:15px;">
+			<div>
 				<ul>
 				<c:if test="${(member !=null) && (member.memAuthor == 1)}">
 				<li><button type="button" class="btn btn-outline-dark" onclick="location.href='/notice/writeView'" >관리자 글 작성</button></li>
@@ -30,7 +41,7 @@
 			</div>				
 			<br />
 			
-			<div class="search row justify-content-center" style="margin-top:20px;">
+			<div class="search row justify-content-center" style="margin-top:3px;">
 				<div class="col-xs-2 col-sm-2">
 					<div class="border-bottom" >
 					<select name="searchType" class="form-control border-0">
@@ -54,6 +65,7 @@
 					        self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 					        }
 					}
+					
 				</script>
 				
 				<!-- keydown ->타이핑하기위해서 키를 눌렀을때 발생 keyup ->누른키를 손을 놓을때 발생 -->
@@ -119,9 +131,9 @@
 			</section>	
 			</div>
 		</section>	
-				
+		</section>		
 		<!-- footer -->
-		<%-- <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script>		 --%>	
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>	
 	</body>
 </html>

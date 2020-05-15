@@ -78,30 +78,8 @@
 					+ "&nrno="+$(this).attr("data-nrno"),
 					'w', 'left=800,top=350,width=250,height=110');
 		});
-	})
+	})	
 	
-	$(function(){
-	   $('#faq_btn').click(function(){
-		  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
-	      //$('.full_container').empty();
-	      $('.full_container').load('/sub/faq')
-	      $("#faq_btn").siblings().css('background-color','#333333').css('color','#fff'); 
-	   });
-	   
-	    $('#notice_btn').click(function(){
-		  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
-	      //$('.full_container').empty();
-	      $('.full_container').load('/notice/list')
-	      $("#notice_btn").siblings().css('background-color','#333333').css('color','#fff');
-	   });
-	    
-	    $('#qna_btn').click(function(){
-	  	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
-	        //$('.full_container').empty();
-	        $('.full_container').load('/qna/qnalist')
-	        $("#qna_btn").siblings().css('background-color','#333333').css('color','#fff');
-	    });
-	s})		
 	</script>
 
 	<body>
@@ -109,13 +87,13 @@
 		<section class="board_main">		
 				<!-- service WAFFLE -->
 		        <div class="board_head">
-		          <p class="title_big">Notice</p>
+		          <p class="title_big">Customer</p>
 		          <p class="title_small">WAFFLE</p>
 		        </div>
 		        <!-- tab -->
 		       <ul class="board_tab">
 			        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
-			        <li id="moveNotice"><a href="/sub/waffleBoard">NOTICE</a></li>
+			        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
 			        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
 		   	   </ul>
 				
@@ -218,16 +196,16 @@
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="button" class="update_btn btn btn-outline-dark ">관리자 글 수정</button>
 							<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>
-							<!-- <button type="button" class="list_btn btn btn-outline-dark">공지사항 목록</button> -->
+							<button type="button" class="list_btn btn btn-outline-dark">공지사항 목록</button>
 						</div>
 					</div>	
 					</c:if>
 					
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<button type="button" class="medium_btn" onclick="location.href='/notice/list' ">목 록</button>
 						</div>
-					</div>					
+					</div>	 -->				
 					<br /><br /><br /><br />
 			</section>
 		</div>

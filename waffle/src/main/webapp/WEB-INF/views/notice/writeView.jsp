@@ -46,7 +46,7 @@
 		<section class="board_main">
 				<!-- service WAFFLE -->
 		        <div class="board_head">
-		          <p class="title_big">Notice</p>
+		          <p class="title_big">Customer</p>
 		          <p class="title_small">WAFFLE</p>
 		        </div>
 		        <!-- tab -->
