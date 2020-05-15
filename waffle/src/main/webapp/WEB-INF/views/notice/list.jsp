@@ -6,53 +6,35 @@
 		<link rel="stylesheet" type="text/css" href="/css/noticeList.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">		
 		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
 		<!-- Popper JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="https://kit.fontawesome.com/44f00f680d.js" crossorigin="anonymous"></script>		
 	 	<!-- <title>공지 게시판</title> -->
 	</head>
-	<body>	
-		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
-	
-	<section class="board_main">
-   		<!-- service WAFFLE -->
-        <div class="board_head">
-          <p class="title_big">Notice</p>
-          <p class="title_small">WAFFLE</p>
-        </div>
-        
-       <ul class="board_tab">
-        <li id="moveFaq">FAQ</li>
-        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
-        <li id="moveQna">QNA</li>
-   	   </ul>
-    
-		<div class="container">
-			<header>
-				<!-- <h1>공지 게시판</h1> -->
-			</header>				
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>	
+	<body>		
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> 
+		<div><%@include file="nav.jsp" %></div>			
+	<section class="board_main">			
+	   	<div id="root">			
+			<div style="margin-top:15px;">
+				<ul>
+				<c:if test="${(member !=null) && (member.memAuthor == 1)}">
+				<li><button type="button" class="btn btn-outline-dark" onclick="location.href='/notice/writeView'" >관리자 글 작성</button></li>
+				</c:if>	
+			</ul>
+			</div>				
+			<br />
 			
-			<c:if test="${member != null}">
-			<p>${member.memId}님 안녕하세요.</p>
-			</c:if>
-			<br /><br /><br />
-			
-			<div class="search row justify-content-center">
+			<div class="search row justify-content-center" style="margin-top:20px;">
 				<div class="col-xs-2 col-sm-2">
 					<div class="border-bottom" >
 					<select name="searchType" class="form-control border-0">
-						<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>---------</option>
+						<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>------------</option>
 						<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 						<option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 						<option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
@@ -73,15 +55,15 @@
 					        }
 					}
 				</script>
+				
+				<!-- keydown ->타이핑하기위해서 키를 눌렀을때 발생 keyup ->누른키를 손을 놓을때 발생 -->
 				<div class="col-xs-5 col-sm-5">
 					<div class="input-group border-bottom">
 						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control border-0" onkeyup="enterkey();" placeholder="검색어를 입력하세요."/>
 						&nbsp; &nbsp;<i class="fas fa-search fa-2x" id="searchBtn"></i>						
 					</div>
 				</div>				
-			</div>				 			
-			
-			
+			</div>			
 							
 			<section id="container" style="margin-top:10px;">
 				<form role="form" method="get">			
@@ -103,8 +85,7 @@
 								<td class="align-middle"><c:out value="${list.nno}" /></td>
 								<td class="align-middle">
 									<a href="/notice/readView?nno=${list.nno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}" class="text-secondary"><c:out value="${list.ntitle}" /></a>
-								</td>
-								<%-- <td><c:out value="${list.nwriter}" /></td> --%>
+								</td>								
 								<td class="align-middle"><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
 								<td class="align-middle"><c:out value="${list.nhit}" /></td>
 							</tr>
@@ -134,14 +115,13 @@
         					</c:if>
 						</ul>						
 					</div>
-				</form>
-			</section>								
-		</div>	
-		
+				</form>				
+			</section>	
+			</div>
+		</section>	
+				
 		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script>
-		
-		</section>
+		<%-- <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>		 --%>	
 	</body>
 </html>

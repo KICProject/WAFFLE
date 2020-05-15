@@ -319,11 +319,11 @@ cursor: pointer;
 }
 */
 
-
 /* -------------서비스 탭 스타일 적용--------------- */
+
 .board_tab {
 	font-family: S-CoreDream-3;
-	margin: 0;
+	margin: 100px 0 200px;
 	padding: 0;
 	border: 0;
 	font: inherit;

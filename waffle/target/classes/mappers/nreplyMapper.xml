@@ -12,7 +12,8 @@
 <!-- 댓글 작성 -->
 	<insert id="writeReply">
 		INSERT INTO NREPLY (NNO, NRNO, NRCONTENT, NRWRITER)
-			VALUES(#{nno}, NRSEQ.NEXTVAL, #{nrcontent}, #{nrwriter}	)
+		VALUES(#{nno}, NRSEQ.NEXTVAL, #{nrcontent}, #{nrwriter} )
+			<!-- VALUES(#{nno}, NRSEQ.NEXTVAL, #{nrcontent}, #{nrwriter}	) -->
 	</insert>
 	
 <!-- 댓글 수정  -->

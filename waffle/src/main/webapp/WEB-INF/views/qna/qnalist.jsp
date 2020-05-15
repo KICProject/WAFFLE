@@ -14,17 +14,16 @@
 	</head>
 	
 	<body>
-		<div class="container">
+<div class="container" style="margin:auto;">
 			<header>
 				<div class="logo-area">
-				 <img src="/img/common_accordion_Q.png" id="q_img" style="margin-top:-13px;margin-right:5px;">
-				 <h2 style="display : inline-block; margin-top:50px;">질문해주세요.</h2>
+				 <h2 style="display : inline-block;padding-top:10px;">질문해주세요.</h2>
 				 </div>
 			
 			</header>
 			<hr />
-			 
-			<div style="margin-left:-40px;">
+
+			<div>
 			  <%@include file="nav.jsp" %>
 			</div>
 					
@@ -62,7 +61,7 @@
 							<div class="input-group">
 								<input style="margin-bottom:20px;" type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control"/>
 								<span class="input-group-btn">
-									<button style="margin-bottom:20px;" id="searchBtn" type="button" class="btn btn-default">검색</button> 	
+									<button id="searchBtn" type="button" class="btn btn-default">검색</button> 	
 								</span>
 							</div>
 						</div>
@@ -70,25 +69,25 @@
 						<script>
 							 $(function(){
 								 $('#searchBtn').click(function() {
-									 self.location = "qnalist" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+									 self.location = "/qna/qnalist" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								 });
 							 });
 							 
 						</script>
 					</div>
 					
-					<div style="text-align:center">
+					<div style="text-align:center;margin:auto;">
 					  <ul>
 					    <c:if test="${pageMaker.prev}">
-					    	<li><a href="qnalist${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+					    	<li><a href="/qna/qnalist${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					    </c:if> 
 					
 					    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					    	<li><a href="qnalist${pageMaker.makeSearch(idx)}">${idx}</a></li>
+					    	<li><a href="/qna/qnalist${pageMaker.makeSearch(idx)}">${idx}</a></li>
 					    </c:forEach>
 					
 					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					    	<li><a href="qnalist${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+					    	<li><a href="/qna/qnalist${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					    </c:if> 
 					  </ul>
 					</div>

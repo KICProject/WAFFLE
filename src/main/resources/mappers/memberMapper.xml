@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<!-- 회원가입 -->
+	<insert id="register">
+		INSERT INTO WF_MEMBER( MEMID
+							,MEMPASS
+							,MEMNAME
+							,MEMBIRTH
+							,MEMPHONE
+							,MEMPHONE2
+							,MEMEMAIL
+							,MEMADDR
+							,MEMAUTHOR )
+						VALUES(	#{memId}
+							,#{memPass}
+							,#{memName}
+							,#{memBirth}
+							,#{memPhone}
+							,#{memPhone2}
+							,#{memEmail}
+							,#{memAddr}
+							,#{memAuthor})	
+    </insert>
+    <insert id="reg_for_login">
+    	INSERT INTO WF_MEM_LOGIN( MEMID
+    							,MEMPASS
+    							,MEMAUTHOR)
+    						VALUES (#{memId}
+    							   ,#{memPass}
+    							   ,#{memAuthor})
+    </insert>    
+	<!-- 로그인 -->
+	<select id="login" parameterType="com.waffle.vo.MemberVO" resultType="com.waffle.vo.MemberVO">
+		SELECT *
+		FROM WF_MEMBER
+		WHERE MEMID = #{memId,jdbcType=VARCHAR}		
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="memberUpdate">
+		UPDATE WF_MEMBER SET
+		    MEMPASS = #{memPass,jdbcType=VARCHAR}
+		   ,MEMNAME = #{memName,jdbcType=VARCHAR}
+		   ,MEMPHONE = #{memPhone,jdbcType=VARCHAR}
+		   ,MEMPHONE2 = #{memPhone2,jdbcType=VARCHAR}
+		   ,MEMEMAIL = #{memEmail,jdbcType=VARCHAR}
+		   ,MEMADDR = #{memAddr,jdbcType=VARCHAR}
+		WHERE MEMID = #{memId,jdbcType=VARCHAR}
+	</update>
+	<!-- 회원탈퇴 -->
+	<delete id="memberDelete">
+		DELETE FROM WF_MEMBER
+		WHERE MEMID = #{memId,jdbcType=VARCHAR}
+		<!-- AND MEMPASS = #{memPass} -->
+	</delete>
+	<delete id="memberDeleteLogin">
+		DELETE FROM WF_MEM_LOGIN
+		WHERE MEMID = #{memId,jdbcType=VARCHAR}
+	</delete>      
+	<!-- 패스워드 체크 -->
+	<select id="passChk" resultType="int">
+		SELECT COUNT(*) FROM WF_MEMBER
+		WHERE MEMID = #{memId} AND MEMPASS = #{memPass}
+	</select>
+	<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="int">
+		SELECT COUNT(*) FROM WF_MEMBER
+		WHERE MEMID = #{memId}
+	</select>
+	<!-- 이메일 중복 체크 -->
+	<select id="emailChk" resultType="int">
+		SELECT COUNT(*) FROM WF_MEMBER
+		WHERE MEMEMAIL = #{memEmail,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

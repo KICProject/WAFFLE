@@ -4,16 +4,12 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- 합쳐지고 최소화된 최신 CSS -->
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">		
 		<!-- jQuery library -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>		
 		<!-- Popper JS -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	 	<!-- <title>게시판</title> -->
@@ -21,18 +17,22 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='updateForm']");
-			
-			$(".cancel_btn").on("click", function(){
+			$(".update_btn").on("click", function(){
 				opener.document.location.reload();
 				self.close();
-			})		
+			})	
+			$(".cancel_btn").on("click", function(){
+				location.href = "/notice/readView?nno=${replyUpdate.nno}"
+					   + "&page=${scri.page}"
+					   + "&perPageNum=${scri.perPageNum}"
+					   + "&searchType=${scri.searchType}"
+					   + "&keyword=${scri.keyword}";
+			})			
 		})
 		
 	</script>
-	<body>
-	
+	<body>	
 		<div id="root">
-			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/notice/replyUpdate">
 					<input type="hidden" name="nno" value="${replyUpdate.nno}" readonly="readonly"/>
@@ -41,24 +41,25 @@
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					
+					<div style="text-align:center;">
 					<table>
 						<tbody>
 							<tr>
-								<td>
-									<p align="center" style="color:#380B61;text:bold"><label for="content">*댓글 내용을 수정해주세요</label></p>
-									<input style="text-align:center; width:500px; height:100px;" type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}"/>
-									
-							</tr>	
-							
+								<td style="text-align:center;">
+									<label for="nrcontent">* 댓글 내용을 입력해주세요.</label><br />
+									<input type="text" id="nrcontent" name="nrcontent" value="${replyUpdate.nrcontent}" style="width: 400px; height:50px; margin-bottom:10px; border : solid 1px lightgray;"/>
+								</td>
+							</tr>							
 						</tbody>			
 					</table>
 					<div>
 						<button type="submit" class="update_btn btn btn-outline-dark">저장</button>
 						<button type="button" class="cancel_btn btn btn-outline-dark">취소</button>
 					</div>
+					</div>
 				</form>
-			</section>
-			<hr />
+			</section>			
 		</div>
 	</body>
 </html>

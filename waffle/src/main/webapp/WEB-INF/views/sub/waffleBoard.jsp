@@ -47,6 +47,29 @@ $(function(){
 		}
 	})
 })
+
+$(function(){
+   $('#faq_btn').click(function(){
+	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+      //$('.full_container').empty();
+      $('.full_container').load('/sub/faq')
+      $("#faq_btn").siblings().css('background-color','#333333').css('color','#fff'); 
+   });
+   
+    $('#notice_btn').click(function(){
+	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+      //$('.full_container').empty();
+      $('.full_container').load('/notice/list')
+      $("#notice_btn").siblings().css('background-color','#333333').css('color','#fff');
+   });
+    
+    $('#qna_btn').click(function(){
+  	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+        //$('.full_container').empty();
+        $('.full_container').load('/qna/qnalist')
+        $("#qna_btn").siblings().css('background-color','#333333').css('color','#fff');
+    });
+})
 </script>
 
 <style>
@@ -59,12 +82,26 @@ $(function(){
 }
 
  a:link { text-decoration:none; color:#ffffff;}
-
- a:visited { text-decoration:none;color:#ffffff;}
-
- a:active {text-decoration:none; color:#ffffff; }
-
- a:hover { text-decoration:none; color:#ffffff;}
+ a:visited { text-decoration:none; color:#000;}  
+ a:active {text-decoration:none; color:#ffffff;} 
+ a:hover {text-decoration:none; color:black;} 
+ 
+ .customer_head{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 85px;
+    border-bottom: 3px solid #000;
+  
+ }
+ 
+ .customer_big{
+	width: 500px;
+    border-bottom: 6px solid #000;
+    font-family: S-CoreDream-6;
+    font-size: 67.5px;
+ 
+ }
 </style>
 <script type="text/javascript">
 $(function(){
@@ -78,6 +115,8 @@ $(function(){
 	
 </script>
 
+
+
 <body>
 	<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
 	<br>
@@ -88,9 +127,10 @@ $(function(){
 	<br>
 	<br>
 	<section>
-		<!-- 상단 메뉴 바 시작 -->
-	
-        
+	<div class="customer_head">
+	 <p class="customer_big">Customer</p>
+	</div>	
+		<!-- 상단 메뉴 바 시작 -->        
 		<div class="top_menu_bar">
 			<ul class="board_tab">
 				<li id="faq_btn">FAQ</li>
@@ -133,7 +173,7 @@ $(function(){
 						<figcaption class="img_content">온풍기</figcaption>
 					</figure>
 					<figure>
-						<img src="/img/tv.png" alt="서비스4"
+						<img src="/img/customer_product_slide7.jpg" alt="서비스4"
 							class="img_hover">
 						<figcaption class="img_content">초미세먼지</figcaption>
 					</figure>
@@ -156,10 +196,6 @@ $(function(){
 						<img src="/img/customer_category_arrow_prev.png">
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="swiper">
-						<span class="slide1"></span> <span class="slide1"></span> <span
-							class="slide1"></span> <span class="slide1"></span>
-					</div>
 					<div class="next">
 						<img src="/img/customer_category_arrow_next.png">
 					</div>
@@ -171,7 +207,7 @@ $(function(){
 					style="margin-top: 50px; margin-bottom: 15px;">
 					&nbsp;&nbsp;
 					<h4 class="noto">전체</h4>
-					<sapn class="noto_count">25건</sapn>
+					<span class="noto_count">25건</span>
 				</div>
 
 				<div class="faq-page" id="faq-page">
@@ -206,7 +242,7 @@ $(function(){
 								<br> 감사합니다.
 
 								<div class="answer_img">
-									<!-- <img src="/img/answer.png" style="margin-top: 40px;"> -->
+									<img src="/img/answer_1.png" style="margin-top: 40px;">
 								</div>
 							</div>
 

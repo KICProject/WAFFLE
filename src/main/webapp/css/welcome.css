@@ -1,0 +1,95 @@
+@import "reset.css";
+@import "header.css";
+@import "footer.css";
+
+@font-face {
+  font-family: S-CoreDream-1;
+  src:url("../font/SCDream1.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-3;
+  src:url("../font/SCDream3.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-6;
+  src:url("../font/SCDream6.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body{
+		background-image:url("/img/background_copy.jpg");		
+		color:#fff;	
+		font-family: S-CoreDream-3;		
+	}
+	
+.container{
+		overflow:hidden;
+		margin-bottom:100px;
+}
+
+/*---------------- signup_container ----------------*/
+.container > .welcom_msg{
+		width:800px;
+		height:440px;
+		margin: 0 auto;
+		margin-top: 250px;
+		/* position:absolute;
+		top:50%;
+		left:50%;
+		transform:translate(-50%,-50%); */
+		text-align:center;
+	}
+	.welcom_msg img{
+		display:block;
+		margin:0 auto;		
+	}
+	
+	.welcom_msg p{
+		margin:20px auto;
+		line-height:20px;
+		font-size:18px;
+	}
+	
+	.welcom_msg .btn_group {
+		width:510px;
+		height:50px;
+		margin:30px auto;
+	}
+	#tomain_btn, #signin_btn{
+		width: 240px;
+		height: 50px;
+		border-radius: 24.5px;
+		border:2px solid #fff;
+		background:rgba(255,255,255,0);
+		float:left;	
+		color:#fff;
+		font-size:18px;
+	}
+	#tomain_btn{
+		margin-right:20px;
+	}
+
+/* -----------------------------반응형 width 1450px------------------------------------- */
+@media screen and (max-width: 1450px) {
+  main .main1 .main1_left .left_text1 {
+    font-size: 30px;
+  }
+  main .main1 .main1_left .left_text2 {
+    padding: 25px 0 40px 0;
+    font-size: 80px;
+  }
+  main .main1 .main1_left .left_text3 {
+    font-size: 16px;
+  }
+  main .main1 .main1_right .right_text {
+    font-size: 500px;
+  }
+  main .main2_right .right_text2 {
+    font-size: 30px;
+  }
+}
