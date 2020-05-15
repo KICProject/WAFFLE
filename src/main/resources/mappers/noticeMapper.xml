@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeMapper">
+	<!-- 게시판 글 작성 -->
+	<insert id="insert" parameterType="com.waffle.vo.NoticeVO" useGeneratedKeys="true" keyProperty="nno">
+	    <selectKey keyProperty="nno" resultType="int" order="BEFORE">
+	    	SELECT NSEQ.NEXTVAL FROM DUAL
+	    </selectKey>
+	    INSERT INTO NOTICE(    NNO  
+	   					       , NTITLE  
+	   					       , NCONTENT 
+	   					       , NWRITER 
+	   					       , gdsImg
+	   					       , gdsThumbImg )
+	                  VALUES(    #{nno}
+	                 		   , #{ntitle}
+	                 		   , #{ncontent}
+	                 		   , #{nwriter}
+	                 		   , #{gdsImg}
+	                 		   , #{gdsThumbImg}  )   
+    </insert>
+   
+	<select id="listPage" resultType="com.waffle.vo.NoticeVO" parameterType="com.waffle.vo.NoticeSearchCri">
+		SELECT  NNO, 
+		        NTITLE, 
+		        NCONTENT,
+		        NWRITER, 
+		        REGDATE,
+		        NHIT
+		 
+		 FROM ( 
+		        SELECT NNO, 
+		               NTITLE, 
+		               NCONTENT, 
+		               NWRITER, 
+		               REGDATE, 
+		               NHIT,
+		               ROW_NUMBER() OVER(ORDER BY NNO DESC) AS RNUM
+		         FROM NOTICE
+		         WHERE 1=1 
+		         	<include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY NNO DESC
+	</select>
+	
+	<select id="listCount" parameterType="com.waffle.vo.NoticeSearchCri" resultType="int">
+		SELECT COUNT(NNO)
+		   FROM NOTICE
+		   WHERE 1=1
+		<include refid="search"></include>	
+		   AND NNO > 0
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND NTITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND NCONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND NWRITER LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (NTITLE LIKE '%' || #{keyword} || '%') or (NCONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	<select id="read" parameterType="int" resultType="com.waffle.vo.NoticeVO">
+		SELECT   NNO
+			   , NTITLE
+			   , NCONTENT
+			   , NWRITER
+			   , REGDATE
+			   , gdsImg
+         	   , gdsThumbImg			 
+		  FROM NOTICE
+		 WHERE NNO = #{nno}
+	</select>
+	
+	<update id="update" parameterType="com.waffle.vo.NoticeVO">
+		UPDATE NOTICE
+		SET NTITLE    =   #{ntitle},
+		   	  NCONTENT  =   #{ncontent},
+		   	  gdsImg = #{gdsImg},
+         	  gdsThumbImg = #{gdsThumbImg}
+		 WHERE NNO = #{nno} 
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE 
+		  FROM NOTICE
+		 WHERE NNO = #{nno}
+	</delete>   
+    
+    <!-- 게시판 조회수 -->
+    <update id="boardHit" parameterType="int">
+    	UPDATE NOTICE SET
+    	NHIT = NHIT+1
+    	WHERE NNO = #{nno}
+    </update>
+    
+    
+</mapper>

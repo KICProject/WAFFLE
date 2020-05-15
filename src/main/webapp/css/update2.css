@@ -1,0 +1,39 @@
+@font-face {
+  font-family: S-CoreDream-1;
+  src:url("../font/SCDream1.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-3;
+  src:url("../font/SCDream3.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-6;
+  src:url("../font/SCDream6.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+/* -----------------------------반응형 width 1450px------------------------------------- */
+@media screen and (max-width: 1450px) {
+  main .main1 .main1_left .left_text1 {
+    font-size: 30px;
+  }
+  main .main1 .main1_left .left_text2 {
+    padding: 25px 0 40px 0;
+    font-size: 80px;
+  }
+  main .main1 .main1_left .left_text3 {
+    font-size: 16px;
+  }
+  main .main1 .main1_right .right_text {
+    font-size: 500px;
+  }
+  main .main2_right .right_text2 {
+    font-size: 30px;
+  }
+}

@@ -79,13 +79,46 @@
 					'w', 'left=800,top=350,width=250,height=110');
 		});
 	})
-		
-	</script>
 	
+	$(function(){
+	   $('#faq_btn').click(function(){
+		  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+	      //$('.full_container').empty();
+	      $('.full_container').load('/sub/faq')
+	      $("#faq_btn").siblings().css('background-color','#333333').css('color','#fff'); 
+	   });
+	   
+	    $('#notice_btn').click(function(){
+		  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+	      //$('.full_container').empty();
+	      $('.full_container').load('/notice/list')
+	      $("#notice_btn").siblings().css('background-color','#333333').css('color','#fff');
+	   });
+	    
+	    $('#qna_btn').click(function(){
+	  	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+	        //$('.full_container').empty();
+	        $('.full_container').load('/qna/qnalist')
+	        $("#qna_btn").siblings().css('background-color','#333333').css('color','#fff');
+	    });
+	s})		
+	</script>
+
 	<body>
-		<%-- <jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> --%>	
-		<section class="board_main">
-		<%-- <div><%@include file="nav.jsp" %></div>  --%>  		
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
+		<section class="board_main">		
+				<!-- service WAFFLE -->
+		        <div class="board_head">
+		          <p class="title_big">Notice</p>
+		          <p class="title_small">WAFFLE</p>
+		        </div>
+		        <!-- tab -->
+		       <ul class="board_tab">
+			        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
+			        <li id="moveNotice"><a href="/sub/waffleBoard">NOTICE</a></li>
+			        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
+		   	   </ul>
+				
       	<div class="container">			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
@@ -196,12 +229,12 @@
 						</div>
 					</div>					
 					<br /><br /><br /><br />
-			</section>			
+			</section>
 		</div>
-		</section>
+		</section>   	  	
 		<!-- footer -->
-		<%-- <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script> --%>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>
 		
 	</body>
 </html>

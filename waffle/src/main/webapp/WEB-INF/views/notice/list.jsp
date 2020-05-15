@@ -17,10 +17,9 @@
 	 	<!-- <title>공지 게시판</title> -->
 	</head>
 	<body>		
-		<%-- <jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> --%>
-		<%-- <div><%@include file="nav.jsp" %></div>				 --%>
-	<section class="board_main">
-			
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> 
+		<div><%@include file="nav.jsp" %></div>			
+	<section class="board_main">			
 	   	<div id="root">			
 			<div style="margin-top:15px;">
 				<ul>

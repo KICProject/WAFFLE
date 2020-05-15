@@ -41,9 +41,20 @@
 		
 	</script>
 	<body>
-		<%-- <jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> --%>			
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>		
 		<div id="root">	
-		<%-- <div><%@include file="nav.jsp" %></div>				 --%>
+		<section class="board_main">
+				<!-- service WAFFLE -->
+		        <div class="board_head">
+		          <p class="title_big">Notice</p>
+		          <p class="title_small">WAFFLE</p>
+		        </div>
+		        <!-- tab -->
+		       <ul class="board_tab">
+			        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
+			        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
+			        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
+		   	   </ul>				
 		<section id="container">
 			<div class="form-group row justify-content-center">
 				<form name="writeForm" method="post" action="/notice/write" enctype="multipart/form-data">										
@@ -103,11 +114,12 @@
 					
 			 </div>				
 			</section>				
+		</section>
 		</div>	
 		
 		<!-- footer -->
-		<%-- <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script> --%>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script>
 		
 	</body>
 </html>
