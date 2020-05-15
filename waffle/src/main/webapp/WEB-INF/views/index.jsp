@@ -9,7 +9,8 @@
 		<title>WAFFLE</title>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/mainstyle.css" />
-		<link rel="stylesheet" type="text/css" href="/css/reset.css" />		
+		<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />		
 	</head>	
 	<body>
 		<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>	
@@ -19,9 +20,9 @@
 			<section class="main1">
 				<article class="main1_left">
 					<div class="left_text_box">
-						<p class="left_text1">행복을 생각하다</p>
-						<p class="left_text2">WAFFLE</p>
-						<div class="left_text3">
+						<p class="left_text1 animate__animated animate__fadeInDownBig">행복을 생각하다</p>
+						<p class="left_text2 animate__animated animate__fadeInLeftBig">WAFFLE</p>
+						<div class="left_text3 animate__animated animate__fadeInUpBig">
 							<p>WAFFLE은 차별화된 기술력으로</p>
 							<p>어디서든(WHEREVER) 안전하게(SARETY) 원하는대로(FLEXIBLE)</p>
 							<p>서비스를 제공합니다.</p>
@@ -29,7 +30,7 @@
 					</div>
 				</article>
 				<article class="main1_right">
-					<div class="right_text">집</div>
+					<div class="right_text animate__animated animate__flipInY">집</div>
 				</article>
 				<div class="scroll_down_box">
 					<div class="scroll"></div>

@@ -34,7 +34,7 @@
           <p class="title_small">WAFFLE</p>
         </div>
         <!-- img -->
-        <div><img src="/img/login_img.jpeg" alt="서비스이미지"></div>
+        <div><img src="/img/service.jpg" alt="서비스이미지"></div>
         <!-- service tab -->
         <ul class="service_tab">
             <li>BASIC</li>
