@@ -66,6 +66,17 @@ $(function(){
 
  a:hover { text-decoration:none; color:#ffffff;}
 </style>
+<script type="text/javascript">
+$(function(){
+	$('#faq_btn').click(function(){
+		$(this).css('background-color','#fff').css('color','#000');
+		$('.full_container').empty();
+		$('.full_container').load('/qna/qnalist')
+	})
+
+})
+	
+</script>
 
 <body>
 	<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
@@ -82,9 +93,9 @@ $(function(){
         
 		<div class="top_menu_bar">
 			<ul class="board_tab">
-				<li><a href="/sub/waffleBoard"></a>FAQ</li>
-				<li>NOTICE</li>
-				<li><a href="/qna/writeView">QNA</a></li>
+				<li id="faq_btn">FAQ</li>
+				<li id="notice_btn">NOTICE</li>
+				<li id="qna_btn">QNA</li>
 			</ul>
 		</div>
 
@@ -195,7 +206,7 @@ $(function(){
 								<br> 감사합니다.
 
 								<div class="answer_img">
-									<img src="/img/answer.png" style="margin-top: 40px;">
+									<!-- <img src="/img/answer.png" style="margin-top: 40px;"> -->
 								</div>
 							</div>
 
