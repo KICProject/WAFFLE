@@ -30,84 +30,23 @@ public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@Inject
-	MemberService service;
+	@Inject 
+	MemberService service; // 회원관련 서비스 객체
 	
 	@Inject
-	ServiceService sservice;
+	ServiceService sservice; // 서비스 가입/분류 객체
 	
 	@Inject
-	RoomService rservice;
+	RoomService rservice; // 회원-서비스 연결 후 생성되는 room 객체
 	
 	@Inject
-	KakaoService kakao;
-	
-	@Inject
-	BCryptPasswordEncoder pwdEncoder;
+	BCryptPasswordEncoder pwdEncoder; // 암호화 인코더 객체
 	
 	//로그인 페이지로 이동
 	@RequestMapping(value="/loginControl", method=RequestMethod.GET)
 	public String loginMove() throws Exception{					
 		return "member/loginControl";
 	}
-	
-	/*
-	 * //로그인 페이지로 이동
-	 * 
-	 * @RequestMapping(value="/loginControl", method=RequestMethod.GET) public
-	 * String loginMove(Model model, HttpSession session) throws Exception{ String
-	 * kakaoUrl = kakao.getAuthorizationUrl(session);
-	 * model.addAttribute("kakaoUrl",kakaoUrl); return "member/loginControl"; }
-	 */
-	
-	
-	//카카오 로그인
-	//https://kauth.kakao.com/outh/authorize?client_id=REST API키 &redirect_uri="https://localhost:8080/kakaologin&response_type=code
-	@RequestMapping(value = "/kakaologin")
-	public String kakaoLogin(@RequestParam("code") String code,Model model, HttpSession session) throws Exception {	
-	  
-		System.out.println("로그인 시 임시 코드:"+code);
-		System.out.println("로그인 후 결과값");
-		JsonNode token = kakao.getAccessToken(code);
-		System.out.println(token);
-		
-		String token_string = token.get("access_token").toString();
-		
-		System.out.println(token_string);
-		//System.out.println(code);
-		//session.setAttribute("token", token_string);
-		
-		
-		JsonNode userInfo = kakao.getKakaoUserInfo(token);
-		session.setAttribute("token", userInfo);
-		System.out.println(userInfo);
-		
-		String id = userInfo.path("id").asText();
-		String name = null;
-		String email = null;
-		
-		JsonNode properties = userInfo.path("properties");
-		JsonNode kakao_account = userInfo.path("kakao_account");
-		
-		name = properties.path("nickname").asText();
-		email = kakao_account.path("email").asText();
-		
-		System.out.println("id:"+id+",name:"+name+",email"+email);
-
-		return "redirect:/";
-	}
-	
-	//카카오로그아웃
-	@RequestMapping(value = "/kakaologout")
-	public String kakaoLogout(HttpSession session) {	
-		
-		JsonNode token = kakao.Logout(session.getAttribute("token").toString());
-		System.out.println(token);
-		System.out.println("로그인 후 받환되는 아이디:"+token.get("id"));
-		
-		return "redirect:/";
-	}
-	
 	
 	//로그인( Password 암호화, POST)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -139,7 +78,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/getMem", method = RequestMethod.POST)
 	public HashMap<String, String> getMem(HttpSession session) throws Exception{
-		
+		//HashMap 객체로 반환하여 클라이언트 단에서 꺼내 쓸 수 있도록
 		HashMap<String, String> memInfo = new HashMap<String, String>();
 		
 		MemberVO currentMem = (MemberVO)session.getAttribute("member");
@@ -167,10 +106,11 @@ public class MemberController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		logger.info("post register");
-		if(vo.getExtraAddress()==null) {
+		if(vo.getExtraAddress()==null) { // 상세 주소 2가 없으면, 빈 문자열로
 			vo.setExtraAddress("");
 		}		
-		vo.setMemAddr(vo.getZipcode(),vo.getRoadAddress(), vo.getDetailAddress(),vo.getExtraAddress());		
+		vo.setMemAddr(vo.getZipcode(),vo.getRoadAddress(), vo.getDetailAddress(),vo.getExtraAddress());
+		// 어드레스는 각 input String 값들을 받아, 1개로 합친 뒤 전달함
 		int result = service.idChk(vo); 
 		try {
 			if(result==1) {
@@ -187,33 +127,28 @@ public class MemberController {
 		return "member/welcome";
 	}	
 	
+	// 로그아웃, 세션 연결을 끊음
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception{
-		
 		session.invalidate();
-		
 		return "redirect:/";
 	}
-	//
-	
+	// 마이페이지로 이동	(GET)
 	@RequestMapping(value="/mypage", method = RequestMethod.GET)
 	public String moveMyPageGet() {
-		logger.info("get register");
 		return "member/mypage";
 	}
-	
+	// 마이페이지로 이동	(POST)
 	@RequestMapping(value="/mypage", method = RequestMethod.POST)
 	public String moveMyPage() {
 		return "member/mypage";
-	}
-	
-	
-	//회원정보수정페이지로 이동
+	}	
+	//회원정보수정페이지로 이동 (load)
 	@RequestMapping(value = "/updateView", method = RequestMethod.GET)
 	public String registerUpdateView() throws Exception{
 			return "member/updateView";
 	}
-	//회원정보수정
+	//회원정보수정 (페이지 없이, 처리 후 결과값 리턴)
 	@ResponseBody
 	@RequestMapping(value="/memberUpdate",method=RequestMethod.POST)
 	public boolean registerUpdate(MemberVO vo, HttpSession session){
@@ -230,21 +165,8 @@ public class MemberController {
 			return result;
 		}		
 	}
-	//회원 탈퇴 페이지로 이동
-	@RequestMapping(value="/memberDeleteView", method = RequestMethod.GET)
-	public String memberDeleteView() throws Exception{
-		return "member/memberDeleteView";
-	}
-
-	/*
-	 * // 회원탈퇴 (GET)/
-	 * 
-	 * @RequestMapping(value="/memberDelete", method = RequestMethod.GET) public
-	 * String memberDeleteGet(MemberVO vo, HttpSession session, RedirectAttributes
-	 * rttr) throws Exception{ logger.info("get memdelete"); return
-	 * "member/memberDelete"; }
-	 */
-	// 회원탈퇴 (POST)
+	
+	// 회원탈퇴 (POST) (페이지 없이, 처리 후 결과값만 리턴, 세션 연결해제)
 	@ResponseBody
 	@RequestMapping(value="/memberDelete",method=RequestMethod.POST)
 	public boolean memberDelete(MemberVO vo, HttpSession session){
@@ -259,7 +181,7 @@ public class MemberController {
 			return result;
 		}
 	}
-	//패스워드 체크
+	//패스워드 체크 
 	@ResponseBody
 	@RequestMapping(value="/passChk", method=RequestMethod.POST)
 	public boolean passChk(MemberVO vo) throws Exception{
@@ -272,12 +194,10 @@ public class MemberController {
 	@RequestMapping(value="/passDbChk", method=RequestMethod.POST)
 	public boolean passDbChk(MemberVO vo) throws Exception{
 		System.out.println("passDbChk 실행");
-		System.out.println(vo.getMemId());
-		System.out.println(vo.getMemPass());
 		MemberVO userDbChk = service.login(vo); 
-		System.out.println(userDbChk.toString());
+		System.out.println(userDbChk.toString()); // 체크용 콘솔
 		boolean pwdMatch =pwdEncoder.matches(vo.getMemPass(), userDbChk.getMemPass());
-		System.out.println(pwdMatch);
+		System.out.println(pwdMatch); // 체크용 콘솔
 		return pwdMatch;
 	}
 	//아이디 중복 체크

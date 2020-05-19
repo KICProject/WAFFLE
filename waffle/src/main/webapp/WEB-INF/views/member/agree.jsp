@@ -36,7 +36,8 @@
 		})
 		// 취소를 누르면  login 페이지로 컴백
 	})
-	function setCheckAll(){
+	
+	function setCheckAll(){ // '모두 동의' 를 클릭 시, 약관 체크박스를 모두 체크해주는/(해제도) 함수
 		var checkTotal = 
 			$('.terms_list').find('input:checkbox').length;
 		var checkCount = 0;

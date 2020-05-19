@@ -41,10 +41,10 @@ public class RoomController {
 		return json;
 	}
 	
-	@RequestMapping(value="/updateroom", method=RequestMethod.POST)
+	@RequestMapping(value="/updateroom", method=RequestMethod.POST) // 
 	public @ResponseBody RoomVO updateRoom(@RequestParam("control_pannel") String ctrl_pannel,@RequestParam("value") String value,RoomVO rvo, HttpSession session) throws Exception{
-		System.out.println(ctrl_pannel);
-		System.out.println(value);
+		System.out.println(ctrl_pannel); // 어떤 컨트롤을 변경했는지 출력
+		System.out.println(value); // 변경된 값이 무엇인지 출력
 		
 		System.out.println(rvo.getMemId());
 		RoomVO cvo = rservice.getRoominfo(rvo);		
@@ -67,7 +67,7 @@ public class RoomController {
 			System.out.println("updateroom setLight:"+cvo.getLight());
 			break;		
 		}
-		rservice.updateRoomInfo(cvo);		
+		rservice.updateRoomInfo(cvo); // 방정보를업데이트
 		RoomVO revo = rservice.getRoominfo(cvo);
 		System.out.println(cvo.getAircon());
 		System.out.println(cvo.getTv());

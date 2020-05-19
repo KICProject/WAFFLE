@@ -57,5 +57,52 @@ public class RoomDAOImpl implements RoomDAO {
 	public RoomVO getRoominfo(RoomVO rvo) throws Exception {		
 		return sql.selectOne("roomMapper.selectroom",rvo);
 	}
+	public void updateAdu(RoomVO roomVO) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("온도값 저장 ="+roomVO.getInnerTemp());
+		sql.update("aduMapper.updateadu",roomVO);
+	}
+	@Override
+	public String lightView(RoomVO roomVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne("lightview");
+	}
+	@Override
+	public void lightonoff(RoomVO roomVO) throws Exception{
+		System.out.println("onoff값"+roomVO.getLight());
+		sql.update("updatelight",roomVO);
+	}
+	@Override
+	public void tvonoff(RoomVO roomVO) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("onoff값"+roomVO.getTv());
+		sql.update("updatetv",roomVO);
+	}
+	@Override
+	public String tvView(RoomVO roomVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne("tvview");
+	}
+	@Override
+	public void aironoff(RoomVO roomVO) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("onoff값"+roomVO.getAircon());
+		sql.update("updateair",roomVO);
+	}
+	@Override
+	public String airView(RoomVO roomVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne("airview");
+	}
+	@Override
+	public void windowonoff(RoomVO roomVO) throws Exception {
+		System.out.println("창문 값"+roomVO.getWindow());
+		sql.update("updatewindow",roomVO);
+	}
+	@Override
+	public String windowView(RoomVO roomVO) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne("windowview");
+	}
 
 }

@@ -60,11 +60,10 @@
 				<div class="comment">WAFFLE은 편리하면서도 따뜻한삶을 누릴수 있도록 연구합니다.</div>
 			</section>
 		</main>
-		</c:if>
-		
+		</c:if>		
 		<!-- 일반회원 로그인 후 메인 페이지 -->	
 		<c:if test="${(member !=null)}">
-		<%-- <c:if test="${(member !=null) && (member.memAuthor == 0)}"> --%> 		
+		<%-- <c:if test="${(member !=null) && (member.memAuthor == 0)}"> --%>
 		<script src="/js/index.js"></script>
 		<div class="loader"></div>
 		<div class="container"> <!-- 회원에게 보여지는 컨테이너 -->
