@@ -8,18 +8,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link
-	href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'
-	rel='stylesheet' type='text/css'>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/faq.css" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link
 	href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<title></title>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<title>waffleBoard</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -35,6 +31,8 @@ $(function(){
 		
 		var key= $('#keyword').val();
 		var buttoncnt = $('button').length;
+		
+		
 		for(var i=1; i<buttoncnt; i++){
 			var searchObject = $('button').eq(i).text();
 			if(searchObject.match(key)){
@@ -44,9 +42,12 @@ $(function(){
 				$('button').eq(i).hide();
 				$('button').eq(i).next().hide();
 			}
-		}
+		  }
+				
 	})
 })
+
+
 </script>
 
 <style>
@@ -58,46 +59,95 @@ $(function(){
 	display: none;
 }
 
- a:link { text-decoration:none; color:#ffffff;}
+ a:link { text-decoration:none;}
+ 
+ a:hover { text-decoration:none; color:black;} 
+ 
+ .customer_head{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 85px;
+    border-bottom: 3px solid #000;
+    margin-bottom:50px;
+  
+ }
+ 
+ .customer_big{
+	width: 500px;
+    border-bottom: 6px solid #000;
+    font-family: S-CoreDream-6;
+    font-size: 67.5px;
+    color:black;
+ 
+ }
+ #faq_btn{
+ background-color:#fff;
+ color:#000;
+ border:1px solid #333333;
+ }
 
- a:visited { text-decoration:none;color:#ffffff;}
-
- a:active {text-decoration:none; color:#ffffff; }
-
- a:hover { text-decoration:none; color:#ffffff;}
 </style>
 
-<body>
+<script type="text/javascript">
+
+$(function(){
+   $('#faq_btn').click(function(){
+	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+      //$('.full_container').empty();
+      $('.full_container').load('/sub/faq')
+    //  $("#faq_btn").siblings().css('background-color','#333333').css('color','#fff'); 
+   });
+   
+    $('#notice_btn').click(function(){
+	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
+      //$('.full_container').empty();
+      $('.full_container').load('/notice/list')
+      $("#notice_btn").siblings().css('background-color','#333333').css('color','#fff');
+   });
+    
+    var url="/qna/qnalist";
+    $('#qna_btn').click(function(){
+    	$(location).attr('href',url); 
+    	$(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333'); 
+    });
+   
+})
+
+
+</script>
+
+<body style="width:100%;">
 	<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
+
 	<section>
-		<!-- 상단 메뉴 바 시작 -->
-	
-        
+	<div class="customer_head">
+	 <p class="customer_big" style="margin-bottom: -1px;">Customer</p>
+	</div>	
+		<!-- 상단 메뉴 바 시작 -->        
 		<div class="top_menu_bar">
 			<ul class="board_tab">
-				<li><a href="/sub/waffleBoard"></a>FAQ</li>
-				<li>NOTICE</li>
-				<li><a href="/qna/writeView">QNA</a></li>
+				<li id="faq_btn">FAQ</li>
+				<li id="notice_btn">NOTICE</li>
+				<li id="qna_btn">QNA</li>
 			</ul>
 		</div>
 
-		<div class="full_container">
+		<div class="full_container" style="margin-top:-30px;">
 			<div class="container">
 				<div class="row">
 					<div class="span12">
 						<form id="custom-search-form"
 							class="form-search form-horizontal pull-right">
-							<div class="input-append span12">
+							<div class="input-append span12" style="margin-bottom:35px;">
 								<input id="keyword" type="text" class="search-query"
 									placeholder="&nbsp;궁금하신 서비스를 입력해주세요."
-									style="width: 600px; height: 30px; margin: auto">
+									style="width: 800px; height: 30px;">
 								<button type="button" class="btn"
 									style="height: 37px;">
 									<i class="icon-search"></i>
@@ -110,7 +160,7 @@ $(function(){
 
 
 			<div class="content">
-				<div class="picture" style="margin-bottom: 40px; padding-top: 10px;">
+				<div class="picture" style="margin-bottom: 40px; margin-top: -200px;">
 					<figure>
 						<img src="../img/customer_product_slide4.jpg" alt="서비스1"
 							class="img_hover">
@@ -122,7 +172,7 @@ $(function(){
 						<figcaption class="img_content">온풍기</figcaption>
 					</figure>
 					<figure>
-						<img src="/img/tv.png" alt="서비스4"
+						<img src="/img/customer_product_slide7.jpg" alt="서비스4"
 							class="img_hover">
 						<figcaption class="img_content">초미세먼지</figcaption>
 					</figure>
@@ -145,10 +195,6 @@ $(function(){
 						<img src="/img/customer_category_arrow_prev.png">
 					</div>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="swiper">
-						<span class="slide1"></span> <span class="slide1"></span> <span
-							class="slide1"></span> <span class="slide1"></span>
-					</div>
 					<div class="next">
 						<img src="/img/customer_category_arrow_next.png">
 					</div>
@@ -160,7 +206,7 @@ $(function(){
 					style="margin-top: 50px; margin-bottom: 15px;">
 					&nbsp;&nbsp;
 					<h4 class="noto">전체</h4>
-					<sapn class="noto_count">25건</sapn>
+					<span class="noto_count">25건</span>
 				</div>
 
 				<div class="faq-page" id="faq-page">
@@ -195,7 +241,7 @@ $(function(){
 								<br> 감사합니다.
 
 								<div class="answer_img">
-									<img src="/img/answer.png" style="margin-top: 40px;">
+									<img src="/img/answer_1.png" style="margin-top: 40px;">
 								</div>
 							</div>
 

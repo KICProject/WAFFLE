@@ -50,22 +50,14 @@
 					      +"&searchType=${scri.searchType}&keyword=${scri.keyword}";
 		})
 		
-		//글 작성
+		//댓글 작성
 		$(".replyWriteBtn").on("click", function(){
 			var formObj = $("form[name='replyForm']");
 			formObj.attr("action", "/notice/replyWrite");
 			formObj.submit();
 		});
 				
-		//댓글 수정 View		
-		/* $(".replyUpdateBtn").on("click", function(){
-			location.href = "/notice/replyUpdateView?nno=${read.nno}"
-							+ "&page=${scri.page}"
-							+ "&perPageNum=${scri.perPageNum}"
-							+ "&searchType=${scri.searchType}"
-							+ "&keyword=${scri.keyword}"
-							+ "&nrno="+$(this).attr("data-nrno");
-		}); */
+		//댓글 수정 View
 		$(".replyUpdateBtn").on("click", function(){
 			window.open("/notice/replyUpdateView?nno=${read.nno}"
 							+ "&page=${scri.page}"
@@ -73,83 +65,98 @@
 							+ "&searchType=${scri.searchType}"
 							+ "&keyword=${scri.keyword}"
 							+ "&nrno="+$(this).attr("data-nrno"),
-					'w', 'left=800,top=200,width=550,height=230');
-			})
+							'w', 'left=800,top=200,width=403,height=150');
+		});
 		
-		
-		//댓글 삭제 View
-		/* $(".replyDeleteBtn").on("click", function(){
-			location.href = "/notice/replyDeleteView?nno=${read.nno}"
-				+ "&page=${scri.page}"
-				+ "&perPageNum=${scri.perPageNum}"
-				+ "&searchType=${scri.searchType}"
-				+ "&keyword=${scri.keyword}"
-				+ "&nrno="+$(this).attr("data-nrno");
-		});	 */	
-		
-		$(".replyDeleteBtn").on("click", function(){
+		//댓글 삭제 View		
+		$(".replyDeleteBtn").on("click", function(){			
 			window.open("/notice/replyDeleteView?nno=${read.nno}"
 					+ "&page=${scri.page}"
 					+ "&perPageNum=${scri.perPageNum}"
 					+ "&searchType=${scri.searchType}"
 					+ "&keyword=${scri.keyword}"
 					+ "&nrno="+$(this).attr("data-nrno"),
-					'w', 'left=800,top=200,width=300,height=150');
-		})
-	})
-		
+					'w', 'left=800,top=350,width=250,height=110');
+		});
+	})	
+	
 	</script>
-	
+
 	<body>
-		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>	
-	
-		<section class="board_main">
-   		<!-- service WAFFLE -->
-        <div class="board_head">
-          <p class="title_big">Notice</p>
-          <p class="title_small">WAFFLE</p>
-        </div>
-        
-      	<div class="container">
-			<header>
-				<!-- <h1> 게시판</h1> -->
-			</header>			
-			
+		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
+		<section class="board_main">		
+				<!-- service WAFFLE -->
+		        <div class="board_head">
+		          <p class="title_big">Customer</p>
+		          <p class="title_small">WAFFLE</p>
+		        </div>
+		        <!-- tab -->
+		       <ul class="board_tab">
+			        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
+			        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
+			        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
+		   	   </ul>
+				
+      	<div class="container">			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
 					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 										 
-					<!-- <input type="hidden" id="FILE_NO" name="FILE_NO" value="">  -->
-				</form>	
-								
-				<div class="form-group row justify-content-center">					
-					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; margin:10 auto; font-size:40px;">${read.ntitle} </label>
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}">
+				</form>								
+				<div class="form-group row" style="margin-top:100px;">					
+					<label for="ntitle" class="col-sm-12 control-label" style="width: 100%; float:40; font-size:40px;text-align:center;">${read.ntitle} </label>
 				</div>		
 				<div class="form-group row justify-content-center">	
 					<label for="regdate" class="col-sm-3 control-label" style="width: 100%; float:40; margin:10 auto;font-size:20px;">
 					작성일 : <fmt:formatDate value="${read.regdate}" pattern="yyyy.MM.dd"  /></label>			
 				</div>
-				
-				<hr />
-				
-				<br>
-				
-				<div class="form-group row justify-content-center">					
-					<!-- <textarea id="ncontent" name="ncontent" class="form-control" rows="50" readonly="readonly"> -->	
+								
+				<hr />				
+				<br>				
+				<div class="form-group row justify-content-center">	
 					<c:if test="${(read.ncontent !=null)}">				
 					<textarea id="ncontent" name="ncontent" style="width: 1000px; height:300px; margin-bottom:10px; border : hidden 1px;">
 					<c:out value="${read.ncontent}" /></textarea>	
-					</c:if>						
+					</c:if>		
+					<c:if test="${(read.gdsImg !=null)}">				
 					<img src="${read.gdsImg}" class="oriImg"/>
-				</div>
-				
-				<hr>
-						
+					</c:if>
+				</div>				
+				<br /><br /><hr /><br /><br />					
 				<!-- 댓글 -->
 				<div id="reply" class="panel panel-default" style="margin-top: 10px;">
+				<p style="font-weight:bold;">댓글<p><br /><br />
+				<form name="replyForm" method="post" class="form-horizontal">
+					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
+					<input type="hidden" id="page" name="page" value="${scri.page}"> 
+					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
+					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
+					
+					<c:if test="${(member !=null)}">
+					<div class="form-group">
+						<label for="nrwriter" class="col-sm-2 control-label">writer</label>						
+						<div class="col-sm-10">						
+						<input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;border : hidden;width: 180px;" readonly />	
+						</div>
+					</div>					
+					<div class="form-group" style="margin-top:10px;">
+						<label for="nrcontent" class="col-sm-2 control-label">content</label>
+						<div class="col-sm-10">
+							<input type="text" id="nrcontent" name="nrcontent" class="form-control" style="margin-top:10px;"/>							
+						</div>
+					</div>					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="replyWriteBtn btn btn-outline-dark">댓글 작성</button>
+						</div>
+					</div>
+					</c:if>
+					<br /><br />
+				
 					<ul class="replyList" style="list-style:none">
 						<c:forEach items="${replyList}" var="replyList">
 							<li>
@@ -160,83 +167,52 @@
 								<fmt:formatDate value="${replyList.regdate}" pattern="yyyy/MM/dd" />
 								</p>
 							</li>
-							<br />
-							<br />
+							<br /><br />
 							<li>	  
 								<span class="nrcontent float-left">
-								${replyList.nrcontent}
-								
+								${replyList.nrcontent}								
 								</span>
 							</li>							
-							<br />
-							<br />
+							<br /><br />
+							<c:if test="${(replyList.nrwriter==member.memId)}">
 							<li>
 								<div class="form-group row text-center" style="margin-left:1020px;">
-									<button type="button" class="replyUpdateBtn btn btn-sm" data-nrno="${replyList.nrno}">수정 </button>									
-									<button type="button" class="replyDeleteBtn btn btn-sm" data-nrno="${replyList.nrno}">삭제</button>
+									<button type="button" class="replyUpdateBtn btn btn-outline-dark btn-sm" data-nrno="${replyList.nrno}">수정 </button>									
+									<button type="button" class="replyDeleteBtn btn btn-outline-dark btn-sm" data-nrno="${replyList.nrno}">삭제</button>
 								</div>
-							</li>							
+							</li>		
+							</c:if>					
 							<hr style="border-color:black;">
 							<br />
 						</c:forEach>   
 					</ul>
+					</form>
 				</div>
-				<br /><br /><br />
-				
-				
-				<form name="replyForm" method="post" class="form-horizontal">
-					<input type="hidden" id="nno" name="nno" value="${read.nno}" />
-					<input type="hidden" id="page" name="page" value="${scri.page}"> 
-					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
-					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
-					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
-					
-					
-					<div class="form-group">
-						<label for="nrwriter" class="col-sm-2 control-label" style="margin-left:5px">writer</label>						
-						<div class="col-sm-10">
-							<input type="text" id="nrwriter" name="nrwriter" class="form-control" value="${member.memId}" style="margin-top:10px;"/>
-						</div>
-					</div>
-					
-					<div class="form-group" style="margin-top:10px;">
-						<label for="nrcontent" class="col-sm-2 control-label" style="margin-left:5px">content</label>
-						<div class="col-sm-10">
-							<input type="text" id="nrcontent" name="nrcontent" class="form-control" style="margin-top:10px;"/>
-						</div>
-					</div>
-					
+				<br /><br /><br />			
+						
+					<!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
+					<c:if test="${(member !=null) && (member.memAuthor == 1)}">
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="button" class="replyWriteBtn btn btn-outline-dark">댓글 작성</button>
+							<button type="button" class="update_btn btn btn-outline-dark ">관리자 글 수정</button>
+							<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>
+							<button type="button" class="list_btn btn btn-outline-dark">공지사항 목록</button>
 						</div>
-					</div>
+					</div>	
+					</c:if>
 					
-					<hr />
-						
-					<%-- <!-- 관리자 로그인시 관리자만 볼 수 있게 -->	
-					<c:if test="${(member !=null) && (member.memAuthor == 1)}">
-					<div>
-							<button type="button" class="update_btn btn">관리자 글 수정</button>
-							<button type="button" class="delete_btn btn">관리자 글 삭제</button>
-							<!-- <button type="button" class="list_btn btn btn-primary">목록</button>	 -->
+					<!-- <div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="button" class="medium_btn" onclick="location.href='/notice/list' ">목 록</button>
 						</div>
-					</c:if>	 --%>
-					<!-- 편집 끝나고 아래 코드 삭제 -->
-					<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="button" class="update_btn btn btn-outline-dark">관리자 글 수정</button>
-								<button type="button" class="delete_btn btn btn-outline-dark">관리자 글 삭제</button>		
-							</div>				
-						</div>
-						<br /><br /><br /><br />								
-					</form>
-			</section>			
+					</div>	 -->				
+					<br /><br /><br /><br />
+			</section>
 		</div>
-		
+		</section>   	  	
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 		<script src="/js/app.js"></script>
-		</section>
+		
 	</body>
 </html>

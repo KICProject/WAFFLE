@@ -15,9 +15,6 @@
          <p style="margin-left:8px;">${member.memId}님 안녕하세요.</p>
     </c:if>
       
-    <c:if test="${member == null}">
-         <p><a href="/member/loginControl">로그인</a></p>
-    </c:if>	
 	</li>
 		
 </ul>

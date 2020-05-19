@@ -1,0 +1,155 @@
+@font-face {
+  font-family: S-CoreDream-1;
+  src:url("../font/SCDream1.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-3;
+  src:url("../font/SCDream3.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-6;
+  src:url("../font/SCDream6.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+	font-family: S-CoreDream-3;
+	color: #000;
+}
+
+.container>.frame {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 800px;
+	height: 800px;
+	overflow: hidden;
+}
+
+/* inner things */
+.container>.frame>.input {
+	overflow: hidden;
+	padding-top: 20px;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 600px;
+	height: 800px;
+	float: left;
+	overflow: hidden;
+}
+
+.input form {
+	width: 600px;
+	height: 600px;
+	overflow: hidden;
+}
+
+.input .updategrp {
+	width: 600px;
+	height: 40px;
+	color: #000;
+	font-size: 14px;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+.input .updategrp label {
+	display: block;
+	width: 180px;
+	height: 35px;
+	float: left;
+	line-height: 35px;
+}
+
+.input .updategrp input {
+	width: 290px;
+	height: 33px;
+	float: right;
+	line-height: 35px;
+	margin-left: 30px;
+}
+
+.input .passchkgrp1, .input .passchkgrp2 {
+	width: 600px;
+	height: 60px;
+	color: #000;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.input .passchkgrp1 label, .input .passchkgrp2 label {
+	display: block;
+	width: 180px;
+	height: 35px;
+	float: left;
+	line-height: 35px;
+}
+
+.input .passchkgrp1 input, .input .passchkgrp2 input {
+	width: 290px;
+	height: 33px;
+	float: right;
+	line-height: 35px;
+	margin-left: 30px;
+}
+
+.input .memPhone, .input .memPhone2 {
+	height: 40px;
+}
+
+.input .memPhone label, .input .memPhone2 label {
+	height: 40px;
+	line-height: 20px;
+}
+
+.btngrp {
+	width: 420px;
+	height: 30px;
+	margin: 30px auto;
+}
+
+button {
+	width: 120px;
+	height: 30px;
+	opacity: 0.73;
+	border-radius: 24.5px;
+	background-color: #888;
+	margin-right: 30px;
+	color: #fff;
+	display: block;
+	float: left;
+}
+
+.update_btn {
+	background-color: #afde77;
+}
+
+.cancle {
+	margin-right: 0;
+}
+
+
+/* -----------------------------반응형 width 1450px------------------------------------- */
+@media screen and (max-width: 1450px) {
+  main .main1 .main1_left .left_text1 {
+    font-size: 30px;
+  }
+  main .main1 .main1_left .left_text2 {
+    padding: 25px 0 40px 0;
+    font-size: 80px;
+  }
+  main .main1 .main1_left .left_text3 {
+    font-size: 16px;
+  }
+  main .main1 .main1_right .right_text {
+    font-size: 500px;
+  }
+  main .main2_right .right_text2 {
+    font-size: 30px;
+  }
+}
