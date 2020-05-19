@@ -16,7 +16,7 @@
          // 취소
          $(".cencle").on("click", function(){
             
-            location.href = "/";
+            location.href = "/qna/qnalist";
                       
          })
       
@@ -47,11 +47,11 @@
          <input type="hidden" name="qbno" value="${qnaRead.qbno}" readonly="readonly"/>
          <input type="hidden" name="review_Password" value="${qnaRead.review_password}" readonly="readonly"/>
             
-            <div class="form-group has-feedback">
+            <div class="form-group has-feedback" style="margin-left:20px; margin-top:20px;">
                <label class="control-label" for="review_password">패스워드</label>
                <input  style="width:200px;" class="form-control" type="password" id="review_password" name="review_password" />
             </div>
-            <div class="form-group has-feedback">
+            <div class="form-group has-feedback" style="margin-left:20px;">
                <button class="submit btn" type="button" >비밀번호 체크</button>
                <button class="cencle btn" type="button">취소</button>
             </div>

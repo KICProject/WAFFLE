@@ -24,6 +24,40 @@ public class SubMenuController {
 	public String moveBoard() throws Exception {
 		 return "sub/waffleBoard";
 	}
+	@RequestMapping(value="/page1", method = RequestMethod.GET)
+	public String page1() throws Exception{			
+		System.out.println("page1 �샇異쒕맖");
+		return "sub/page1";
+	}
+	
+	@RequestMapping(value="/page2", method = RequestMethod.GET)
+	public String page2() throws Exception{			
+		System.out.println("page2 �샇異쒕맖");
+		return "sub/page2";
+	}
+	@RequestMapping(value="/page3", method = RequestMethod.GET)
+	public String page3() throws Exception{			
+		System.out.println("pag3 �샇異쒕맖");
+		return "sub/page3";
+	}
+	@RequestMapping(value="/page4", method = RequestMethod.GET)
+	public String page4() throws Exception{			
+		System.out.println("page4 �샇異쒕맖");
+		return "sub/page4";
+	}
+	@RequestMapping(value="/page5", method = RequestMethod.GET)
+	public String page5() throws Exception{			
+		System.out.println("page5 �샇異쒕맖");
+		return "sub/page5";
+	}
+	
+	
+	@RequestMapping(value="/faq", method = RequestMethod.GET)
+	public String faq() throws Exception{					
+		return "sub/faq";
+	}
+	 
+	
 	
 	
 }

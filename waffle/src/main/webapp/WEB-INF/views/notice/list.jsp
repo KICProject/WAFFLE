@@ -20,11 +20,11 @@
 	 	<!-- <title>공지 게시판</title> -->
 	</head>
 	<body>	
-		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>
+		<%-- <jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include> --%>
 	
 	<section class="board_main">
    		<!-- service WAFFLE -->
-        <div class="board_head">
+       <!-- <div class="board_head"> 
           <p class="title_big">Notice</p>
           <p class="title_small">WAFFLE</p>
         </div>
@@ -33,7 +33,7 @@
         <li id="moveFaq">FAQ</li>
         <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
         <li id="moveQna">QNA</li>
-   	   </ul>
+   	   </ul> -->
     
 		<div class="container">
 			<header>
@@ -138,9 +138,9 @@
 			</section>								
 		</div>	
 		
-		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script src="/js/app.js"></script>
+	
+	<%-- 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script src="/js/app.js"></script> --%>
 		
 		</section>
 	</body>

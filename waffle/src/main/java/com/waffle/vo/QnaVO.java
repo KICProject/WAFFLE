@@ -11,9 +11,16 @@ public class QnaVO {
 	private String qwriter ;
 	private Date regdate;
 	private String review_password;
+	private int hit;
 	
-	
-	
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
 	public String getReview_password() {
 		return review_password;
 	}

@@ -84,17 +84,43 @@
 			formObj.submit();
 		}
 	</script>
+	<style>
+	.qnaView_write{
+	font-family: S-CoreDream-6;
+ 	font-size: 30.5px;
+ 	font-weight:bold;
+ 	color:black;
+ 	margin-block-start: 1em;
+ 	margin-block-end: 1em;
+ 	border-bottom:solid 3px;
+ 	padding-bottom:10px;
+	}
+	
+	.qnalist{
+	font-family: S-CoreDream-6;
+ 	font-size: 20.5px;
+ 	color:black;
+	}
+	
+	.reply_list{
+	font-family: S-CoreDream-6;
+ 	font-size: 20.5px;
+ 	color:black;
+ 	margin-bottom:10px;
+	}
+	
+	</style>
 	
 	<body>
 		<div class="container">
-			<header>
-				<h1>질문하기</h1>
-			</header>
-			<hr />
-			 
-			<div style="margin-left:-40px;">
-				<%@include file="nav.jsp" %>
+			<div class="qnaView_write">
+				질문하기
 			</div>
+			
+			 
+			<!-- <div class="qnalist" style="margin-left:40px;">
+			<a href="/qna/qnalist">목록보기</a>
+			</div> -->
 			
 			<section id="container">
 				<form name="readForm" role="form" method="post">
@@ -112,11 +138,11 @@
 				</div>
 				<div class="form-group">
 					<label for="qcontent" class="col-sm-2 control-label">내용</label>
-					<textarea id="qcontent" name="qcontent" class="form-control" readonly="readonly"><c:out value="${qnaRead.qcontent}" /></textarea>
+					<textarea style="height:150px;" id="qcontent" name="qcontent" class="form-control" readonly="readonly"><c:out value="${qnaRead.qcontent}" /></textarea>
 				</div>
-				<div class="form-group">
-					<label for="qwriter" class="col-sm-2 control-label" >작성자</label>
-					<input type="text" id="qwriter" name="qwriter" class="form-control" value="${qnaRead.qwriter}"/>
+				<div class="form-group" >
+					<label for="qwriter" class="col-sm-2 control-label"  >작성자</label>
+					<input style="width:120px;display:inline-block; margin-left:-80px;" type="text" id="qwriter" name="qwriter" class="form-control" value="${qnaRead.qwriter}"/>
 				</div>
 				<div class="form-group">
 					<!--<label style="margin-left:-10px;"for="regdate" class="col-sm-2 control-label">작성날짜</label>-->
@@ -131,7 +157,7 @@
 			
 				</div>
 				<hr>
-				<div style="margin-left:800px;">
+				<div style="text-align:center;">
 					<button type="button" class="update_btn btn">질문 수정</button>
 					<button type="button" class="delete_btn btn ">질문 삭제</button>
 				<!--  <button type="button" class="list_btn btn">나의 질문 목록</button>	-->
@@ -139,22 +165,27 @@
 				
 				<!-- 댓글 -->
 				<div id="reply">
-					<ol class="replyList">
+					<ol class="replyList" style="list-style:none;">
 						<c:forEach items="${replyList}" var="replyList">
 							<li>
-								<div style="margin-left:-40px;">
+							    
+							    <div class="reply" style="border-bottom:1px solid;margin-left:-40px;margin-top:30px;margin-bottom:20px;">
+							    <span class="reply_list">답변</span>
+							    <br><br><br>
+								<div>
 								작성자 : ${replyList.qwriter}<p><p><p>
 								</div>
 								  
-								<div style="margin-left:-40px;">내용 : ${replyList.qcontent}</div><p><p>
+								<div>내용 : ${replyList.qcontent}</div><p><p>
 								
-								<div class="Date" style="margin-left:-40px;"><fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" /></div><p><p>
-								<div style="margin-left:765px;" >
+								<div class="Date"><fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" /></div><p><p>
+								</div>
+								<div style="text-align:center;margin-left:-30px;" >
 									<button  type="button" class="replyUpdateBtn btn" data-qrno="${replyList.qrno}">댓글 수정</button>
 									<button  type="button" class="replyDeleteBtn btn" data-qrno="${replyList.qrno}">댓글 삭제</button>
 								</div>
 							</li>
-						</c:forEach>   
+						</c:forEach>
 					</ol>
 				</div>
 				
@@ -165,6 +196,8 @@
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 				
+				     
+				     
 					<div class="form-group" style="margin-top:20px;">
 						<label  style="margin-left:-90px;" for="qwriter" class="col-sm-2 control-label" >댓글 작성자</label>
 						<div class="col-sm-10">
@@ -173,7 +206,7 @@
 					</div>
 					
 					<div>
-					<img src="/img/common_accordion_A.png" id="q_img">
+					
 					<div class="form-group" style="margin-top:20px;">
 						<label style="margin-left:-90px;" for="qcontent" class="col-sm-2 control-label">답변</label>
 						<div class="col-sm-10">
@@ -183,7 +216,7 @@
 					</div>
 				<div class="form-group" style="text-align:center;">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button style="width:100px; margin-top:20px; font-size:20px;color:white; background-color: #F3D1E9;" type="button" class="replyWriteBtn btn">작성</button>
+							<button style="width:50px; margin-top:20px; font-size:15px;color:black;" type="button" class="replyWriteBtn btn">작성</button>
 						</div>
 					</div> 
 				</form>

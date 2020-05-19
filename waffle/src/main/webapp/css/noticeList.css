@@ -1,6 +1,3 @@
-@import "../css/reset.css";
-@import "../css/header.css";
-
 @font-face {
   font-family: S-CoreDream-1;
   src: url("../font/SCDream1.otf") format("opentype");
@@ -26,41 +23,7 @@ body {
   /* font-family: S-CoreDream-3; */
   color: #000;
 }
-/*----------------------- header---------------------------- */
-header .logo::before {
-  background: no-repeat url("/img/logo_bk.png") center center;
-  background-size: cover;
-}
 
-/* --------로그인 & 검색 & 마이페이지 ----------- */
-
-header .gnp li.login a {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: no-repeat url("/img/power_white.png") center center #000; 
-  box-shadow: none;
-}
-header .gnp li.search a {
-  background: no-repeat url("/img/search_black.png") center center;
-  background-size: 100%;
-}
-header .gnp li.my_page a {
-  background: no-repeat url("/img/mypage_black.png") center center;
-}
-/*----------------------- nav---------------------------- */
-
-/* 왼쪽상단 햄버거태그 */
-nav .hamburg_box .hamburg {
-  border-top: 2px solid #000;
-}
-
-nav .hamburg:before {
-  border-top: 2px solid #000;
-}
-nav .hamburg:after {
-  border-top: 2px solid #000;
-}
 
 /*---------------service main-------------------*/
 .board_main {
