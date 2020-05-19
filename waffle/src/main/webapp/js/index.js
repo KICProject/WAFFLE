@@ -134,7 +134,10 @@ $(function() {
 										"roomNumber" : roomNumber
 											},
 								dataType : "json",
-								success : function(temwet) {
+								success : function(temwet){
+									alert('성공');
+								},
+								error : function(e) { // 아두이노보드와 통신 시리얼 통신을 못할 경우, 현재 방의 정보만을 표시하도록 변경
 									$.ajax({
 										url : "/room/getroom",
 										type : "post",
@@ -142,7 +145,7 @@ $(function() {
 											"memId" : mem,
 											"roomNumber" : roomNumber
 										},
-										dataType : "json",
+										dataType : "json", 
 										success : function(data) { // 성공적으로 id와 roomNumber를 넘기고, 요청한 데이터를 돌려받으면
 											if (data == null) { // 돌려받았지만, 데이터가 없음 = 서비스이용만료
 												alert('서비스를 이용이 만료되었습니다. 결제를 해주세요');
@@ -201,11 +204,11 @@ $(function() {
 											alert("통신 실패");
 										}
 									})
-								},
+								}/* 아두이노보드와 통신 시리얼 통신을 못할 경우, 현재 방의 정보만을 표시하도록 변경
 								error : function(e) {
 									console.log(e);
 									alert("통신 실패");
-								}
+								}*/
 						})
 						
 						
