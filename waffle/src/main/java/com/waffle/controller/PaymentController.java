@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.waffle.service.RoomService;
 import com.waffle.service.ServiceService;
-import com.waffle.vo.MemberVO;
 import com.waffle.vo.RoomVO;
 import com.waffle.vo.ServiceVO;
 
@@ -25,14 +24,14 @@ public class PaymentController {
 	private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
 
 	@Inject
-	ServiceService service;
+	ServiceService service; // 결제가 완료된 뒤 서비스 결제 정보를 저장하기 위한 객체
 
 	@Inject
-	RoomService rservice;
+	RoomService rservice; // 서비스에 따른 room 정보를 다룰 객체
 	
 
 	@ResponseBody
-	@RequestMapping(value = "/payReady", method = RequestMethod.POST)
+	@RequestMapping(value = "/payReady", method = RequestMethod.POST) // 서비스 페이지의 form에 정보를 전달해서 결제를 준비함
 	public int paymentReady(ServiceVO svo, HttpServletResponse response, HttpServletRequest request,
 			HttpSession session) throws Exception {
 
@@ -58,14 +57,14 @@ public class PaymentController {
 		return result;
 	}
 
-	@RequestMapping(value = "/pay", method = RequestMethod.GET)
+	@RequestMapping(value = "/pay", method = RequestMethod.GET) //결제버튼을 누르면 결제가 진행됨 
 	public String payPro(HttpSession session) throws Exception {
 		System.out.println("payPro() called");
 		return "/payment/pay";
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/regservice", method = RequestMethod.GET)
+	@RequestMapping(value = "/regservice", method = RequestMethod.GET) //결게가 되면, 해당 결제 정보를 service 테이블에 등록
 	public int regService(ServiceVO svo, HttpServletResponse response, HttpSession session) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		System.out.println("regService svo:" + svo);
@@ -82,12 +81,12 @@ public class PaymentController {
 		return result;
 	}
 
-	@RequestMapping(value = "/complete", method = RequestMethod.GET)
+	@RequestMapping(value = "/complete", method = RequestMethod.GET) // 완료페이지로 이동
 	public String payComplete(ServiceVO svo, HttpServletResponse response, HttpSession session) throws Exception {
 		return "payment/complete";
 	}
 
-	@RequestMapping(value = "/fail")
+	@RequestMapping(value = "/fail") // 실패 페이지로 이동
 	public String payFailure() throws Exception {
 		return "payment/fail";
 	}

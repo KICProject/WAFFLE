@@ -1,26 +1,19 @@
 var id_dbck = 0;
 var pass_chk = 0;
 var email_dbck =0;
-var re = /^[a-zA-Z0-9]{4,12}$/; // 아이디와 패스워드가 적합한지 검사할 정규식
-var re2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,16}$/;
-var re3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-var re4 = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g; // 전화번호 검사 규칙
-
-
-function check(re, what, message) {
-    if(re.test(what.value)) {
-        return true;
-    }
-    alert(message);
-    what.value = "";
-    what.focus();
-}
+var re = /^[a-zA-Z0-9]{4,12}$/; // 아이디 체크  정규식
+var re2 = /^(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9]).{6,16}$/; // 패스워드 체크 정규식 
+var re3 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일 체크 정규식
+var re4 = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g; // 전화번호 검사 정규식
 
 $(document).ready(function() {
 	// 취소
 	$(".cancle").on("click", function() {
 		location.href = "/login";
 	})
+
+	// 모든 체크 동작은 같은 방식으로 진행되어, 함수로 만드는 것이 편리하지만,  오류 발생시 체크를 위해
+	// 각각 만들었
 	//아이디 입력체크
 	$('#memId').on("focusout",function() {		
 		var validate = re.test($(this).val());
@@ -91,6 +84,7 @@ $(document).ready(function() {
 			$('#phoneValidate_message').text('');
 		}
 	})
+	// 전화번호 2 체
 	$('#memPhone2').on("blur",function() {
 		console.log($(this).val());
 		var validate = re4.test($(this).val());
@@ -104,6 +98,8 @@ $(document).ready(function() {
 			$('#phone2Validate_message').text('');
 		}
 	})
+
+	// '가입' 버튼 클릭시, 값이 입력되지 않음을 체
 	$("#submit").on("click", function(){
 		if (id.val() == "") {
 			alert("아이디를 입력해주세요.");
@@ -163,12 +159,12 @@ $(document).ready(function() {
 	})
 })
 
-function fn_idChk() {
+function fn_idChk() { // register 페이지에서 중복체크 클릭시 기능
 	if($('#memId').val()==""){
 		alert('공백 아이디는 입력할 수 없습니다.')
 		return false;
 	}
-	$.ajax({
+	$.ajax({ // 서버단과 통신하여, 입력한 아이디가 이미 존재하는 지 체
 		url : "/member/idChk",
 		type : "post",
 		dataType : "json",
@@ -176,11 +172,11 @@ function fn_idChk() {
 			"memId" : $("#memId").val()
 		},
 		success : function(data) {
-			if (data == 1) {
+			if (data == 1) { // 이미 데이터가 있음
 				id_dbck = 0;
 				console.log(id_dbck);
 				alert("중복된 아이디입니다.");
-			} else if (data == 0) {
+			} else if (data == 0) { // 데이터가 없
 				$("#idChk").attr("value", "Y");
 				id_dbck = 1;
 				console.log(id_dbck);
@@ -189,7 +185,7 @@ function fn_idChk() {
 		}
 	})
 }
-function fn_emailChk() {
+function fn_emailChk() { // 이메일 중복 체크 기능
 	if($('#memEmail').val()==""){
 		alert('이메일 주소를 입력하셔야 확인이 됩니다.')
 		return false;

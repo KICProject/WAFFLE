@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Handles requests for the application home page.
+ * 홈으로 연결해주는 컨트롤러
  */
 @Controller
 public class HomeController {
@@ -33,6 +33,6 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "index";
+		return "index"; // index.jsp 로 이동
 	}
 }

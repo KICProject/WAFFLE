@@ -20,52 +20,22 @@ import com.waffle.service.Weather;
 @Controller
 public class ApiController {
 	
-	@RequestMapping(value = "/api_weather", method = RequestMethod.GET)
+	@RequestMapping(value = "/api_weather", method = RequestMethod.GET) // 회원이 로그인을 하면 index.js에서 자동으로 로드하는 날씨 정보 (온도,습도를 표시)
 	public @ResponseBody String weather(Locale locale, Model model) throws ParseException {
 			Weather w = new Weather();
 			String result = w.reqData();
 			System.out.println(result);
 			System.out.println("컨트롤러에서 출력됨");
-//			w.parserData(result);
-			
-		/*
-		 * JSONParser parser = new JSONParser(); //–JSON Parser 생성 JSONObject jsonObj =
-		 * (JSONObject)parser.parse(result); //– 넘어온 문자열을 JSON 객체로 변환
-		 */	
-				
+	
 		return result;
 	}
 	
-	@RequestMapping(value = "/api_dust", method = RequestMethod.GET)
+	@RequestMapping(value = "/api_dust", method = RequestMethod.GET) // 회원이 로그인을 하면 index.js에서 자동으로 로드하는 날씨 정보 (미세먼지 농도를 표시)
 	public @ResponseBody String dust(Locale locale, Model model) {
 			Dust d = new Dust();
 			String result = d.reqData();
 			System.out.println(result);
-			//d.parserData(result);	
-			
-				
+		
 		return result;
 	}
 }
-
-/*
-@Controller
-public class ApiController {
-	
-	@RequestMapping(value = "/api", method = RequestMethod.GET)
-	public String api(Locale locale, Model model) {
-		boolean api_type = false;
-		if(api_type)
-		{
-			Weather w = new Weather();
-			String result = w.reqData();	
-			w.parserData(result);
-		}else{
-			Dust d = new Dust();
-			String result = d.reqData();
-			d.parserData(result);
-		}
-		
-		return "home";
-	}
-}*/
