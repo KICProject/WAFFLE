@@ -98,17 +98,15 @@ $(function(){
       $('.full_container').load('/sub/faq')
     //  $("#faq_btn").siblings().css('background-color','#333333').css('color','#fff'); 
    });
-   
+    var notice_url="/notice/list";
     $('#notice_btn').click(function(){
-	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
-      //$('.full_container').empty();
-      $('.full_container').load('/notice/list')
+      $(location).attr('href',notice_url); 
       $("#notice_btn").siblings().css('background-color','#333333').css('color','#fff');
    });
     
-    var url="/qna/qnalist";
+    var qna_url="/qna/qnalist";
     $('#qna_btn').click(function(){
-    	$(location).attr('href',url); 
+    	$(location).attr('href',qna_url); 
     	$(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333'); 
     });
    

@@ -279,7 +279,6 @@ transform: scale(1);
 .container{
     text-align: center;
     margin-top: 60px;
-    padding-left: 40px;
 }
 
 
@@ -287,7 +286,6 @@ transform: scale(1);
 .board_tab {
 	font-family: S-CoreDream-3;
 	margin-top: 50px;
-	padding: 0;
 	border: 0;
 	font: inherit;
 	vertical-align: baseline;

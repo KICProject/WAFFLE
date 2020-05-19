@@ -24,7 +24,7 @@
 			
 			$(".cancel_btn").on("click", function(){
 				event.preventDefault();
-				location.href = "/qna/qnalist?qbno=${update.qbno}"
+				location.href = "/qna/qnaView?qbno=${update.qbno}"
 					   + "&page=${scri.page}"
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"

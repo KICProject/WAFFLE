@@ -57,9 +57,9 @@ public class QnaController {
 		return "qna/qnalist";
 		}	
 	
-	   //비밀번호 체크
+	   //�뜮袁⑨옙甕곕뜇�깈 筌ｋ똾寃�
 		
-	    // 게시판 조회
+	    // 野껊슣�뻻占쎈솇 鈺곌퀬�돳
 		@RequestMapping(value = "/qnaView", method = RequestMethod.GET)
 	   
 		public String qnaView(QnaVO boardVO, @ModelAttribute("scri") QSearchCriteria scri, Model model) throws Exception {
@@ -82,7 +82,7 @@ public class QnaController {
 			String storedFileName = (String) resultMap.get("STORED_FILE_NAME");
 			String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
 			
-			// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+			// 占쎈솁占쎌뵬占쎌뱽 占쏙옙占쎌삢占쎈뻥占쎈쐲 占쎌맄燁살꼷肉됵옙苑� 筌ｂ뫀占쏙옙�솁占쎌뵬占쎌뱽 占쎌뵭占쎈선 byte[]占쎌굨占쎈뻼占쎌몵嚥∽옙 癰귨옙占쎌넎占쎈립占쎈뼄.
 			byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File("C:\\mp\\file\\"+storedFileName));
 			
 			response.setContentType("application/octet-stream");
@@ -94,14 +94,14 @@ public class QnaController {
 			
 		}
 	
-	// 寃뚯떆�뙋 湲� �옉�꽦 �솕硫�
+	// �뇦猿딆뒩占쎈뻣�뜝�럥�냷 �뼨�먯삕 �뜝�럩�굚�뜝�럡�뎽 �뜝�럩�꼨嶺뚮〕�삕
 		@RequestMapping(value = "/qna/writeView", method = RequestMethod.GET)
 		public void writeView() throws Exception{
 			logger.info("writeView");
 			
 		}
 		
-		// 寃뚯떆�뙋 湲� �옉�꽦
+		// �뇦猿딆뒩占쎈뻣�뜝�럥�냷 �뼨�먯삕 �뜝�럩�굚�뜝�럡�뎽
 		@RequestMapping(value = "/qna/write", method = RequestMethod.POST)
 		public String write(QnaVO boardVO, MultipartHttpServletRequest qnaRequest) throws Exception{
 			logger.info("write");
@@ -110,7 +110,7 @@ public class QnaController {
 			return "redirect:/qna/qnalist";
 		}
 		
-		// 寃뚯떆�뙋 �닔�젙酉�
+		// �뇦猿딆뒩占쎈뻣�뜝�럥�냷 �뜝�럥�빢�뜝�럩�젧占쎈�롥뜝占�
 		@RequestMapping(value = "/updateView", method = RequestMethod.GET)
 		public String updateView(QnaVO boardVO,  @ModelAttribute("scri") QSearchCriteria scri, Model model) throws Exception{
 			logger.info("updateView");
@@ -124,7 +124,7 @@ public class QnaController {
 			return "qna/updateView";
 		}
 		
-		// 게시판 수정
+		// 野껊슣�뻻占쎈솇 占쎈땾占쎌젟
 		@RequestMapping(value = "/update", method = RequestMethod.POST)
 		public String update(QnaVO boardVO, 
 							 @ModelAttribute("scri") QSearchCriteria scri, 
@@ -143,7 +143,7 @@ public class QnaController {
 			return "redirect:/qna/qnalist";
 		}
 
-		// 寃뚯떆�뙋 �궘�젣
+		// �뇦猿딆뒩占쎈뻣�뜝�럥�냷 �뜝�럡�뀭�뜝�럩�젷
 		@RequestMapping(value = "/delete", method = RequestMethod.POST)
 		public String delete(QnaVO boardVO) throws Exception{
 			logger.info("delete");
@@ -153,7 +153,7 @@ public class QnaController {
 			return "redirect:/qna/qnalist";
 		}
 		
-		//댓글 수정 GET
+		//占쎈솊疫뀐옙 占쎈땾占쎌젟 GET
 		@RequestMapping(value="/replyUpdateView", method = RequestMethod.GET)
 		public String replyUpdateView(QReplyVO vo, QSearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
@@ -164,7 +164,7 @@ public class QnaController {
 			return "qna/replyUpdateView";
 		}
 		
-		//댓글 수정 POST
+		//占쎈솊疫뀐옙 占쎈땾占쎌젟 POST
 		@RequestMapping(value="/replyUpdate", method = RequestMethod.POST)
 		public String replyUpdate(QReplyVO vo, QSearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
@@ -180,7 +180,7 @@ public class QnaController {
 			return "redirect:/qna/qnaView";
 		}
 		
-		//댓글 삭제 GET
+		//占쎈솊疫뀐옙 占쎄텣占쎌젫 GET
 		@RequestMapping(value="/replyDeleteView", method = RequestMethod.GET)
 		public String replyDeleteView(QReplyVO vo, QSearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
@@ -192,7 +192,7 @@ public class QnaController {
 			return "qna/replyDeleteView";
 		}
 		
-		//댓글 삭제
+		//占쎈솊疫뀐옙 占쎄텣占쎌젫
 		@RequestMapping(value="/replyDelete", method = RequestMethod.POST)
 		public String replyDelete(QReplyVO vo, QSearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
@@ -208,7 +208,7 @@ public class QnaController {
 			return "redirect:/qna/qnaView";
 		}
 		
-		//댓글 작성
+		//占쎈솊疫뀐옙 占쎌삂占쎄쉐
 		@RequestMapping(value="/replyWrite", method = RequestMethod.POST)
 		public String replyWrite(QReplyVO vo, QSearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
@@ -224,12 +224,12 @@ public class QnaController {
 			return "redirect:/qna/qnaView";
 		}
 		
-		//게시판 비밀번호 체크
+		//野껊슣�뻻占쎈솇 �뜮袁⑨옙甕곕뜇�깈 筌ｋ똾寃�
 		
 	     @RequestMapping(value = "/qna/qnaPassword", method = RequestMethod.GET)
          public String pw_Check(QnaVO vo,Model model) throws Exception{
             logger.info("qnaList");
-            model.addAttribute("qnaRead", service.qnaRead(vo.getQbno()));
+            model.addAttribute("qnaRead", service.qnaPass(vo.getQbno()));
             
             return "qna/qnaPassword";
             

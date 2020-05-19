@@ -4,10 +4,8 @@
 	li {list-style: none; display:inline; padding: 6px;}
 </style>
 <ul>
-	<li><a href="/qna/qnalist">목록보기</a></li>
-	
-	
-	<li><a href="/qna/writeView">질문하기</a></li>	<br>
+	<!-- <li><a href="/qna/qnalist">목록보기</a></li> -->	
+	<div style="float:left;"><li><a href="/qna/writeView">질문하러 가기</a></li></div><br>
 	<li> 
 
 	
@@ -18,4 +16,3 @@
 	</li>
 		
 </ul>
-

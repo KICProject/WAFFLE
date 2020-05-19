@@ -56,7 +56,7 @@
 							<tr>
 								<td>
 									<div><label for="qcontent">댓글 내용</label><br></div>
-									<input type="text" id="qcontent" name="qcontent" value="${replyUpdate.qcontent}"/>
+									<input style="height:100px;width:200px;" type="text" id="qcontent" name="qcontent" value="${replyUpdate.qcontent}"/>
 								</td>
 							</tr>	
 							

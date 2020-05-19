@@ -17,34 +17,42 @@
 </head>
 
 <script type="text/javascript">
-$(function(){
-   var faq_url="/sub/waffleBoard";
-   $('#faq_btn').click(function(){	  
-	   $(location).attr('href',faq_url); 
-	   $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
-   });
-   
-    $('#notice_btn').click(function(){
-	  $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
-      //$('.full_container').empty();
-      $('.full_container').load('/notice/list')
-      $("#notice_btn").siblings().css('background-color','#333333').css('color','#fff');
-   });
-    
-       var qna_url="/qna/qnalist";
-       $('#qna_btn').click(function(){
-       $(location).attr('href',qna_url); 
-  	   $(this).css('background-color','#fff').css('color','#000').css('border','1px solid #333333');
-    });
-   
 
-})
+	$(function() {
+		var faq_url = "/sub/waffleBoard";
+		$('#faq_btn').click(
+				function() {
+					$(location).attr('href', faq_url);
+					$(this).css('background-color', '#fff')
+							.css('color', '#000').css('border','1px solid #333333');
+				});
 
- $(function(){
-$('#searchBtn').click(function() {
-self.location = "/qna/qnalist" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-			});
-				}); 
+		var notice_url = "/notice/list";
+		$('#notice_btn').click(
+				function() {
+					$(location).attr('href', notice_url);
+					$("#notice_btn").siblings().css('background-color','#333333').css('color', '#fff');
+				});
+
+		var qna_url = "/qna/qnalist";
+		$('#qna_btn').click(
+				function() {
+					$(location).attr('href', qna_url);
+					$(this).css('background-color', '#fff')
+							.css('color', '#000').css('border','1px solid #333333');
+				});
+
+	})
+
+	$(function() {
+		$('#searchBtn').click(
+				function() {
+					self.location = "/qna/qnalist"
+							+ '${pageMaker.makeQuery(1)}' + "&searchType="
+							+ $("select option:selected").val() + "&keyword="
+							+ encodeURIComponent($('#keywordInput').val());
+				});
+	});
 </script>
 
 <style>

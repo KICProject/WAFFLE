@@ -1,2 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/waffle/controller/AduController.java=UTF-8
+encoding//src/main/java/com/waffle/controller/QnaController.java=UTF-8
+encoding//src/main/java/com/waffle/controller/SubMenuController.java=UTF-8
+encoding//src/main/java/com/waffle/dao/QnaDAO.java=UTF-8
+encoding//src/main/java/com/waffle/dao/QnaDAOImpl.java=UTF-8
+encoding//src/main/java/com/waffle/service/QnaService.java=UTF-8
+encoding//src/main/java/com/waffle/service/QnaServiceImpl.java=UTF-8
+encoding//src/main/webapp/css/faq.css=UTF-8
+encoding//src/main/webapp/css/noticeList.css=UTF-8
