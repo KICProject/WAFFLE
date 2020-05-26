@@ -131,25 +131,14 @@ nav .hamburg:after {
   border-bottom: 1px solid #444;
   padding-bottom: 150px;
 }
-.about_main .about_center .about_content .waffle_story div p:nth-child(2) {
-  margin-top: 150px;
-  line-height: 180%;
+
+.about_main .about_center .about_content .waffle_story > div > p{
+  font-size:20px;
+  font-weight:bold;
+  line-height:130%;
+  margin-bottom:70px;
 }
-.about_main .about_center .about_content .waffle_story div .story_img {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 1410px;
-  height: 745px;
-  margin-top: 110px;
-  background: no-repeat url(/img/login_img.jpeg) center center;
-}
-.about_main .about_center .about_content .waffle_story div .story_img > p {
-  padding-right: 180px; 
-  line-height: 150%;
-  font-family: S-CoreDream-6;
-  font-size: 47px;
-}
+
 
 /*---------------about main -> center -> content -> member-------------------*/
 .about_main .about_center .about_content .member ul {

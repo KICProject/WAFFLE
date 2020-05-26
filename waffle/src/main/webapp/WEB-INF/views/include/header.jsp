@@ -31,7 +31,6 @@
 			<ul>
 				<li><a href="#" id="about">About</a></li>
 				<li><a href="/sub/waffleService">Service</a></li>
-				<li><a href="#">Product</a></li>
 				<li><a href="/sub/waffleBoard">Customer</a></li>
 			</ul>
 		</div>
