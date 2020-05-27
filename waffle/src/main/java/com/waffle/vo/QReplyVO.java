@@ -2,6 +2,7 @@ package com.waffle.vo;
 
 import java.util.Date;
 
+//´ñ±Û VO
 public class QReplyVO {
 	
 	private int qbno;

@@ -24,7 +24,7 @@ public class QnaDAOImpl implements QnaDAO {
 		// TODO Auto-generated method stub
 		return sql.selectList("qnaMapper.listPage",scri);
 	}
-	//게시물 총 갯수
+	//寃뚯떆臾� 珥� 媛��닔
 	@Override
 	public int listCount(QSearchCriteria scri) throws Exception {
 		// TODO Auto-generated method stub
@@ -75,6 +75,18 @@ public class QnaDAOImpl implements QnaDAO {
 	public void updateFile(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		sql.update("qnaMapper.updateFile", map);
+	}
+	
+	@Override
+	public void boardHit(int qbno) throws Exception {
+		// TODO Auto-generated method stub
+		sql.update("qnaMapper.boardHit",qbno);
+		
+	}
+	@Override
+	public QnaVO qnaPass(int qbno) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne("qnaMapper.qnaPass",qbno);
 	}
 	
 	

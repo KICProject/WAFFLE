@@ -2,19 +2,23 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <!-- 게시판 글 목록, row_number()에 내림차순으로 번호를 매긴 후 select로 조회 -->
 <mapper namespace="qnaMapper">
   <select id="listPage" resultType="com.waffle.vo.QnaVO" parameterType="com.waffle.vo.QSearchCriteria">
   	SELECT      QBNO, 
 		        QTITLE, 
 		        QCONTENT,
 		        QWRITER, 
-		        REGDATE
+		        REGDATE,
+		        HIT
 		 FROM ( 
 		        SELECT QBNO, 
 		               QTITLE, 
 		               QCONTENT, 
 		               QWRITER, 
 		               REGDATE, 
+		               HIT,
 		               ROW_NUMBER() OVER(ORDER BY QBNO DESC) AS RNUM
 		         FROM Q_BOARD 
 		         WHERE 1=1 
@@ -25,11 +29,12 @@
  	
   </select>
   
+  <!-- 게시물 총 갯수 -->
   <select id="listCount" parameterType="com.waffle.vo.QSearchCriteria" resultType="int">
 	SELECT COUNT(QBNO)
 		   FROM Q_BOARD
 		   WHERE 1=1
-		<include refid="search"></include>	
+	<include refid="search"></include>	
 		   AND QBNO > 0
 	</select>
 	
@@ -42,6 +47,7 @@
 		</if>
 	</sql>
   
+  <!-- 게시물 조회,QBNO값에 #{qbno}을 넣어줌으로써 제목을 클릭했을 때 번호에 해당하는 게시물을 조회 -->
   <select id="qnaRead" resultType="com.waffle.vo.QnaVO" parameterType="int"> 
   SELECT   QBNO
   		   ,QTITLE
@@ -53,7 +59,30 @@
  	WHERE QBNO = #{qbno}
   </select>
   
-   <!-- 게시판 글 작성 -->
+  <select id="qnaPass" resultType="com.waffle.vo.QnaVO" parameterType="int"> 
+  SELECT   QBNO
+  		   ,QTITLE
+  		   ,QCONTENT
+  		   ,QWRITER
+  		   ,REGDATE
+  		   ,REVIEW_PASSWORD
+  		   FROM Q_BOARD
+ 	WHERE QBNO = #{qbno}
+  </select>
+  
+  
+   <!-- 
+                 게시판 글 작성 
+        useGeneratedKeys는 자동적으로 증가되는 키를 받는 getGeneratedKeys()를 사용할 수 있게 true로 설정.
+        keyProperty는 selectKey에 의해 선택된 키(keyProperty="qbno")가 무엇인지 설정.
+        order="BEFORE"는 insert를 실행하기 전에 실행한다는 설정.
+        
+                   실행순서
+        1)insert 쿼리를 실행하기 전에 SELECT Q_BOARD_SEQ.NEXTVAL FROM DUAL을 실행
+        2)실행한 쿼리에서 가져올 값(keyProperty="qbno")의 qbno를 int형으로 가져옴
+        3)<insert>안에 있는 keyProperty에 의해 <selectkey>에 있는 keyProperty값 qbno를 가져옴
+        4)qbno값 파라미터로 넣어줌       
+   -->
    <insert id="insert" parameterType="com.waffle.vo.QnaVO" useGeneratedKeys="true" keyProperty="qbno">
    <selectKey keyProperty="qbno" resultType="int" order="BEFORE">
 	    	SELECT Q_BOARD_SEQ.NEXTVAL FROM DUAL
@@ -70,7 +99,10 @@
 	                 		  , #{review_password}  )
    
    </insert>
-   
+   <!-- 
+       게시글이 작성되면 qbno값은 1이 증가된 상태에서 첨부파일 업로드 메소드에 증가된 qbno값을 넘겨주기 때문에
+       같은 qbno값을 가질 수 있게 된다.
+    -->
     <insert id="insertFile" parameterType="hashMap">
 		INSERT INTO Q_FILE(
 			FILE_NO,
@@ -87,45 +119,61 @@
 		)
     </insert>
     
-    <!-- 첨부파일 조회 -->
-<select id="selectFileList" parameterType="int" resultType="hashMap">
-	SELECT FILE_NO,
-		   ORG_FILE_NAME,
-		   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
-		   FROM Q_FILE
-		   WHERE QBNO = #{qbno}
-	   AND DEL_GB = 'N'
-	   ORDER BY FILE_NO ASC
-</select>
+    <!-- 
+              첨부파일 조회
+              게시글의 번호를 파라미터로 받는다, #{QBNO}에 10이 들어가면 10번 글의 첨부된 파일 목록들이 나오도록.
+      ROUND를 이용하여 1024로 파일크기를 나누어 1024당 1로 계산한다.
+              파일이 등록된 순서대로 조회할 수 있도록 ORDER BY FILE_NO ASC를 추가해준다.
+     -->
+	<select id="selectFileList" parameterType="int" resultType="hashMap">
+		SELECT FILE_NO,
+			   ORG_FILE_NAME,
+			   ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+			   FROM Q_FILE
+			   WHERE QBNO = #{qbno}
+		   AND DEL_GB = 'N'
+		   ORDER BY FILE_NO ASC
+	</select>
 
-<!-- 첨부파일 다운 -->
-<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
-	SELECT 
-		STORED_FILE_NAME,
-		ORG_FILE_NAME
-	FROM Q_FILE
-	WHERE FILE_NO = #{FILE_NO}
-</select>
+	<!-- 첨부파일 다운 -->
+	<select id="selectFileInfo" parameterType="hashMap" resultType="hashMap">
+		SELECT 
+			STORED_FILE_NAME,
+			ORG_FILE_NAME
+		FROM Q_FILE
+		WHERE FILE_NO = #{FILE_NO}
+	</select>
 
- <update id="updateFile" parameterType="hashMap">
+	<!-- 
+	첨부파일 수정
+	UPDATE쿼리를 이용하여 삭제한 파일은 DEL_GB를 Y로 바꾼다.
+	실제로 파일을 삭제하는 것이 아니라 DEL_GB에 따라 N값이면 보여주고 Y이면 보여주지 않는 식으로 진행.
+	 -->
+ 	<update id="updateFile" parameterType="hashMap">
     	UPDATE Q_FILE SET
     	DEL_GB = 'Y'
     	WHERE FILE_NO = #{FILE_NO}
     </update>
-   
+    
+  <!-- 게시물 수정 --> 
     <update id="update" parameterType="com.waffle.vo.QnaVO">
 		UPDATE Q_BOARD
 		   SET QTITLE    =   #{qtitle},
 		   	   QCONTENT  =   #{qcontent}
 		 WHERE QBNO = #{qbno} 
 	</update>
-	
+	<!-- 게시물 삭제 -->
 	<delete id="delete" parameterType="int">
 		DELETE 
 		  FROM Q_BOARD
 		 WHERE QBNO = #{qbno}
 	</delete>
 	
-
-  
+	 <!-- 게시판 조회수 -->
+    <update id="boardHit" parameterType="int">
+    	UPDATE Q_BOARD SET
+    	HIT = HIT+1
+    	WHERE QBNO = #{qbno}
+    </update>
+     
 </mapper>

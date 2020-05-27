@@ -10,7 +10,7 @@
 <script src="/js/servicepage.js"></script>
 </head>
 <body>
-	<div id="prePayForm" >
+	<div id="prePayForm" ><!-- 서비스 선택에 따른 결제정보팝업 -->
     	<form action="/payment/pay" method="post" id="payForm">
     		<label for="memId">주문자 ID</label>
     		<input type="text" id="memId" name="memId" value="${member.memId }" readonly>

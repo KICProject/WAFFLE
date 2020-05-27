@@ -11,7 +11,7 @@
 		<button class="question-top">
 			<img src="/img/common_accordion_Q.png" class="q_img"
 				style="margin-right: 10px">
-			<h4 style="text-align: left; line-height: 50px;">page3</h4>
+			<h4 style="text-align: left; line-height: 50px;">page3 확인을 위한 faq</h4>
 		</button>
 
 		<div class="answer">
@@ -36,7 +36,7 @@
 				<br> <br> 감사합니다.
 
 				<div class="answer_img">
-					<img src="/img/answer.png" style="margin-top: 40px;">
+					<img src="/img/answer_1.png" style="margin-top: 40px;">
 				</div>
 			</div>
 

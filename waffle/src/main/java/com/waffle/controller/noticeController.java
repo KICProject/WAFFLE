@@ -44,7 +44,7 @@ public class noticeController {
 	@Inject
 	NoticeReService replyService;
 
-	// 추가
+	// 추가 (그림 파일 첨부 경로 설정) 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
@@ -54,18 +54,16 @@ public class noticeController {
 		logger.info("writeView");
 	}
 
-	// 게시판 글 작성
+	// 게시판 글 작성 
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(NoticeVO boardVO, MultipartFile file) throws Exception {
 		String imgUploadPath = uploadPath + File.separator + "imgUpload"; // 이미지를 업로드할 폴더를 설정 = /uploadPath/imgUpload
-		String ymdPath = UploadFileUtils.calcPath(imgUploadPath); // 위의 폴더를 기준으로 연월일 폴더를 생성
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath); // 위의 폴더를 기준으로 연/월/일 별 폴더를 생성한다. 
 		String fileName = null; // 기본 경로와 별개로 작성되는 경로 + 파일이름
 
-		if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-			// 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
-
+		if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {// 파일 인풋박스에 첨부된 파일이 없다면(=첨부된 파일이 이름이 없다면)
+			// 업로드하는 파일 이름 설정 
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
-
 			// gdsImg에 원본 파일 경로 + 파일명 저장
 			boardVO.setGdsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
 			// gdsThumbImg에 썸네일 파일 경로 + 썸네일 파일명 저장
@@ -74,7 +72,7 @@ public class noticeController {
 
 		} else { // 첨부된 파일이 없으면
 			fileName = File.separator + "images" + File.separator + "none.png";
-			// 미리 준비된 none.png파일을 대신 출력함
+			// 미리 준비된 none.png파일을 대신 출력함 (readView에서 첨부된 파일이 없다면 화면에 안보이게 설정함) 
 
 			boardVO.setGdsImg(fileName);
 			boardVO.setGdsThumbImg(fileName);
@@ -94,7 +92,7 @@ public class noticeController {
 
 		NoticePageMaker pageMaker = new NoticePageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(service.listCount(scri));
+		pageMaker.setTotalCount(service.listCount(scri)); //게시글 총 개수 구하기 
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -102,8 +100,7 @@ public class noticeController {
 
 	}
 
-	// 게시판 조회 - list에서 가져온 SearchCriteria값을 사용하기 위해 매개변수에 파라미터를 통해 값을 받고 model을 이용해
-	// scri를 보내준다.
+	// 게시판 조회 - list에서 가져온 SearchCriteria값을 사용하기 위해 매개변수에 파라미터를 통해 값을 받고 model을 이용해 scri를 보내준다.
 	@RequestMapping(value = "/readView", method = RequestMethod.GET)
 	public String read(NoticeVO boardVO, @ModelAttribute("scri") NoticeSearchCri scri, Model model) throws Exception {
 		logger.info("read");
@@ -128,7 +125,7 @@ public class noticeController {
 
 		return "notice/updateView";
 	}
-
+	
 	// 게시판 수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(NoticeVO boardVO, MultipartFile file, HttpServletRequest req) throws Exception {
@@ -176,6 +173,7 @@ public class noticeController {
 
 		return "redirect:/notice/list";
 	}
+	
 
 	// 댓글 작성
 	// 파라미터로 ReplyVO(댓글을 작성하기 위한 데이터), SearchCriteria(readView에 있던 page, perPageNum,

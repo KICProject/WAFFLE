@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.waffle.dao.QnaDAO;
@@ -28,16 +30,18 @@ public class QnaServiceImpl implements QnaService {
 		// TODO Auto-generated method stub
 		return dao.qnaList(scri);
 	}
-	//寃뚯떆臾� 珥� 媛��닔
+	//野껊슣�뻻�눧占� �룯占� 揶쏉옙占쎈땾
 	@Override
 	public int listCount(QSearchCriteria scri) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.listCount(scri);
 	}
-
+    
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public QnaVO qnaRead(int qbno) throws Exception {
 		// TODO Auto-generated method stub
+		dao.boardHit(qbno);
 		return dao.qnaRead(qbno);
 	}
 	
@@ -92,4 +96,10 @@ public class QnaServiceImpl implements QnaService {
 	}
 
   }
+	@Override
+	public QnaVO qnaPass(int qbno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.qnaPass(qbno);
+	}
+	
 }

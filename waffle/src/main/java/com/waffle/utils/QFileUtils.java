@@ -15,16 +15,15 @@ import com.waffle.vo.QnaVO;
 
 @Component("qfileUtils")
 public class QFileUtils {
-	private static final String filePath = "C:\\mp\\file\\"; // �뙆�씪�씠 ���옣�맆 �쐞移�
+	private static final String filePath = "C:\\mp\\file\\"; 
 	
 	public List<Map<String, Object>> parseInsertFileInfo(QnaVO boardVO, 
 			MultipartHttpServletRequest qnaRequest) throws Exception{
-		
-		/*
-			Iterator�� �뜲�씠�꽣�뱾�쓽 吏묓빀泥�? �뿉�꽌 而щ젆�뀡�쑝濡쒕��꽣 �젙蹂대�� �뼸�뼱�삱 �닔 �엳�뒗 �씤�꽣�럹�씠�뒪�엯�땲�떎.
-			List�굹 諛곗뿴�� �닚李⑥쟻�쑝濡� �뜲�씠�꽣�쓽 �젒洹쇱씠 媛��뒫�븯吏�留�, Map�벑�쓽 �겢�옒�뒪�뱾�� �닚李⑥쟻�쑝濡� �젒洹쇳븷 �닔媛� �뾾�뒿�땲�떎.
-			Iterator�쓣 �씠�슜�븯�뿬 Map�뿉 �엳�뒗 �뜲�씠�꽣�뱾�쓣 while臾몄쓣 �씠�슜�븯�뿬 �닚李⑥쟻�쑝濡� �젒洹쇳빀�땲�떎.
-		*/
+	/*
+	 Iterator은 데이터들의 집합체로 컬렉션으로부터 정보를 얻어올 수 있는 인터페이스
+     List나 배열은 순차적으로 데이터의 접근이 가능하지만, Map등의 클래스들은 순차적으로 접근할 수가 없다.
+	 Iterator을 이용하여 Map에 있는 데이터들을 while문을 이용하여 순차적으로 접근한다.
+	 */
 		
 		Iterator<String> iterator = qnaRequest.getFileNames();
 		
@@ -73,7 +72,7 @@ public class QFileUtils {
 		int qbno = boardVO.getQbno();
 		while(iterator.hasNext()){ 
 			multipartFile = qnaRequest.getFile(iterator.next()); 
-			if(multipartFile.isEmpty() == false){ //�깉濡쒖슫 泥⑤��뙆�씪�씠 �벑濡앸릺硫� if臾� �떎�뻾
+			if(multipartFile.isEmpty() == false){ //占쎄퉱嚥≪뮇�뒲 筌ｂ뫀占쏙옙�솁占쎌뵬占쎌뵠 占쎈쾻嚥≪빖由븝쭖占� if�눧占� 占쎈뼄占쎈뻬
 				originalFileName = multipartFile.getOriginalFilename(); 
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf(".")); 
 				storedFileName = getRandomString() + originalFileExtension; 
@@ -87,7 +86,7 @@ public class QFileUtils {
 				list.add(listMap); 
 			} 
 		}
-		if(files != null && fileNames != null){ //�궘�젣�븷 �뙆�씪�쓽 踰덊샇�� �뙆�씪 �씠由� 諛쏄린
+		if(files != null && fileNames != null){ 
 			for(int i = 0; i<fileNames.length; i++) {
 					listMap = new HashMap<String,Object>();
                     listMap.put("IS_NEW", "N");

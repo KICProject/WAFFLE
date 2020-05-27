@@ -9,25 +9,29 @@ import com.waffle.vo.QnaVO;
 
 public interface QnaDAO {
 
-	//湲� 紐⑸줉 蹂닿린 
+	//疫뀐옙 筌뤴뫖以� 癰귣떯由� 
 	public List<QnaVO> qnaList(QSearchCriteria scri) throws Exception;
-	//게시물 총 갯수
+	//寃뚯떆臾� 珥� 媛��닔
 	public int listCount(QSearchCriteria scri) throws Exception;
-	//湲� �긽�꽭 蹂닿린 
+	//疫뀐옙 占쎄맒占쎄쉭 癰귣떯由� 
 	public QnaVO qnaRead(int qbno) throws Exception;
-	//寃뚯떆湲� �옉�꽦
+	//野껊슣�뻻疫뀐옙 占쎌삂占쎄쉐
 	public void write(QnaVO boardVO) throws Exception;
-	//寃뚯떆臾� �닔�젙
+	//野껊슣�뻻�눧占� 占쎈땾占쎌젟
 	public void update(QnaVO boardVO) throws Exception;
-	//寃뚯떆臾� �궘�젣
+	//野껊슣�뻻�눧占� 占쎄텣占쎌젫
 	public void delete(int qbno) throws Exception;
-	//첨부파일 업로드
+	//泥⑤��뙆�씪 �뾽濡쒕뱶
 	public void insertFile(Map<String, Object> map) throws Exception;
-	//첨부파일 조회
+	//泥⑤��뙆�씪 議고쉶
 	public List<Map<String,Object>> selectFileList(int qbno) throws Exception;
-	//첨부파일 다운
+	//泥⑤��뙆�씪 �떎�슫
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
-	//첨부파일 수정
+	//泥⑤��뙆�씪 �닔�젙
 	public void updateFile(Map<String, Object> map) throws Exception;
+	//게시판 조회수
+	public void boardHit(int qbno) throws Exception;
+	
+	public QnaVO qnaPass(int qbno) throws Exception;
 	
 }

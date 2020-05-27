@@ -14,12 +14,14 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>	 	
+	 	
+	 	<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 	 	<!-- <title>게시판 글쓰기</title> -->
 	</head>		
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var formObj = $("form[name='writeForm']");
-			$(".write_btn").on("click", function(){
+			/$(".write_btn").on("click", function(){
 				if(fn_valiChk()){
 					return false;
 				}
@@ -27,7 +29,7 @@
 				formObj.attr("method", "post");
 				formObj.submit();
 			});		
-		})
+			})		 		
 		
 		function fn_valiChk(){
 			var regForm = $("form[name='writeForm'] .chk").length;
@@ -37,9 +39,9 @@
 					return true;
 				}
 			}
-		}			
-		
+		}
 	</script>
+	
 	<body>
 		<jsp:include page="/WEB-INF/views/include/header_bk.jsp"></jsp:include>		
 		<div id="root">	
@@ -70,7 +72,17 @@
 								<tr>
 									<td>
 										<label for="ncontent" style="width : 100%;margin-top:10px;margin-bottom:10px;" class="col-sm-2 control-label" title="내용을 입력하세요." >공지 내용</label>
-										<textarea id="ncontent" name="ncontent" placeholder="내용을 입력하세요." style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;"></textarea>
+										<textarea id="ncontent" name="ncontent" placeholder="내용을 입력하세요." style="width: 1000px; height:300px; margin-bottom:10px; border : solid 1px lightgray;"></textarea>					
+										
+										<!-- <script type="text/javascript">
+										var oEditors = []; 
+										nhn.husky.EZCreator.createInIFrame({
+										   oAppRef : oEditors,
+										   elPlaceHolder : "ncontent",
+										    sSkinURI : "/resources/smarteditor/SmartEditor2Skin.html", 
+										    fCreator : "createSEditor2" 												    										  	
+										    });										
+										</script> -->
 									</td>
 								</tr>
 								<tr>
@@ -99,7 +111,8 @@
 								</tr>
 								<tr>
 									<td>						
-										<button class="write_btn btn btn-outline-dark" type="submit">작성</button>										
+										<button class="write_btn btn btn-outline-dark" type="submit">작성</button>
+																		
 									</td>
 								</tr>									
 							</c:if>

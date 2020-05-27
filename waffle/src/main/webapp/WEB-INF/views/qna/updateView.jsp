@@ -24,7 +24,7 @@
 			
 			$(".cancel_btn").on("click", function(){
 				event.preventDefault();
-				location.href = "/qna/qnalist?qbno=${update.qbno}"
+				location.href = "/qna/qnaView?qbno=${update.qbno}"
 					   + "&page=${scri.page}"
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"
@@ -54,7 +54,7 @@
 			var fileIndex = 1;
 			//$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"<button type='button' style='float:right;' id='fileAddBtn'>"+"추가"+"</button></div>");
 			$(".fileAdd_btn").on("click", function(){
-				$("#fileIndex").append("<div><input type='file' style='float:left;' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' style='float:right;' id='fileDelBtn'>"+"삭제"+"</button></div>");
+				$("#fileIndex").append("<div><input type='file' name='file_"+(fileIndex++)+"'>"+"</button>"+"<button type='button' id='fileDelBtn'>"+"삭제"+"</button></div>");
 			});
 			$(document).on("click","#fileDelBtn", function(){
 				$(this).parent().remove();
@@ -71,18 +71,62 @@
  			$("#fileNameDel").attr("value", fileNameArry);
  		}
 	</script>
-	<body>
 	
+	<style>
+@import "../css/reset.css";
+@import "../css/header.css";
+
+@font-face {
+  font-family: S-CoreDream-1;
+  src: url("../font/SCDream1.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-3;
+  src: url("../font/SCDream3.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: S-CoreDream-6;
+  src: url("../font/SCDream6.otf") format("opentype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+.q_update{
+	font-family: S-CoreDream-6;
+    font-size: 30.5px;
+    font-weight: bold;
+    color: black;
+    margin-block-start: 2em;
+    border-bottom : solid 3px;
+    margin : 40px auto;
+    padding : 5px;
+   
+}
+
+	#root{
+		width : 1140px;
+		margin : 0 auto;		
+	}
+	
+td {
+	padding-bottom : 5px;
+}
+	</style>
+	<body>
+
 		<div id="root">
-			<header>
-				<h1>질문 수정하기</h1>
-			</header>
-			<hr />
-			 
-			<div>
-				<%@include file="nav.jsp" %>
+			<div class="q_update">
+				질문 수정하기
 			</div>
-			<hr />
+			
+		<%-- 	<div>
+				<%@include file="nav.jsp" %>
+			</div> --%>
+			
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/qna/update" enctype="multipart/form-data">
@@ -93,29 +137,32 @@
 					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 					<input type="hidden" id="fileNoDel" name="fileNoDel[]" value=""> 
 					<input type="hidden" id="fileNameDel" name="fileNameDel[]" value=""> 
-					<table>
+					
+					<div class="content_view" >
+					<table style="width:100%;">
 						<tbody>
 							<tr>
-								<td>
-									<label for="qtitle">제목</label><input type="text" id="qtitle" name="qtitle" value="${update.qtitle}" class="chk" title="제목을 입력하세요."/>
-								</td>
+								
+						<label for="qtitle" style="margin-right:10px;margin-bottom:10px;font-weight: bold;float:left;">제목</label><input type="text" id="qtitle" name="qtitle" style=" border-radius:3px;width:1140px;margin-bottom:20px;"
+						 value="${update.qtitle}" class="chk" title="제목을 입력하세요."/>
+								
 							</tr>	
 							<tr>
 								<td>
-									<label for="qcontent">내용</label><textarea id="qcontent" name="qcontent" class="chk" title="내용을 입력하세요."><c:out value="${update.qcontent}" /></textarea>
+									<label for="qcontent" style="margin-right:10px;margin-bottom:10px;font-weight: bold;float:left;">내용</label><textarea id="qcontent" name="qcontent" class="chk" title="내용을 입력하세요."
+									 style="border-radius:3px;width:1140px;height:280px;margin-bottom:20px;">
+									<c:out value="${update.qcontent}" /></textarea>
 								</td>
+								
+								    
 							</tr>
 							<tr>
 								<td>
-									<label for="qwriter">작성자</label><input type="text" id="qwriter" name="qwriter" value="${update.qwriter}" readonly="readonly"/>
+									<button style="float:left;" type="button" class="fileAdd_btn">파일추가</button>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<label for="regdate">작성날짜</label>
-									<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>					
-								</td>
-							</tr>
+								
+							
 							<tr>
 								<td id="fileIndex">
 									<c:forEach var="file" items="${file}" varStatus="var">
@@ -130,10 +177,18 @@
 							</tr>
 						</tbody>			
 					</table>
+					</div>
+					
 					<div>
-						<button type="button" class="update_btn">저장</button>
-						<button type="button" class="cancel_btn">취소</button>
-						<button type="button" class="fileAdd_btn">파일추가</button>
+						<label for="qwriter" style="margin-right:10px;">작성자</label><input type="text" id="qwriter" name="qwriter" value="${update.qwriter}" readonly="readonly"/>					
+						<label for="regdate">작성날짜</label>
+						<fmt:formatDate value="${update.regdate}" pattern="yyyy-MM-dd"/>
+						
+						<div style="margin : 10px;align:center;">
+							<button type="button" class="update_btn btn btn">저장</button>
+							<button type="button" class="cancel_btn btn btn" style="margin-left : 10px">취소</button>
+						</div>
+						
 					</div>
 				</form>
 			</section>

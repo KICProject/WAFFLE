@@ -36,7 +36,7 @@
 				<br> <br> 감사합니다.
 
 				<div class="answer_img">
-					<img src="/img/answer.png" style="margin-top: 40px;">
+					<img src="/img/answer_1.png" style="margin-top: 40px;">
 				</div>
 			</div>
 

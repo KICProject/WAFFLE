@@ -28,7 +28,7 @@
 		       <ul class="board_tab">
 			        <li id="moveFaq"><a href="/sub/waffleBoard">FAQ</a></li>
 			        <li id="moveNotice"><a href="/notice/list">NOTICE</a></li>
-			        <li id="moveQna"><a href="/qna/writeView">QNA</a></li>
+			        <li id="moveQna"><a href="/qna/qnalist">QNA</a></li>
 		   	   </ul>			
 	<section class="board_main">			
 	   	<div id="root">			

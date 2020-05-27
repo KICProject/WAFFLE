@@ -1,5 +1,6 @@
 package com.waffle.vo;
 
+//검색 타입과 검색어를 쓸 수 있게 생성,QnaCri기능을 사용할 수 있다.
 public class QSearchCriteria extends QnaCri {
 	private String searchType = "";
 	private String keyword = "";

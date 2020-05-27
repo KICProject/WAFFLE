@@ -7,16 +7,16 @@ import com.waffle.vo.QReplyVO;
 
 
 public interface QReplyDAO {
-	//댓글조회
+	//댓글 조회
 	public List<QReplyVO> readReply(int qbno) throws Exception;
 	
-	// 댓글 수정
+	//
 	public void updateReply(QReplyVO vo) throws Exception;
 		
-	// 댓글 삭제
+	// �뙎湲� �궘�젣
 	public void deleteReply(QReplyVO vo) throws Exception;
 		
-	// 선택된 댓글 조회
+	// �꽑�깮�맂 �뙎湲� 議고쉶
 	public QReplyVO selectReply(int qrno) throws Exception;
 	
 	//댓글 작성
