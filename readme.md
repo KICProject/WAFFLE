@@ -36,16 +36,16 @@
 
 ###  [5] Responsible for each part
 #### devtaco(sk8taco) : take the lead 
-  **MemberJoin/Modify Login/Logout Service**
+  > **MemberJoin/Modify Login/Logout Service**
 #### DeaGiHonig : 
-  **Board NoticeBoard**
+  > **Board NoticeBoard**
 #### minju-minju :
-  **Board QnABoard FAQBoard**
+  > **Board QnABoard FAQBoard**
 #### jeongyony : 
-  **Ardunio Commicationg & Setting**
+  > **Ardunio Commicationg & Setting**
 #### ain115 : 
-  **frontend motion & design**
+  > **frontend motion & design**
 #### kminsu728 :
-  **OPEN Api init**
+  > **OPEN Api init**
   
   
