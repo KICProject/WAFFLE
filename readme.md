@@ -1,7 +1,7 @@
 # Project WAFFLE Preview
 #### testing youtube
 #### https://youtu.be/F8M8LgBNM14
-<img src="WAFFLE/index.png" width="450px" height="300px" title="waffle_index" alt="index_page"></img><br/>
+<center><img src="./index.png" width="550px" height="300px" title="waffle_index" alt="index_page"></img></center></br>
 
 ## 1. Summary
 ### [1] What is waffle?
