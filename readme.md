@@ -36,7 +36,7 @@
 
 ###  [5] Responsible for each part
 #### devtaco(sk8taco) : take the lead 
-  ** MemberJoin/Modify Login/Logout Service**
+  **MemberJoin/Modify Login/Logout Service**
 #### DeaGiHonig : 
   **Board NoticeBoard**
 #### minju-minju :
